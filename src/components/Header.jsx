@@ -6,7 +6,7 @@ import search from '../images/searchIcon.svg';
 
 function Header(props) {
   const [searchInput, setSearchInput] = useState(false);
-  const { title } = props;
+  const { title, searchIcon } = props;
 
   const onClick = () => {
     if (searchInput) {
@@ -28,16 +28,22 @@ function Header(props) {
         />
       </Link>
       <h2 data-testid="page-title">{title}</h2>
-      <button
-        onClick={ onClick }
-        type="button"
-      >
-        <img
-          data-testid="search-top-btn"
-          src={ search }
-          alt="search-btn"
-        />
-      </button>
+      {
+        searchIcon
+      && (
+        <button
+          data-testid="search-input"
+          onClick={ onClick }
+          type="button"
+        >
+          <img
+            data-testid="search-top-btn"
+            src={ search }
+            alt="search-btn"
+          />
+        </button>
+      )
+      }
       {
         searchInput
         && <input
@@ -47,6 +53,7 @@ function Header(props) {
         />
 
       }
+
     </header>
   );
 }

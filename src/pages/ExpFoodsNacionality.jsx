@@ -1,9 +1,13 @@
 import React from 'react';
+import Header from '../components/Header';
 
-function ExpFoodsNacionality() {
+function ExpFoodsNationalities() {
   return (
-    <div>ExpFoodsNacionality</div>
+    <Header
+      title="Explore Nationalities"
+      searchIcon
+    />
   );
 }
 
-export default ExpFoodsNacionality;
+export default ExpFoodsNationalities;

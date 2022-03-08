@@ -12,10 +12,10 @@ import Foods from './Foods';
 import Login from './Login';
 import ExpFoodsIngredient from './ExpFoodsIngredient';
 import ExpDrinksIngredient from './ExpDrinkIngredient';
-import ExpFoodsNacionality from './ExpFoodsNacionality';
 import Profile from './Profile';
-import favoritesRecipes from './favoritesRecipes';
 import DoneRecipes from './DoneRecipes';
+import ExpFoodsNationalities from './ExpFoodsNacionality';
+import FavoriteRecipes from './FavoritesRecipes';
 
 // Tela de login: /;
 // Tela principal de receitas de comidas: /foods;
@@ -37,13 +37,13 @@ import DoneRecipes from './DoneRecipes';
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/favorite-recipes" component={ favoritesRecipes } />
+      <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
       <Route exact path="/done-recipes" component={ DoneRecipes } />
       <Route exact path="/profile" component={ Profile } />
       <Route
         exact
         path="/explore/foods/nationalities"
-        component={ ExpFoodsNacionality }
+        component={ ExpFoodsNationalities }
       />
       <Route exact path="/explore/drinks/ingredients" component={ ExpDrinksIngredient } />
       <Route exact path="/explore/foods/ingredients" component={ ExpFoodsIngredient } />
