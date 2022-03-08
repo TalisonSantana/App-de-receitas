@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import MyContext from '.';
 
 function MyProvider({ children }) {
-  const [exemplo, setExemplo] = useState([]);
+  const [arrFilterRadio, setArrFilterRadio] = useState([]);
 
   const store = {
-    exemplo,
-    setExemplo,
-
+    arrFilterRadio,
+    setArrFilterRadio,
   };
 
   return (

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
+import HeaderSearch from './HeaderSearch';
 
 function Header(props) {
   const [searchInput, setSearchInput] = useState(false);
@@ -32,7 +33,6 @@ function Header(props) {
         searchIcon
       && (
         <button
-          data-testid="search-input"
           onClick={ onClick }
           type="button"
         >
@@ -46,14 +46,8 @@ function Header(props) {
       }
       {
         searchInput
-        && <input
-          type="text"
-          id="search-input"
-          placeholder="Search Recipe"
-        />
-
+        && <HeaderSearch />
       }
-
     </header>
   );
 }

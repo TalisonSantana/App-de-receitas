@@ -1,15 +1,40 @@
-const FetchEats = async (url) => {
+export const FetchEats = async (url) => {
   const API = url;
   try {
-    const results = await (await fetch(API)).json();
-    const { meals } = results;
-    console.log(meals);
+    const response = await (await fetch(API)).json();
+    console.log(response);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const FetchRadioIngredient = async (searchInput) => {
+  const API = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInput}`;
+  try {
+    const { meals } = await (await fetch(API)).json();
     return meals;
   } catch (error) {
     return error;
   }
 };
 
-// FetchEats('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+export const FetchRadioName = async (searchInput) => {
+  const API = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInput}`;
+  try {
+    const { meals } = await (await fetch(API)).json();
+    return meals;
+  } catch (error) {
+    return error;
+  }
+};
 
-export default FetchEats;
+export const FetchRadioLetter = async (searchInput) => {
+  const API = `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchInput}`;
+  try {
+    const { meals } = await (await fetch(API)).json();
+    return meals;
+  } catch (error) {
+    return error;
+  }
+};
