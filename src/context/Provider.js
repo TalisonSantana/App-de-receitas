@@ -1,34 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
-import FetchEats from '../services';
-import MyContext from './MyContext';
+import MyContext from '.';
 
 function Provider({ children }) {
-  const [ingredients, setIngredients] = useState([]);
+  // const [ingredients, setIngredients] = useState([]);
 
-  useEffect(() => {
-    async function api() {
-      const APIEndPoint = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772';
-      const result = await FetchEats(APIEndPoint);
-      setIngredients(result);
-    }
-    api();
-  }, []);
+  const store = {
 
-  const value = {
-    ingredients,
   };
 
   return (
-    <MyContext.Provider value={ value }>
+    <MyContext.Provider value={ store }>
       {children}
     </MyContext.Provider>
   );
 }
 
 Provider.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.objectOf(PropTypes.any),
 }.isRequire;
 
 export default Provider;
