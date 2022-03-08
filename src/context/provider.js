@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 import MyContext from '.';
 
 function MyProvider({ children }) {
-  const [exemplo, setExemplo] = useState([]);
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState ('');
+  const [loginDisable, setLoginDisable] = useState (true);
 
   const store = {
-    exemplo,
-    setExemplo,
-
+    loginEmail,
+    setLoginEmail,
+    loginPassword,
+    setLoginPassword,
+    loginDisable,
+    setLoginDisable,
   };
 
   return (
