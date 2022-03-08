@@ -9,4 +9,6 @@ const FetchEats = async (url) => {
   }
 };
 
+FetchEats('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+
 export default FetchEats;
