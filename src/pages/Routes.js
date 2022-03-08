@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import DrinksInProgress from './DrinksInProgress';
+import FoodsInProgress from './FoodsInProgress';
 import Login from './Login';
 
 // Tela de login: /;
@@ -31,8 +33,16 @@ function Routes() {
       {/* <Route exact path="/explore/drinks" component={ rgrgrg } /> */}
       {/* <Route exact path="/explore/foods" component={ efcwef } /> */}
       {/* <Route exact path="/explore" component={ Explore } /> */}
-      {/* <Route exact path="/drinks/:idDaReceita/in-progress" component={ rfr3f / { d } } /> */}
-      {/* <Route exact path="/foods/idDaReceita/in-progress" component={ FoodsInProgress } /> */}
+      <Route
+        exact
+        path="/drinks/idDaReceita/in-progress"
+        component={ DrinksInProgress }
+      />
+      <Route
+        exact
+        path="/foods/idDaReceita/in-progress"
+        component={ FoodsInProgress }
+      />
       {/* <Route exact path="/drinks/:idDaReceita" component={ Drinks / { receita } } /> */}
       {/* <Route exact path="/foods/:idDaReceita" component={ Foods / { receita } } /> */}
       {/* <Route exact path="/drinks" component={ Drinks } /> */}

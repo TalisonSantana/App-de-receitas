@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import MyContext from '.';
 
 function MyProvider({ children }) {
-  const [exemplo, setExemplo] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+
+  useEffect(() => {
+    async function api() {
+      const APIEndPoint = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772';
+      const result = await FetchEats(APIEndPoint);
+      setIngredients(result);
+    }
+    api();
+  }, []);
 
   const store = {
-    exemplo,
-    setExemplo,
-
+    ingredients,
   };
 
   return (
