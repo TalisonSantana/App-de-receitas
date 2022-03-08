@@ -23,25 +23,24 @@ import Login from './Login';
 function Routes() {
   return (
     <Switch>
-      {/* <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
-      <Route exact path="/done-recipes" component={ DoneRecipes } />
-      <Route exact path="/profile" component={ Profile } />
-      <Route exact path="/explore/foods/nationalities" component={ rgrgrg } />
-      <Route exact path="/explore/drinks/ingredients" component={ rgrgrg } />
-      <Route exact path="/explore/foods/ingredients" component={ rgrgrg } />
-      <Route exact path="/explore/drinks" component={ rgrgrg } />
-      <Route exact path="/explore/foods" component={ efcwef } />
-      <Route exact path="/explore" component={ Explore } />
-      <Route exact path="/drinks/:idDaReceita/in-progress" component={ rfr3f / { d } } />
-      <Route exact path="/foods/:idDaReceita/in-progress" component={ Foods / { d } } />
-      <Route exact path="/drinks/:idDaReceita" component={ Drinks / { receita } } />
-      <Route exact path="/foods/:idDaReceita" component={ Foods / { receita } } />
-      <Route exact path="/drinks" component={ Drinks } /> */}
+      {/* <Route exact path="/favorite-recipes" component={ FavoriteRecipes } /> */}
+      {/* <Route exact path="/done-recipes" component={ DoneRecipes } /> */}
+      {/* <Route exact path="/profile" component={ Profile } /> */}
+      {/* <Route exact path="/explore/foods/nationalities" component={ rgrgrg } /> */}
+      {/* <Route exact path="/explore/drinks/ingredients" component={ rgrgrg } /> */}
+      {/* <Route exact path="/explore/foods/ingredients" component={ rgrgrg } /> */}
+      {/* <Route exact path="/explore/drinks" component={ rgrgrg } /> */}
+      {/* <Route exact path="/explore/foods" component={ efcwef } /> */}
+      {/* <Route exact path="/explore" component={ Explore } /> */}
+      {/* <Route exact path="/drinks/:idDaReceita/in-progress" component={ rfr3f / { d } } /> */}
+      {/* <Route exact path="/foods/idDaReceita/in-progress" component={ FoodsInProgress } /> */}
+      {/* <Route exact path="/drinks/:idDaReceita" component={ Drinks / { receita } } /> */}
+      {/* <Route exact path="/foods/:idDaReceita" component={ Foods / { receita } } /> */}
+      {/* <Route exact path="/drinks" component={ Drinks } /> */}
       <Route exact path="/foods" component={ Foods } />
-      <Route exact path="/" component={ Login } />
+      <Route path="/" component={ Login } />
       <div>routes</div>
     </Switch>
-
   );
 }
 
