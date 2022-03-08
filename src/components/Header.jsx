@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 
 function Header(props) {
-  const { title, history } = props;
+  const [searchInput, setSearchInput] = useState(false);
+  const { title } = props;
+
+  const onClick = () => {
+    if (searchInput) {
+      setSearchInput(false);
+    } else {
+      setSearchInput(true);
+    }
+  };
+
   return (
     <header>
       <Link
@@ -19,7 +29,7 @@ function Header(props) {
       </Link>
       <h2 data-testid="page-title">{title}</h2>
       <button
-        onClick={ () => history.push('/profile') }
+        onClick={ onClick }
         type="button"
       >
         <img
@@ -28,6 +38,15 @@ function Header(props) {
           alt="search-btn"
         />
       </button>
+      {
+        searchInput
+        && <input
+          type="text"
+          id="search-input"
+          placeholder="Search Recipe"
+        />
+
+      }
     </header>
   );
 }
