@@ -5,10 +5,18 @@ function Login() {
   const [loginPassword, setLoginPassword] = useState('');
 
   const validadeInputs = () => {
-    const PASSWORD_LENGTH = 7;
+    const PASSWORD_LENGTH = 6;
     const checkEmail = loginEmail.includes('@' && '.com');
     const checkPassword = loginPassword.length >= PASSWORD_LENGTH;
     return !(checkEmail && checkPassword);
+  };
+
+  const submitBTM = () => {
+    const email = { email: loginEmail };
+
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+    localStorage.setItem('user', JSON.stringify(email));
   };
 
   return (
@@ -42,7 +50,7 @@ function Login() {
           type="button"
           data-testid="login-submit-btn"
           disabled={ validadeInputs() }
-          // onClick={ handleClick }
+          onClick={ () => submitBTM() }
         >
           Entrar
         </button>
