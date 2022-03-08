@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function Login({ history }) {
-// function Login() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
   const validadeInputs = () => {
-    const PASSWORD_LENGTH = 6;
-    const checkEmail = loginEmail.includes('@' && '.com');
+    const PASSWORD_LENGTH = 7;
+    const regexEmail = /\w+@+\w+\.com/ig;
+    const validateEmail = regexEmail.test(loginEmail);
     const checkPassword = loginPassword.length >= PASSWORD_LENGTH;
-    return !(checkEmail && checkPassword);
+    return !(validateEmail && checkPassword);
   };
 
   const submitBTM = () => {
