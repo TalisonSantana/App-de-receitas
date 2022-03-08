@@ -5,7 +5,7 @@ import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
 
 function Header(props) {
-  const { title } = props;
+  const { title, history } = props;
   return (
     <header>
       <Link
@@ -19,6 +19,7 @@ function Header(props) {
       </Link>
       <h2 data-testid="page-title">{title}</h2>
       <button
+        onClick={ () => history.push('/profile') }
         type="button"
       >
         <img
