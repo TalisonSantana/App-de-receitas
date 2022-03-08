@@ -19,9 +19,7 @@ function FoodProgress() {
   return (
     <div>
       <img src={ mealIcon } alt="mealIcon" />
-      {ingredients.meals.map((el, index) => (
-        <p key={ index }>{el}</p>
-      )) }
+      {Object.keys(ingredients)}
     </div>
 
   );
