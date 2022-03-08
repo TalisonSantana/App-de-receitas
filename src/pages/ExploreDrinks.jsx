@@ -1,8 +1,11 @@
 import React from 'react';
+import Footer from '../components/Footer';
 
 function ExploreDrinks() {
   return (
-    <div>ExploreDrinks</div>
+    <div>
+      <Footer />
+    </div>
   );
 }
 
