@@ -1,19 +1,18 @@
 import React from 'react';
-// import rockGlass from './images/rockGlass.svg';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import MyProvider from './context/provider';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Provider from './context/MyContext';
 import Routes from './pages/Routes';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const newHistory = createBrowserHistory();
   return (
     <Router history={ newHistory }>
-      <MyProvider>
+      <Provider>
         <Routes />
-      </MyProvider>
+      </Provider>
     </Router>
   );
 }

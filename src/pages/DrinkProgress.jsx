@@ -1,10 +1,10 @@
 import React from 'react';
 import drinkIcon from '../images/drinkIcon.svg';
 
-function DrinksInProgress() {
+function DrinkProgress() {
   return (
     <img src={ drinkIcon } alt="drinkIcon" />
   );
 }
 
-export default DrinksInProgress;
+export default DrinkProgress;

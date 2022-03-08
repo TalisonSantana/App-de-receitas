@@ -1,8 +1,21 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import DrinksInProgress from './DrinksInProgress';
-import FoodsInProgress from './FoodsInProgress';
+import DrinkProgress from './DrinkProgress';
+import DrinkRecipe from './DrinkRecipe';
+import Drinks from './Drinks';
+import Explore from './Explore';
+import ExploreDrinks from './ExploreDrinks';
+import ExploreFoods from './ExploreFoods';
+import FoodProgress from './FoodProgress';
+import FoodRecipe from './FoodRecipe';
+import Foods from './Foods';
 import Login from './Login';
+import ExpFoodsIngredient from './ExpFoodsIngredient';
+import ExpDrinksIngredient from './ExpDrinkIngredient';
+import ExpFoodsNacionality from './ExpFoodsNacionality';
+import Profile from './Profile';
+import favoritesRecipes from './favoritesRecipes';
+import DoneRecipes from './DoneRecipes';
 
 // Tela de login: /;
 // Tela principal de receitas de comidas: /foods;
@@ -24,33 +37,27 @@ import Login from './Login';
 function Routes() {
   return (
     <Switch>
-      {/* <Route exact path="/favorite-recipes" component={ FavoriteRecipes } /> */}
-      {/* <Route exact path="/done-recipes" component={ DoneRecipes } /> */}
-      {/* <Route exact path="/profile" component={ Profile } /> */}
-      {/* <Route exact path="/explore/foods/nationalities" component={ rgrgrg } /> */}
-      {/* <Route exact path="/explore/drinks/ingredients" component={ rgrgrg } /> */}
-      {/* <Route exact path="/explore/foods/ingredients" component={ rgrgrg } /> */}
-      {/* <Route exact path="/explore/drinks" component={ rgrgrg } /> */}
-      {/* <Route exact path="/explore/foods" component={ efcwef } /> */}
-      {/* <Route exact path="/explore" component={ Explore } /> */}
+      <Route exact path="/favorite-recipes" component={ favoritesRecipes } />
+      <Route exact path="/done-recipes" component={ DoneRecipes } />
+      <Route exact path="/profile" component={ Profile } />
       <Route
         exact
-        path="/drinks/idDaReceita/in-progress"
-        component={ DrinksInProgress }
+        path="/explore/foods/nationalities"
+        component={ ExpFoodsNacionality }
       />
-      <Route
-        exact
-        path="/foods/idDaReceita/in-progress"
-        component={ FoodsInProgress }
-      />
-      {/* <Route exact path="/drinks/:idDaReceita" component={ Drinks / { receita } } /> */}
-      {/* <Route exact path="/foods/:idDaReceita" component={ Foods / { receita } } /> */}
-      {/* <Route exact path="/drinks" component={ Drinks } /> */}
-      {/* <Route exact path="/foods" component={ Foods } /> */}
+      <Route exact path="/explore/drinks/ingredients" component={ ExpDrinksIngredient } />
+      <Route exact path="/explore/foods/ingredients" component={ ExpFoodsIngredient } />
+      <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+      <Route exact path="/explore/foods" component={ ExploreFoods } />
+      <Route exact path="/explore" component={ Explore } />
+      <Route exact path="/drinks/:idDaReceita/in-progress" component={ DrinkProgress } />
+      <Route exact path="/foods/idDaReceita/in-progress" component={ FoodProgress } />
+      <Route exact path="/drinks/:idDaReceita" component={ DrinkRecipe } />
+      <Route exact path="/foods/:idDaReceita" component={ FoodRecipe } />
+      <Route exact path="/drinks" component={ Drinks } />
+      <Route exact path="/foods" component={ Foods } />
       <Route path="/" component={ Login } />
-      <div>routes</div>
     </Switch>
-
   );
 }
 

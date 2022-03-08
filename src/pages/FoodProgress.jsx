@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import MyContext from '../context';
+import MyContext from '../context/MyContext';
 import mealIcon from '../images/mealIcon.svg';
 
-function FoodsInProgress() {
+function FoodProgress() {
   const { ingredients } = useContext(MyContext);
   console.log(ingredients);
   return (
@@ -16,4 +16,4 @@ function FoodsInProgress() {
   );
 }
 
-export default FoodsInProgress;
+export default FoodProgress;

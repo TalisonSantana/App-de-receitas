@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import MyContext from '.';
 
-function MyProvider({ children }) {
+import FetchEats from '../services';
+import MyContext from './MyContext';
+
+function Provider({ children }) {
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
@@ -14,19 +16,19 @@ function MyProvider({ children }) {
     api();
   }, []);
 
-  const store = {
+  const value = {
     ingredients,
   };
 
   return (
-    <MyContext.Provider value={ store }>
+    <MyContext.Provider value={ value }>
       {children}
     </MyContext.Provider>
   );
 }
 
-MyProvider.propTypes = {
-  children: PropTypes.objectOf(PropTypes.any),
-}.isRequired;
+Provider.propTypes = {
+  children: PropTypes.node,
+}.isRequire;
 
-export default MyProvider;
+export default Provider;
