@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MyContext from '.';
 
 function MyProvider({ children }) {
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState ('');
-  const [loginDisable, setLoginDisable] = useState (true);
+  // const [loginEmail, setLoginEmail] = useState('');
+  // const [loginPassword, setLoginPassword] = useState('');
+  // const [loginDisabled, setLoginDisabled] = useState(true);
 
   const store = {
-    loginEmail,
-    setLoginEmail,
-    loginPassword,
-    setLoginPassword,
-    loginDisable,
-    setLoginDisable,
+    // loginEmail,
+    // setLoginEmail,
+    // loginPassword,
+    // setLoginPassword,
+    // loginDisabled,
+    // setLoginDisabled,
   };
 
   return (
