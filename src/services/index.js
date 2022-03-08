@@ -1,10 +1,10 @@
 const FetchEats = async (url) => {
   const API = url;
   try {
-    const response = await fetch(API);
-    const data = await response.json();
-    console.log(data);
-    return data;
+    const results = await (await fetch(API)).json();
+    const { meals } = results;
+    console.log(meals);
+    return meals;
   } catch (error) {
     return error;
   }
