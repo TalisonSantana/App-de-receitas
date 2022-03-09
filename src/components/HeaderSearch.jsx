@@ -1,31 +1,50 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import MyContext from '../context';
 import funcArrayFilterFood, { funcArrayFilterDrink } from '../helpers/arrayFilter';
 
 function HeaderSearch() {
   const location = useLocation();
+  const history = useHistory();
   const [searchInput, setSearchInput] = useState('');
-  const { arrFilterRadio, setArrFilterRadio } = useContext(MyContext);
+  const {
+    arrFilterFoods,
+    setArrFilterFoods,
+    arrFilterDrinks,
+    setArrFilterDrinks } = useContext(MyContext);
   const [valueFilter, setValueFilter] = useState('');
+
+  const checkFetch = async () => {
+    if (location.pathname.includes('drinks')) {
+      const { drinks } = await funcArrayFilterDrink(valueFilter, searchInput);
+      setArrFilterDrinks(drinks);
+    } else {
+      const { meals } = await funcArrayFilterFood(valueFilter, searchInput);
+      setArrFilterFoods(meals);
+    }
+  };
+
+  const checkResponse = async () => {
+    const MIN_LENGTH = 1;
+    if (arrFilterDrinks.length === MIN_LENGTH) {
+      history.push(`/drinks/${arrFilterDrinks[0].idDrink}`);
+    } if (arrFilterFoods.length === MIN_LENGTH) {
+      history.push(`/foods/${arrFilterFoods[0].idMeal}`);
+    }
+  };
 
   const handleClick = async () => {
     const MIN_LENGTH = 1;
     const RADIO = 'First_Letter';
     if (searchInput.length > MIN_LENGTH && valueFilter === RADIO) {
       global.alert('Your search must have only 1 (one) character');
-    } if (location.pathname.includes('drinks')) {
-      const results = await funcArrayFilterDrink(valueFilter, searchInput);
-      setArrFilterRadio(results);
-    } else {
-      const results = await funcArrayFilterFood(valueFilter, searchInput);
-      setArrFilterRadio(results);
     }
+    checkFetch();
   };
 
   useEffect(() => {
-    console.log(arrFilterRadio);
-  }, [arrFilterRadio]);
+    checkResponse();
+  });
 
   return (
     <form>

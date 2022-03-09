@@ -19,8 +19,8 @@ export const FetchEats = async (url) => {
 export const FetchRadioFilter = async (endPoint, searchInput) => {
   const API = `${endPoint}${searchInput}`;
   try {
-    const { meals } = await (await fetch(API)).json();
-    return meals;
+    const response = await (await fetch(API)).json();
+    return response;
   } catch (error) {
     return error;
   }
