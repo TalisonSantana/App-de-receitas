@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import MyContext from '.';
+import MyContext from './index';
 
 function Provider({ children }) {
-  // const [ingredients, setIngredients] = useState([]);
+  const [arrFilterFoods, setArrFilterFoods] = useState([]);
+  const [arrFilterDrinks, setArrFilterDrinks] = useState([]);
 
   const store = {
-
+    arrFilterFoods,
+    setArrFilterFoods,
+    arrFilterDrinks,
+    setArrFilterDrinks,
   };
 
   return (

@@ -4,11 +4,13 @@ import Header from '../components/Header';
 
 function Drinks() {
   return (
-    <div>
-      <Header title="Foods" />
-
+    <>
+      <Header
+        title="Drinks"
+        searchIcon
+      />
       <Footer />
-    </div>
+    </>
   );
 }
 

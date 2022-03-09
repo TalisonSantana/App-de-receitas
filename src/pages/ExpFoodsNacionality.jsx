@@ -1,12 +1,17 @@
 import React from 'react';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-function ExpFoodsNacionality() {
+function ExpFoodsNationalities() {
   return (
-    <div>
+    <>
+      <Header
+        title="Explore Nationalities"
+        searchIcon
+      />
       <Footer />
-    </div>
+    </>
   );
 }
 
-export default ExpFoodsNacionality;
+export default ExpFoodsNationalities;
