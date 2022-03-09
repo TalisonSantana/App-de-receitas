@@ -1,6 +1,7 @@
 import React from 'react';
+import CardsRecipes from '../components/CardsRecipes';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 
 function Foods() {
   return (
@@ -9,6 +10,7 @@ function Foods() {
         title="Foods"
         searchIcon
       />
+      <CardsRecipes />
       <Footer />
     </>
   );

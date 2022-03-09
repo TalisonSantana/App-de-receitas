@@ -43,7 +43,7 @@ function Login({ history }) {
             type="password"
             id="password"
             name="password"
-            placeholder="6 ou mais caracteres"
+            placeholder="7 ou mais caracteres"
             data-testid="password-input"
             onChange={ ({ target }) => setLoginPassword(target.value) }
             value={ loginPassword }

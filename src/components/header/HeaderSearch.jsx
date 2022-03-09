@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import MyContext from '../context';
-import funcArrayFilterFood, { funcArrayFilterDrink } from '../helpers/arrayFilter';
+import MyContext from '../../context';
+import funcArrayFilterFood, { funcArrayFilterDrink } from '../../helpers/arrayFilter';
 
 function HeaderSearch() {
   const location = useLocation();
@@ -14,13 +14,21 @@ function HeaderSearch() {
     setArrFilterDrinks } = useContext(MyContext);
   const [valueFilter, setValueFilter] = useState('');
 
+  const teste = (fetch, setArray) => {
+    if (fetch === null) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    } else {
+      setArray(fetch);
+    }
+  };
+
   const checkFetch = async () => {
     if (location.pathname.includes('drinks')) {
       const { drinks } = await funcArrayFilterDrink(valueFilter, searchInput);
-      setArrFilterDrinks(drinks);
+      teste(drinks, setArrFilterDrinks);
     } else {
       const { meals } = await funcArrayFilterFood(valueFilter, searchInput);
-      setArrFilterFoods(meals);
+      teste(meals, setArrFilterFoods);
     }
   };
 
