@@ -1,90 +1,34 @@
-import React from 'react';
+import React, { } from 'react';
 import PropTypes from 'prop-types';
+// import MyContext from '../context';
 
-function Ingredients({ item, index }) {
+function Ingredients({ item }) {
+  const keys = Object.keys(item);
+  const myRegex = /strIngredient/gi;
+  const filterWithRegex = keys.filter((el) => el.match(myRegex));
+
+  // console.log('keys', item);
+  // console.log('filterWithRegex', filterWithRegex);
+  // console.log(filterWithRegex.map((el) => item[el]));
+
+  const valores = filterWithRegex.map((el) => item[el]);
+
   return (
-    <section>
-      <div data-testid={ `${index}-ingredient-step` }>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient1}
-          </span>
-        </section>
-
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient2}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient3}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient4}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient5}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient6}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient7}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient8}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient9}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient10}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient11}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient12}
-          </span>
-        </section>
-        <section>
-          <input type="checkbox" />
-          <span>
-            {item.strIngredient13}
-          </span>
-        </section>
-      </div>
+    <section className="d-flex flex-column">
+      {valores.map((elemento, index) => (
+        elemento
+        && (
+          <section>
+            <input type="checkbox" />
+            <span
+              key={ index }
+              data-testid={ `${index}-ingredient-step` }
+            >
+              {elemento}
+            </span>
+          </section>
+        )
+      ))}
     </section>
   );
 }
@@ -95,3 +39,12 @@ Ingredients.propTypes = {
 }.isRequire;
 
 export default Ingredients;
+
+// <div key={ indice } data-testid={ `${indice}-ingredient-step` }>
+// <section>
+//   <input type="checkbox" />
+//   <span>
+//     {ingredient[filterWithRegex]}
+//   </span>
+// </section>
+// </div>

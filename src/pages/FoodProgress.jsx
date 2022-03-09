@@ -7,13 +7,12 @@ import './css/FoodProgress.css';
 
 function FoodProgress() {
   const [ingredients, setIngredients] = useState([]);
-  console.log('ingredients', ingredients);
+  // console.log('ingredients', ingredients);
   useEffect(() => {
     async function api() {
-      // const APIEndPoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
       const APIEndPoint = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772';
       const result = await FetchEats(APIEndPoint);
-      console.log('result', result);
+      // console.log('result', result);
       setIngredients(result);
     }
     api();
@@ -53,7 +52,7 @@ function FoodProgress() {
           </section>
           <section className="container__ingredientes">
             <p>Ingredientes</p>
-            <Ingredients key={ index } item={ item } index={ index } />
+            <Ingredients key={ index } item={ item } />
           </section>
           <section className="container__instructions">
             <span>Instructions</span>
