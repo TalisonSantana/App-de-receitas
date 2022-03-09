@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import MyContext from '.';
+import MyContext from './index';
 
 function MyProvider({ children }) {
   const [arrFilterFoods, setArrFilterFoods] = useState([]);
