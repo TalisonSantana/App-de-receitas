@@ -28,7 +28,8 @@ function CardsRecipes() {
     if (location.pathname.includes('drinks') && arrFilter) {
       changeArray(arrFilterDrinks);
       setRenderDrinks(true);
-    } if (location.pathname.includes('foods') && arrFilter) {
+    }
+    if (location.pathname.includes('foods') && arrFilter) {
       changeArray(arrFilterFoods);
       setRenderFoods(true);
     }

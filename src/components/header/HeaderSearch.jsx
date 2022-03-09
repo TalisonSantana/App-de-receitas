@@ -14,13 +14,21 @@ function HeaderSearch() {
     setArrFilterDrinks } = useContext(MyContext);
   const [valueFilter, setValueFilter] = useState('');
 
+  const teste = (fetch, setArray) => {
+    if (fetch === null) {
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    } else {
+      setArray(fetch);
+    }
+  };
+
   const checkFetch = async () => {
     if (location.pathname.includes('drinks')) {
       const { drinks } = await funcArrayFilterDrink(valueFilter, searchInput);
-      setArrFilterDrinks(drinks);
+      teste(drinks, setArrFilterDrinks);
     } else {
       const { meals } = await funcArrayFilterFood(valueFilter, searchInput);
-      setArrFilterFoods(meals);
+      teste(meals, setArrFilterFoods);
     }
   };
 
