@@ -1,0 +1,57 @@
+.container__image {
+  background-color: 'red';
+}
+
+.image {
+  height: 20vh;
+  object-fit: cover;
+  width: 360px;
+}
+
+.container__title-buttons {
+  background-color: aquamarine;
+  display: flex;
+  justify-content: space-between;
+  max-width: 360px;
+  padding: 1.5vw;
+  width: 100%;
+}
+
+.container__title {
+  display: flex;
+  flex-flow: column;
+  width: 75%;
+}
+
+.container__buttons {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  width: 19%;
+}
+
+.container__instructions, .container__ingredientes {
+  display: flex;
+  flex-flow: column;
+  padding: 2vh;
+  max-width: 350px;
+  width: 100%;
+}
+
+.instructions {
+  margin: 2vh;
+}
+
+.container__button {
+  display: flex;
+  background-color: red;
+  justify-content: center;
+  max-width: 360px;
+  padding: 1.5vh;
+  width: 100%;
+}
+
+.container__button >  button {
+  height: 76px;
+  width: 339px;
+}
