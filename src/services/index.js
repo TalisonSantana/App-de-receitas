@@ -9,8 +9,9 @@ const FetchEats = async (url) => {
   const API = url;
   try {
     const response = await (await fetch(API)).json();
-    console.log(response);
-    return response;
+    const { meals } = response;
+    console.log('fetchEats', response);
+    return meals;
   } catch (error) {
     return error;
   }

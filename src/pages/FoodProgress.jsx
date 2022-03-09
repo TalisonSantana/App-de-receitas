@@ -7,7 +7,7 @@ import './css/FoodProgress.css';
 
 function FoodProgress() {
   const [ingredients, setIngredients] = useState([]);
-
+  console.log('ingredients', ingredients);
   useEffect(() => {
     async function api() {
       // const APIEndPoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
