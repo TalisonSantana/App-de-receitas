@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 function Profile({ history }) {
-  const getEmailLocalStorage = () => {
-    const email = localStorage.getItem('user');
-    return JSON.parse(email).email;
-  };
+  const [email, setEmail] = useState('');
+  useEffect(() => {
+    const data = localStorage.getItem('user');
+    setEmail(JSON.parse(data).email);
+  }, []);
+
   const handleClick = (path) => {
     if (path === '') {
       localStorage.clear();
     }
     history.push(`/${path}`);
   };
-  const email = getEmailLocalStorage();
   return (
     <>
       <Header title="Profile" />
