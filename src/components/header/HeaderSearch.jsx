@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import MyContext from '../context';
-import funcArrayFilterFood, { funcArrayFilterDrink } from '../helpers/arrayFilter';
+import MyContext from '../../context';
+import funcArrayFilterFood, { funcArrayFilterDrink } from '../../helpers/arrayFilter';
 
 function HeaderSearch() {
   const location = useLocation();

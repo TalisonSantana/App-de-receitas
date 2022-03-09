@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import profile from '../images/profileIcon.svg';
-import search from '../images/searchIcon.svg';
+import profile from '../../images/profileIcon.svg';
+import search from '../../images/searchIcon.svg';
 import HeaderSearch from './HeaderSearch';
 
 function Header(props) {
