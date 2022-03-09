@@ -39,12 +39,3 @@ Ingredients.propTypes = {
 }.isRequire;
 
 export default Ingredients;
-
-// <div key={ indice } data-testid={ `${indice}-ingredient-step` }>
-// <section>
-//   <input type="checkbox" />
-//   <span>
-//     {ingredient[filterWithRegex]}
-//   </span>
-// </section>
-// </div>
