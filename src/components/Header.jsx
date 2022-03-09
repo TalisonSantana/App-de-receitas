@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profile from '../images/profileIcon.svg';
 import search from '../images/searchIcon.svg';
+import HeaderSearch from './HeaderSearch';
 
 function Header(props) {
   const [searchInput, setSearchInput] = useState(false);
-  const { title } = props;
+  const { title, searchIcon } = props;
 
   const onClick = () => {
     if (searchInput) {
@@ -28,24 +29,24 @@ function Header(props) {
         />
       </Link>
       <h2 data-testid="page-title">{title}</h2>
-      <button
-        onClick={ onClick }
-        type="button"
-      >
-        <img
-          data-testid="search-top-btn"
-          src={ search }
-          alt="search-btn"
-        />
-      </button>
+      {
+        searchIcon
+      && (
+        <button
+          onClick={ onClick }
+          type="button"
+        >
+          <img
+            data-testid="search-top-btn"
+            src={ search }
+            alt="search-btn"
+          />
+        </button>
+      )
+      }
       {
         searchInput
-        && <input
-          type="text"
-          id="search-input"
-          placeholder="Search Recipe"
-        />
-
+        && <HeaderSearch />
       }
     </header>
   );
