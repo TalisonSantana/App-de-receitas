@@ -2,67 +2,15 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import IngredientsCheckbox from './IngredientsCheckbox';
 
 function DrinksIngredients({ drinks, dataDrinks }) {
   const [recipes, setRecipes] = useState('');
-  const [finishedDrinks, setFinishedDrinks] = useState([]);
-
-  console.log('drinks', drinks);
 
   console.log('DataDrinks', Object.keys(dataDrinks)[0]);
   useEffect(() => {
     setRecipes(Object.keys(dataDrinks)[0]);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('inProgressRecipes', JSON.stringify(
-      {
-        cocktails: {
-          [drinks.idDrink]: [finishedDrinks],
-        },
-      },
-    ));
-  }, [finishedDrinks]);
-
-  const handleChange = (target) => {
-    setFinishedDrinks(
-      (prevState) => ({ ...prevState, [target.name]: target.checked }),
-    );
-    console.log(finishedDrinks);
-  };
-
-  const ingredientList = () => {
-    const keys = Object.keys(drinks);
-    const myRegex = /strIngredient/gi;
-    const filterWithRegex = keys.filter((el) => el.match(myRegex));
-    const valores = filterWithRegex.map((el) => drinks[el]);
-
-    return (
-      <section className="d-flex flex-column">
-        {valores.map((elemento, index) => (
-          elemento
-        && (
-          <section key={ index }>
-            <label
-              htmlFor={ elemento }
-              style={ { textDecoration: finishedDrinks[elemento] && 'line-through' } }
-              data-testid={ `${index}-ingredient-step` }
-            >
-              <input
-                type="checkbox"
-                id={ elemento }
-                checked={ finishedDrinks[elemento] }
-                name={ elemento }
-                onChange={ ({ target }) => handleChange(target) }
-              />
-              {elemento}
-            </label>
-          </section>
-        )
-        ))}
-      </section>
-    );
-  };
+  }, [dataDrinks]);
 
   return (
     <section className="receita">
@@ -108,7 +56,7 @@ function DrinksIngredients({ drinks, dataDrinks }) {
         </section>
         <section className="container__ingredientes">
           <p>Ingredientes</p>
-          {ingredientList()}
+          <IngredientsCheckbox drinks={ drinks } dataDrinks={ dataDrinks } />
         </section>
         <section className="container__instructions">
           <span>Instructions</span>

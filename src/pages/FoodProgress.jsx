@@ -12,8 +12,8 @@ function FoodProgress() {
       const APIEndPoint = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772';
       const result = await FetchEats(APIEndPoint);
       const { meals } = await result;
-      console.log('results', result);
-      console.log('meals', meals);
+      // console.log('results', result);
+      // console.log('meals', meals);
       setDataMeals(result);
       setFoodsIngredients(meals);
     }
@@ -22,8 +22,8 @@ function FoodProgress() {
   console.log('foodsIngredients', foodsIngredients);
   return (
     <div>
-      {foodsIngredients.map((foods, index) => (
-        <FoodsIngredients key={ index } foods={ foods } dataMeals={ dataMeals } />
+      {foodsIngredients.map((meals, index) => (
+        <FoodsIngredients key={ index } meals={ meals } dataMeals={ dataMeals } />
       ))}
 
     </div>

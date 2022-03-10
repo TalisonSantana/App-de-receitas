@@ -1,60 +1,10 @@
-import React, { useState } from 'react';
+import React, { } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import IngredientsFoodsCheckbox from './IngredientsFoodsCheckbox';
 
-function DrinksIngredients({ foods }) {
-  // const [recipes, setRecipes] = useState('');
-  const [finishedDrinks, setFinishedDrinks] = useState([]);
-
-  // console.log('dataDrrinks', Object.keys(dataFoods)[0]);
-  // console.log('foods', foods);
-
-  // useEffect(() => {
-  //   setRecipes(Object.keys(dataFoods)[0]);
-  //   // console.log('recipes', recipes);
-  // }, []);
-
-  const handleChange = (target) => {
-    setFinishedDrinks(
-      (prevState) => ({ ...prevState, [target.name]: target.checked }),
-    );
-    // console.log(finishedDrinks);
-    // handleLocalStorage();
-  };
-
-  const ingredientList = () => {
-    const keys = Object.keys(foods);
-    const myRegex = /strIngredient/gi;
-    const filterWithRegex = keys.filter((el) => el.match(myRegex));
-    const valores = filterWithRegex.map((el) => foods[el]);
-    return (
-      <section className="d-flex flex-column">
-        {valores.map((elemento, index) => (
-          elemento
-        && (
-          <section key={ index }>
-            <label
-              htmlFor={ elemento }
-              style={ { textDecoration: finishedDrinks[elemento] && 'line-through' } }
-              data-testid={ `${index}-ingredient-step` }
-            >
-              <input
-                type="checkbox"
-                id={ elemento }
-                checked={ finishedDrinks[elemento] }
-                name={ elemento }
-                onChange={ ({ target }) => handleChange(target) }
-              />
-              {elemento}
-            </label>
-          </section>
-        )
-        ))}
-      </section>
-    );
-  };
-
+function DrinksIngredients({ meals, dataMeals }) {
   return (
     <section className="receita">
       <section>
@@ -62,7 +12,7 @@ function DrinksIngredients({ foods }) {
           <img
             className="image"
             data-testid="recipe-photo"
-            src={ foods.strMealThumb }
+            src={ meals.strMealThumb }
             alt="strDrinkThumb"
           />
         </section>
@@ -71,12 +21,12 @@ function DrinksIngredients({ foods }) {
             <span
               data-testid="recipe-title"
             >
-              { foods.strDrink }
+              { meals.strDrink }
             </span>
             <span
               data-testid="recipe-category"
             >
-              { foods.strCategory }
+              { meals.strCategory }
             </span>
           </section>
           <section className="container__buttons">
@@ -96,7 +46,7 @@ function DrinksIngredients({ foods }) {
         </section>
         <section className="container__ingredientes">
           <p>Ingredientes</p>
-          {ingredientList()}
+          <IngredientsFoodsCheckbox meals={ meals } dataMeals={ dataMeals } />
         </section>
         <section className="container__instructions">
           <span>Instructions</span>
@@ -104,7 +54,7 @@ function DrinksIngredients({ foods }) {
             data-testid="instructions"
             className="instructions"
           >
-            { foods.strInstructions }
+            { meals.strInstructions }
           </p>
         </section>
         <section className="container__button">
@@ -116,7 +66,7 @@ function DrinksIngredients({ foods }) {
 }
 
 DrinksIngredients.propTypes = {
-  foods: PropTypes.object,
+  meals: PropTypes.object,
 }.isRequire;
 
 export default DrinksIngredients;
