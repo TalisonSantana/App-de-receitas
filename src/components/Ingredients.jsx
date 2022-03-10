@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-// import MyContext from '../context';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 function Ingredients({ item }) {
-  const [recipes, setRecipes] = useState('');
+  const [recipes, setRecipes] = useState({});
+  const [finishedIngredient, setFinishedIngredient] = useState(false);
 
   useEffect(() => {
     setRecipes(Object.keys(item).find((elemento) => elemento === 'idDrink'));
-    console.log(recipes);
   }, []);
-  const recipe = () => {
+
+  const ingredientList = () => {
     const keys = Object.keys(item);
     const myRegex = /strIngredient/gi;
     const filterWithRegex = keys.filter((el) => el.match(myRegex));
@@ -23,8 +23,15 @@ function Ingredients({ item }) {
           elemento
         && (
           <section key={ index }>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={ finishedIngredient }
+              name="finishedIngredient"
+              // value={ finishedIngredient[valores.name] }
+              onChange={ ({ target }) => setFinishedIngredient(target.checked) }
+            />
             <span
+              style={ { textDecoration: finishedIngredient && 'line-through' } }
               data-testid={ `${index}-ingredient-step` }
             >
               {elemento}
@@ -80,7 +87,7 @@ function Ingredients({ item }) {
         </section>
         <section className="container__ingredientes">
           <p>Ingredientes</p>
-          {recipe()}
+          {ingredientList()}
         </section>
         <section className="container__instructions">
           <span>Instructions</span>
@@ -95,14 +102,12 @@ function Ingredients({ item }) {
           <button data-testid="finish-recipe-btn" type="button">Finish Recipe</button>
         </section>
       </section>
-      {/* )} */}
     </section>
   );
 }
 
 Ingredients.propTypes = {
-  item: PropTypes.string,
-  index: PropTypes.number,
+  item: PropTypes.object,
 }.isRequire;
 
 export default Ingredients;
