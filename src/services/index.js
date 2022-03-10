@@ -4,12 +4,13 @@ export const API_LETTER_FOOD = 'https://www.themealdb.com/api/json/v1/1/search.p
 export const API_INGREDIENT_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=';
 export const API_NAME_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 export const API_LETTER_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=';
+export const API_RANDOM_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+export const API_RANDOM_FOOD = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
-export const FetchEats = async (url) => {
+export const FetchResult = async (url) => {
   const API = url;
   try {
     const response = await (await fetch(API)).json();
-    console.log(response);
     return response;
   } catch (error) {
     return error;

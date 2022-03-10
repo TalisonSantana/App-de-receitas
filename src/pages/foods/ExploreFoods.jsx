@@ -2,9 +2,16 @@ import React from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
+import { API_RANDOM_FOOD, FetchResult } from '../../services';
 
 function ExploreFoods() {
   const history = useHistory();
+
+  const onClick = async () => {
+    const { meals } = await FetchResult(API_RANDOM_FOOD);
+    history.push(`/foods/${meals[0].idMeal}`);
+  };
+
   return (
     <>
       <Header title="Explore Foods" />
@@ -26,7 +33,7 @@ function ExploreFoods() {
       </button>
       <button
         data-testid="explore-surprise"
-        onClick={ () => history.push('/explore/drinks') }
+        onClick={ onClick }
         type="button"
       >
         Surprise me!
