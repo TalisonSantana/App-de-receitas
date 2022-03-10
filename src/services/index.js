@@ -9,9 +9,9 @@ const FetchEats = async (url) => {
   const API = url;
   try {
     const response = await (await fetch(API)).json();
-    const { meals } = response;
-    console.log('fetchEats', response);
-    return meals;
+    const data = await response;
+    console.log('API meals', data);
+    return data;
   } catch (error) {
     return error;
   }
@@ -21,9 +21,9 @@ export const FetchDrinks = async (url) => {
   const API = url;
   try {
     const results = await (await fetch(API)).json();
-    const { drinks } = results;
-    console.log(drinks);
-    return drinks;
+    const data = await results;
+    console.log('API drinks', data);
+    return data;
   } catch (error) {
     return error;
   }

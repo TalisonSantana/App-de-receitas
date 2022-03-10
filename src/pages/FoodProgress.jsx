@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import FetchEats from '../services';
+import FoodsIngredients from '../components/FoodsIngredients';
 import './css/FoodProgress.css';
-import Ingredients from '../components/Ingredients';
 
 function FoodProgress() {
-  const [ingredients, setIngredients] = useState([]);
+  const [foodsIngredients, setFoodsIngredients] = useState([]);
+  const [dataMeals, setDataMeals] = useState([]);
+
   useEffect(() => {
     async function api() {
       const APIEndPoint = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772';
       const result = await FetchEats(APIEndPoint);
-      console.log('feee', result);
-      setIngredients(result);
+      const { meals } = await result;
+      console.log('results', result);
+      console.log('meals', meals);
+      setDataMeals(result);
+      setFoodsIngredients(meals);
     }
     api();
   }, []);
-
+  console.log('foodsIngredients', foodsIngredients);
   return (
     <div>
-      {ingredients.map((item, index) => (
-        <Ingredients key={ index } item={ item } />
+      {foodsIngredients.map((foods, index) => (
+        <FoodsIngredients key={ index } foods={ foods } dataMeals={ dataMeals } />
       ))}
 
     </div>

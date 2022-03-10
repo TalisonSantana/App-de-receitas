@@ -1,25 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
-function Ingredients({ item }) {
-  const [recipes, setRecipes] = useState({});
-  const [finishedIngredient, setFinishedIngredient] = useState({});
+function DrinksIngredients({ foods }) {
+  // const [recipes, setRecipes] = useState('');
+  const [finishedDrinks, setFinishedDrinks] = useState([]);
 
-  useEffect(() => {
-    setRecipes(Object.keys(item).find((elemento) => elemento === 'idDrink'));
-  }, []);
+  // console.log('dataDrrinks', Object.keys(dataFoods)[0]);
+  // console.log('foods', foods);
 
-  console.log('finishedIngredient', finishedIngredient);
+  // useEffect(() => {
+  //   setRecipes(Object.keys(dataFoods)[0]);
+  //   // console.log('recipes', recipes);
+  // }, []);
+
+  const handleChange = (target) => {
+    setFinishedDrinks(
+      (prevState) => ({ ...prevState, [target.name]: target.checked }),
+    );
+    // console.log(finishedDrinks);
+    // handleLocalStorage();
+  };
 
   const ingredientList = () => {
-    const keys = Object.keys(item);
+    const keys = Object.keys(foods);
     const myRegex = /strIngredient/gi;
     const filterWithRegex = keys.filter((el) => el.match(myRegex));
-    const valores = filterWithRegex.map((el) => item[el]);
-    // console.log(valores);
-
+    const valores = filterWithRegex.map((el) => foods[el]);
     return (
       <section className="d-flex flex-column">
         {valores.map((elemento, index) => (
@@ -28,27 +36,18 @@ function Ingredients({ item }) {
           <section key={ index }>
             <label
               htmlFor={ elemento }
-              style={ { textDecoration: finishedIngredient[elemento] && 'line-through' } }
+              style={ { textDecoration: finishedDrinks[elemento] && 'line-through' } }
               data-testid={ `${index}-ingredient-step` }
             >
               <input
                 type="checkbox"
                 id={ elemento }
-                checked={ finishedIngredient[elemento] }
+                checked={ finishedDrinks[elemento] }
                 name={ elemento }
-                // value={ finishedIngredient[valores.name] }
-                onChange={ ({ target }) => setFinishedIngredient(
-                  (prevState) => ({ ...prevState, [target.name]: target.checked }),
-                ) }
+                onChange={ ({ target }) => handleChange(target) }
               />
               {elemento}
             </label>
-            {/* <span
-              style={ { textDecoration: finishedIngredient[elemento] && 'line-through' } }
-              data-testid={ `${index}-ingredient-step` }
-            >
-              {elemento}
-            </span> */}
           </section>
         )
         ))}
@@ -63,8 +62,8 @@ function Ingredients({ item }) {
           <img
             className="image"
             data-testid="recipe-photo"
-            src={ recipes ? item.strDrinkThumb : item.strMealThumb }
-            alt="strMealThumb"
+            src={ foods.strMealThumb }
+            alt="strDrinkThumb"
           />
         </section>
         <section className="container__title-buttons">
@@ -72,16 +71,13 @@ function Ingredients({ item }) {
             <span
               data-testid="recipe-title"
             >
-              {recipes ? item.strDrink : item.strMeal}
+              { foods.strDrink }
             </span>
             <span
               data-testid="recipe-category"
             >
-              {recipes ? item.strCategory : item.strCategory}
+              { foods.strCategory }
             </span>
-            {recipes && (
-              <span>{item.strAlcoholic}</span>
-            )}
           </section>
           <section className="container__buttons">
             <img
@@ -108,7 +104,7 @@ function Ingredients({ item }) {
             data-testid="instructions"
             className="instructions"
           >
-            {recipes ? item.strInstructions : item.strInstructions}
+            { foods.strInstructions }
           </p>
         </section>
         <section className="container__button">
@@ -119,8 +115,8 @@ function Ingredients({ item }) {
   );
 }
 
-Ingredients.propTypes = {
-  item: PropTypes.object,
+DrinksIngredients.propTypes = {
+  foods: PropTypes.object,
 }.isRequire;
 
-export default Ingredients;
+export default DrinksIngredients;
