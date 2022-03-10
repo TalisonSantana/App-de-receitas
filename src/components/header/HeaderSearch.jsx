@@ -46,6 +46,7 @@ function HeaderSearch() {
     const RADIO = 'First_Letter';
     if (searchInput.length > MIN_LENGTH && valueFilter === RADIO) {
       global.alert('Your search must have only 1 (one) character');
+      return;
     }
     checkFetch();
   };
