@@ -9,7 +9,6 @@ export const FetchEats = async (url) => {
   const API = url;
   try {
     const response = await (await fetch(API)).json();
-    console.log(response);
     return response;
   } catch (error) {
     return error;
