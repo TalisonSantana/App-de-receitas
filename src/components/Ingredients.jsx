@@ -5,17 +5,20 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 function Ingredients({ item }) {
   const [recipes, setRecipes] = useState({});
-  const [finishedIngredient, setFinishedIngredient] = useState(false);
+  const [finishedIngredient, setFinishedIngredient] = useState({});
 
   useEffect(() => {
     setRecipes(Object.keys(item).find((elemento) => elemento === 'idDrink'));
   }, []);
+
+  console.log('finishedIngredient', finishedIngredient);
 
   const ingredientList = () => {
     const keys = Object.keys(item);
     const myRegex = /strIngredient/gi;
     const filterWithRegex = keys.filter((el) => el.match(myRegex));
     const valores = filterWithRegex.map((el) => item[el]);
+    // console.log(valores);
 
     return (
       <section className="d-flex flex-column">
@@ -23,19 +26,29 @@ function Ingredients({ item }) {
           elemento
         && (
           <section key={ index }>
-            <input
-              type="checkbox"
-              checked={ finishedIngredient }
-              name="finishedIngredient"
-              // value={ finishedIngredient[valores.name] }
-              onChange={ ({ target }) => setFinishedIngredient(target.checked) }
-            />
-            <span
-              style={ { textDecoration: finishedIngredient && 'line-through' } }
+            <label
+              htmlFor={ elemento }
+              style={ { textDecoration: finishedIngredient[elemento] && 'line-through' } }
+              data-testid={ `${index}-ingredient-step` }
+            >
+              <input
+                type="checkbox"
+                id={ elemento }
+                checked={ finishedIngredient[elemento] }
+                name={ elemento }
+                // value={ finishedIngredient[valores.name] }
+                onChange={ ({ target }) => setFinishedIngredient(
+                  (prevState) => ({ ...prevState, [target.name]: target.checked }),
+                ) }
+              />
+              {elemento}
+            </label>
+            {/* <span
+              style={ { textDecoration: finishedIngredient[elemento] && 'line-through' } }
               data-testid={ `${index}-ingredient-step` }
             >
               {elemento}
-            </span>
+            </span> */}
           </section>
         )
         ))}
