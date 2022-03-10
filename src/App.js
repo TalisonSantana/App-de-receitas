@@ -3,7 +3,7 @@ import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyProvider from './context/provider';
-import Routes from './pages/Routes';
+import Routes from './pages/routes/Routes';
 import './App.css';
 
 function App() {
