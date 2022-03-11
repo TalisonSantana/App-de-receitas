@@ -20,7 +20,7 @@ function Header(props) {
   return (
     <header>
       <Link
-        to="profile"
+        to="/profile"
       >
         <img
           data-testid="profile-top-btn"
