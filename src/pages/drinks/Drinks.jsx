@@ -1,19 +1,18 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import CardsRecipes from '../components/CardsRecipes';
-import Footer from '../components/Footer';
-import Header from '../components/header/Header';
-import { FetchEats } from '../services';
-import MyContext from '../context';
-import ButtonCategory from '../components/ButtonCategory';
+import Footer from '../../components/footer/Footer';
+import Header from '../../components/header/Header';
+import { FetchResult } from '../../services';
+import MyContext from '../../context';
+import ButtonCategory from '../../components/ButtonCategory';
 
 const POSITION_ELEVEN = 12;
 const POSITION_FIVE = 5;
 
 function Drinks() {
   const {
-    apiDrinks,
-    setApiDrinks,
+    apiDrink,
+    setApiDrink,
     categoryDrink,
     setCategoryDrink,
     lastButtonDrink,
@@ -21,13 +20,13 @@ function Drinks() {
   } = useContext(MyContext);
 
   const apiDrinkFunc = async () => {
-    const { drinks } = await FetchEats('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-    setApiDrinks(drinks.slice(0, POSITION_ELEVEN));
+    const { drinks } = await FetchResult('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+    setApiDrink(drinks.slice(0, POSITION_ELEVEN));
   };
 
   useEffect(() => {
     async function Api() {
-      const results = await FetchEats('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+      const results = await FetchResult('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
       setCategoryDrink(results.drinks.slice(0, POSITION_FIVE));
       apiDrinkFunc();
     }
@@ -38,17 +37,17 @@ function Drinks() {
 
   const handleClickButton = async ({ target }) => {
     const { name } = target;
-    const { drinks } = await FetchEats(
+    const { drinks } = await FetchResult(
       `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${name}`,
     );
 
     if (lastButtonDrink !== name) {
       setLastButtonDrink(name);
       if (drinks.length > POSITION_ELEVEN) {
-        return setApiDrinks(drinks.slice(0, POSITION_ELEVEN));
+        return setApiDrink(drinks.slice(0, POSITION_ELEVEN));
       }
       if (drinks.length <= POSITION_ELEVEN) {
-        return setApiDrinks(drinks);
+        return setApiDrink(drinks);
       }
     }
     if (lastButtonDrink === name) {
@@ -63,7 +62,6 @@ function Drinks() {
         title="Drinks"
         searchIcon
       />
-      <CardsRecipes />
       <ButtonCategory
         nameCategory="All"
         name="All"
@@ -83,7 +81,7 @@ function Drinks() {
           ))}
       </div>
       <ul>
-        {apiDrinks && apiDrinks
+        {apiDrink && apiDrink
           .map((drink, index) => (
             <Link
               data-testid={ `${index}-recipe-card` }
@@ -106,18 +104,3 @@ function Drinks() {
 }
 
 export default Drinks;
-
-// function Drinks() {
-//   return (
-//     <main>
-//       <Header
-//         title="Drinks"
-//         searchIcon
-//       />
-//       <CardsRecipes />
-//       <Footer />
-//     </main>
-//   );
-// }
-
-// export default Drinks;

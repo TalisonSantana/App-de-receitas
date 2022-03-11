@@ -5,7 +5,7 @@ import MyContext from './index';
 function MyProvider({ children }) {
   const [arrFilterFoods, setArrFilterFoods] = useState([]);
   const [arrFilterDrinks, setArrFilterDrinks] = useState([]);
-  const [apiDrinks, setApiDrinks] = useState([]);
+  const [apiDrink, setApiDrink] = useState([]);
   const [apiDrinksStatic, setApiDrinkStatic] = useState([]);
   const [apiFood, setApiFood] = useState([]);
   const [apiFoodStatic, setApiFoodStatic] = useState([]);
@@ -21,8 +21,8 @@ function MyProvider({ children }) {
     setArrFilterDrinks,
     apiFood,
     setApiFood,
-    apiDrinks,
-    setApiDrinks,
+    apiDrink,
+    setApiDrink,
     categoryFood,
     setCategoryFood,
     categoryDrink,
