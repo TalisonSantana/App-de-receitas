@@ -40,7 +40,7 @@ function Profile({ history }) {
           data-testid="profile-logout-btn"
           onClick={ () => handleClick('') }
         >
-          Logout Btn
+          Logout
         </button>
       </section>
       <Footer />
