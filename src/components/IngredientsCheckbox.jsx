@@ -14,13 +14,25 @@ function IngredientsCheckbox({ drinks, dataDrinks }) {
   }, [dataDrinks]);
 
   useEffect(() => {
-    localStorage.setItem('inProgressRecipes', JSON.stringify(
-      {
+    const arrayAntigo = localStorage.getItem('inProgressRecipes');
+
+    if (arrayAntigo !== null) {
+      const novoArray = {
+        ...JSON.parse(arrayAntigo),
         cocktails: {
           [drinks.idDrink]: [finishedDrinks],
         },
-      },
-    ));
+      };
+
+      localStorage.setItem('inProgressRecipes', JSON.stringify(novoArray));
+    } else {
+      const novoArray = {
+        cocktails: {
+          [drinks.idDrink]: [finishedDrinks],
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(novoArray));
+    }
   }, [drinks.idDrink, finishedDrinks]);
 
   const handleChange = (target) => {

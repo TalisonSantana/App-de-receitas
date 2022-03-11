@@ -6,13 +6,33 @@ function IngredientsFoodsCheckbox({ meals }) {
   const [finishedFoods, setFinishedFoods] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('inProgressRecipes', JSON.stringify(
-      {
+    const arrayAntigo = localStorage.getItem('inProgressRecipes');
+
+    if (arrayAntigo !== null) {
+      const novoArray = {
+        ...JSON.parse(arrayAntigo),
         meals: {
           [meals.idMeal]: [finishedFoods],
         },
-      },
-    ));
+      };
+
+      localStorage.setItem('inProgressRecipes', JSON.stringify(novoArray));
+    } else {
+      const novoArray = {
+        meals: {
+          [meals.idMeal]: [finishedFoods],
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(novoArray));
+    }
+
+    // localStorage.setItem('inProgressRecipes', JSON.stringify(
+    //   {
+    //     meals: {
+    //       [meals.idMeal]: [finishedFoods],
+    //     },
+    //   },
+    // ));
   }, [meals.idMeal, finishedFoods]);
 
   const handleChange = (target) => {
