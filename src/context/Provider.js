@@ -2,15 +2,39 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MyContext from './index';
 
-function Provider({ children }) {
+function MyProvider({ children }) {
   const [arrFilterFoods, setArrFilterFoods] = useState([]);
   const [arrFilterDrinks, setArrFilterDrinks] = useState([]);
+  const [apiDrink, setApiDrink] = useState([]);
+  const [apiDrinksStatic, setApiDrinkStatic] = useState([]);
+  const [apiFood, setApiFood] = useState([]);
+  const [apiFoodStatic, setApiFoodStatic] = useState([]);
+  const [categoryFood, setCategoryFood] = useState([]);
+  const [categoryDrink, setCategoryDrink] = useState([]);
+  const [lastButtonDrink, setLastButtonDrink] = useState('');
+  const [lastButtonFood, setLastButtonFood] = useState('');
 
   const store = {
     arrFilterFoods,
     setArrFilterFoods,
     arrFilterDrinks,
     setArrFilterDrinks,
+    apiFood,
+    setApiFood,
+    apiDrink,
+    setApiDrink,
+    categoryFood,
+    setCategoryFood,
+    categoryDrink,
+    setCategoryDrink,
+    apiFoodStatic,
+    setApiFoodStatic,
+    apiDrinksStatic,
+    setApiDrinkStatic,
+    lastButtonDrink,
+    setLastButtonDrink,
+    lastButtonFood,
+    setLastButtonFood,
   };
 
   return (
@@ -20,8 +44,8 @@ function Provider({ children }) {
   );
 }
 
-Provider.propTypes = {
+MyProvider.propTypes = {
   children: PropTypes.objectOf(PropTypes.any),
 }.isRequire;
 
-export default Provider;
+export default MyProvider;

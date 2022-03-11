@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { FetchDrinks } from '../services';
-import DrinksIngredients from '../components/DrinksIngredients';
-import './css/FoodProgress.css';
+import { FetchResult } from '../../services';
+import DrinksIngredients from '../../components/DrinksIngredients';
+import '../css/FoodProgress.css';
 
 function DrinkProgress() {
   const [drinksIngredients, setDrinksIngredients] = useState([]);
@@ -10,9 +10,8 @@ function DrinkProgress() {
   useEffect(() => {
     async function api() {
       const APIEndPoint = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007';
-      const result = await FetchDrinks(APIEndPoint);
+      const result = await FetchResult(APIEndPoint);
       const { drinks } = result;
-      // console.log('useEffect Drinkks', result);
       setDataDrinks(result);
       setDrinksIngredients(drinks);
     }

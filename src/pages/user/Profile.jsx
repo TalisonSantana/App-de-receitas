@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Footer from '../components/Footer';
-import Header from '../components/header/Header';
+import Footer from '../../components/footer/Footer';
+import Header from '../../components/header/Header';
 
 function Profile({ history }) {
-  const [email, setEmail] = useState('');
+  const [user, setUser] = useState('');
   useEffect(() => {
-    const data = localStorage.getItem('user');
-    setEmail(JSON.parse(data).email);
+    setUser(JSON.parse(localStorage.getItem('user'))
+    || { email: 'nao encontrado' });
   }, []);
 
   const handleClick = (path) => {
@@ -20,7 +20,7 @@ function Profile({ history }) {
     <>
       <Header title="Profile" />
       <section>
-        <h3 data-testid="profile-email">{`${email}`}</h3>
+        <h3 data-testid="profile-email">{user.email}</h3>
         <button
           type="button"
           data-testid="profile-done-btn"
@@ -40,7 +40,7 @@ function Profile({ history }) {
           data-testid="profile-logout-btn"
           onClick={ () => handleClick('') }
         >
-          Logout Btn
+          Logout
         </button>
       </section>
       <Footer />

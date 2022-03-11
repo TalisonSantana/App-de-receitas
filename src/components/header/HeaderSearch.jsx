@@ -1,43 +1,50 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import MyContext from '../../context';
 import funcArrayFilterFood, { funcArrayFilterDrink } from '../../helpers/arrayFilter';
 
 function HeaderSearch() {
+  const POSITION_ELEVEN = 12;
   const location = useLocation();
   const history = useHistory();
   const [searchInput, setSearchInput] = useState('');
   const {
-    arrFilterFoods,
-    setArrFilterFoods,
-    arrFilterDrinks,
-    setArrFilterDrinks } = useContext(MyContext);
+    // apiFood,
+    // apiDrink,
+    setApiDrink,
+    setApiFood } = useContext(MyContext);
   const [valueFilter, setValueFilter] = useState('');
 
-  const teste = (fetch, setArray) => {
-    if (fetch === null) {
-      global.alert('Sorry, we haven\'t found any recipes for these filters.');
-    } else {
-      setArray(fetch);
-    }
-  };
+  // const setFechState = (fetch, setArray) => {
+  //   console.log(fetch);
+  //   if (fetch === null) {
+  //     global.alert('Sorry, we haven\'t found any recipes for these filters.');
+  //   } else {
+  //     setArray(fetch);
+  //   }
+  // };
 
   const checkFetch = async () => {
+    const MIN_LENGTH = 1;
     if (location.pathname.includes('drinks')) {
       const { drinks } = await funcArrayFilterDrink(valueFilter, searchInput);
-      teste(drinks, setArrFilterDrinks);
-    } else {
-      const { meals } = await funcArrayFilterFood(valueFilter, searchInput);
-      teste(meals, setArrFilterFoods);
+      if (drinks === null) {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
+        return;
+      }
+      if (drinks.length === MIN_LENGTH) {
+        history.push(`/drinks/${drinks[0].idDrink}`);
+      } else { setApiDrink(drinks.slice(0, POSITION_ELEVEN)); }
     }
-  };
-
-  const checkResponse = async () => {
-    const MIN_LENGTH = 1;
-    if (arrFilterDrinks.length === MIN_LENGTH) {
-      history.push(`/drinks/${arrFilterDrinks[0].idDrink}`);
-    } if (arrFilterFoods.length === MIN_LENGTH) {
-      history.push(`/foods/${arrFilterFoods[0].idMeal}`);
+    if (location.pathname.includes('foods')) {
+      const { meals } = await funcArrayFilterFood(valueFilter, searchInput);
+      if (meals === null) {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
+        return;
+      }
+      if (meals.length === MIN_LENGTH) {
+        history.push(`/foods/${meals[0].idMeal}`);
+      } else { setApiFood(meals.slice(0, POSITION_ELEVEN)); }
     }
   };
 
@@ -50,10 +57,6 @@ function HeaderSearch() {
     }
     checkFetch();
   };
-
-  useEffect(() => {
-    checkResponse();
-  });
 
   return (
     <form>
