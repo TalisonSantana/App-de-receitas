@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MyContext from './index';
 
-function MyProvider({ children }) {
+function Provider({ children }) {
   const [arrFilterFoods, setArrFilterFoods] = useState([]);
   const [arrFilterDrinks, setArrFilterDrinks] = useState([]);
 
@@ -20,8 +20,8 @@ function MyProvider({ children }) {
   );
 }
 
-MyProvider.propTypes = {
+Provider.propTypes = {
   children: PropTypes.objectOf(PropTypes.any),
-}.isRequired;
+}.isRequire;
 
-export default MyProvider;
+export default Provider;
