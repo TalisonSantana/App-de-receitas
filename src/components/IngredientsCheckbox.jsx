@@ -16,7 +16,7 @@ function IngredientsCheckbox({ drinks, dataDrinks }) {
   useEffect(() => {
     const arrayAntigo = localStorage.getItem('inProgressRecipes');
 
-    if (arrayAntigo !== null) {
+    if (arrayAntigo.length !== null) {
       const novoArray = {
         ...JSON.parse(arrayAntigo),
         cocktails: {

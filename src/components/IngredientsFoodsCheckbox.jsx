@@ -1,41 +1,64 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 // import MyContext from '../context';
 
 function IngredientsFoodsCheckbox({ meals }) {
   const [finishedFoods, setFinishedFoods] = useState([]);
 
+  // const handleLocalStorage = () => {
+  //   const objetoAntigo = localStorage.getItem('inProgressRecipes');
+
+  //   if (objetoAntigo.length !== null) {
+  //     const novoObjeto = {
+  //       ...JSON.parse(objetoAntigo),
+  //       meals: {
+  //         [meals.idMeal]: [finishedFoods],
+  //       },
+  //     };
+
+  //     localStorage.setItem('inProgressRecipes', JSON.stringify(novoObjeto));
+  //   } else {
+  //     const novoObjeto = {
+  //       meals: {
+  //         [meals.idMeal]: [finishedFoods],
+  //       },
+  //     };
+  //     localStorage.setItem('inProgressRecipes', JSON.stringify(novoObjeto));
+  //   }
+  // };
+
   useEffect(() => {
-    const arrayAntigo = localStorage.getItem('inProgressRecipes');
+    const objetoAntigo = localStorage.getItem('inProgressRecipes');
 
-    if (arrayAntigo !== null) {
-      const novoArray = {
-        ...JSON.parse(arrayAntigo),
+    if (objetoAntigo.length !== null) {
+      const novoObjeto = {
+        ...JSON.parse(objetoAntigo),
         meals: {
           [meals.idMeal]: [finishedFoods],
         },
       };
 
-      localStorage.setItem('inProgressRecipes', JSON.stringify(novoArray));
+      localStorage.setItem('inProgressRecipes', JSON.stringify(novoObjeto));
     } else {
-      const novoArray = {
+      const novoObjeto = {
         meals: {
           [meals.idMeal]: [finishedFoods],
         },
       };
-      localStorage.setItem('inProgressRecipes', JSON.stringify(novoArray));
+      localStorage.setItem('inProgressRecipes', JSON.stringify(novoObjeto));
     }
 
-    // localStorage.setItem('inProgressRecipes', JSON.stringify(
-    //   {
-    //     meals: {
-    //       [meals.idMeal]: [finishedFoods],
-    //     },
-    //   },
-    // ));
+    localStorage.setItem('inProgressRecipes', JSON.stringify(
+      {
+        meals: {
+          [meals.idMeal]: [finishedFoods],
+        },
+      },
+    ));
   }, [meals.idMeal, finishedFoods]);
 
   const handleChange = (target) => {
+    handleLocalStorage();
     setFinishedFoods(
       (prevState) => ({ ...prevState, [target.name]: target.checked }),
     );
