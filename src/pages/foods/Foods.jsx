@@ -4,7 +4,7 @@ import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
 import { FetchResult } from '../../services';
 import MyContext from '../../context';
-import ButtonCategory from '../../components/ButtonCategory';
+import ButtonCategory from '../../components/buttons/ButtonCategory';
 
 const POSITION_ELEVEN = 12;
 const POSITION_FIVE = 5;
