@@ -15,7 +15,7 @@ import ExpDrinksIngredient from '../drinks/ExpDrinkIngredient';
 import Profile from '../user/Profile';
 import DoneRecipes from '../recipes/DoneRecipes';
 import ExpFoodsNationalities from '../foods/ExpFoodsNacionality';
-import FavoriteRecipes from '../recipes/FavoritesRecipes';
+import FavoriteRecipes from '../recipes/FavoriteRecipes';
 
 // Tela de login: /;
 // Tela principal de receitas de comidas: /foods;
