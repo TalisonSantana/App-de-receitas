@@ -8,7 +8,6 @@ import ButtonCategory from '../../components/buttons/ButtonCategory';
 
 const POSITION_ELEVEN = 12;
 const POSITION_FIVE = 5;
-
 function Food() {
   const {
     apiFood,
@@ -18,23 +17,22 @@ function Food() {
     lastButtonFood,
     setLastButtonFood,
   } = useContext(MyContext);
-
   const apiFoodFunc = async () => {
     const { meals } = await FetchResult('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     setApiFood(meals.slice(0, POSITION_ELEVEN));
   };
 
+  const Api = async () => {
+    const results = await FetchResult('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+    setCategoryFood(results.meals.slice(0, POSITION_FIVE));
+    apiFoodFunc();
+  };
+
   useEffect(() => {
-    async function Api() {
-      const results = await FetchResult('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
-      setCategoryFood(results.meals.slice(0, POSITION_FIVE));
-      apiFoodFunc();
-    }
-    Api();
+    if (apiFood.length === 0) Api();
   }, []);
 
   const handleClickButtonAll = () => apiFoodFunc();
-
   const handleClickButton = async ({ target }) => {
     const { name } = target;
     const { meals } = await FetchResult(
@@ -54,7 +52,6 @@ function Food() {
       apiFoodFunc();
     }
   };
-
   return (
     <main>
       <Header
@@ -104,9 +101,7 @@ function Food() {
     </main>
   );
 }
-
 export default Food;
-
 // function Foods() {
 //   return (
 //     <>
@@ -119,5 +114,4 @@ export default Food;
 //     </>
 //   );
 // }
-
 // export default Foods;
