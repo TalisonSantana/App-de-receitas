@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import shareIcon from '../../images/shareIcon.svg';
 import favoriteIcon from '../../images/blackHeartIcon.svg';
 
@@ -45,11 +46,20 @@ function CardRecipe(props) {
         && (
 
           <section>
-            <img
-              data-testid={ `${index}-horizontal-image` }
-              src={ src }
-              alt={ name }
-            />
+            <Link to={ type === 'drink' ? `/drinks/${id}` : `/foods/${id}` }>
+              <img
+                style={ { width: '300px' } }
+                data-testid={ `${index}-horizontal-image` }
+                src={ src }
+                alt={ name }
+              />
+              <h3
+                data-testid={ `${index}-horizontal-name` }
+              >
+                {name}
+
+              </h3>
+            </Link>
             { !alcoholic
       && (
         <span
@@ -64,13 +74,6 @@ function CardRecipe(props) {
             >
               {alcoholic}
             </span>
-
-            <h3
-              data-testid={ `${index}-horizontal-name` }
-            >
-              {name}
-
-            </h3>
             <button
               onClick={ getLink }
               type="button"

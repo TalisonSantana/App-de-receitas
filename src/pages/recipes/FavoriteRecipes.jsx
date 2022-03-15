@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import ButtonFilter from '../../components/buttons/ButtonFilter';
 import Header from '../../components/header/Header';
 import CardRecipe from '../../components/recipes/CardRecipe';
+import MyContext from '../../context';
 
 function FavoriteRecipes() {
+  const { favoriteLocal, setFavoriteLocal } = useContext(MyContext);
+  useEffect(() => {
+    setFavoriteLocal(JSON.parse(localStorage.getItem('favoriteRecipes')));
+  }, []);
   const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [
     {
       id: '52771',
@@ -25,14 +30,16 @@ function FavoriteRecipes() {
     },
   ];
 
+  const renderFilter = favoriteLocal || favoriteRecipes;
+
   return (
     <>
       <Header title="Favorite Recipes" />
       <ButtonFilter />
       {
-        favoriteRecipes.map((recipe, index) => (
+        renderFilter && renderFilter.map((recipe, index) => (
           <CardRecipe
-            array={ favoriteRecipes }
+            array={ favoriteLocal }
             index={ index }
             key={ recipe.id }
             src={ recipe.image }
