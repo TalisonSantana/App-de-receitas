@@ -8,6 +8,7 @@ const copy = require('clipboard-copy');
 
 function CardRecipe(props) {
   const { alcoholic,
+    date,
     src,
     name,
     nacionality,
@@ -69,6 +70,17 @@ function CardRecipe(props) {
 
         </span>
       )}
+            {
+              date
+        && (
+          <span
+            data-testid={ `${index}-horizontal-done-date` }
+          >
+            {new Date().toISOString()}
+
+          </span>
+        )
+            }
             <span
               data-testid={ `${index}-horizontal-top-text` }
             >

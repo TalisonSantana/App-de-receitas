@@ -14,6 +14,7 @@ function MyProvider({ children }) {
   const [lastButtonDrink, setLastButtonDrink] = useState('');
   const [lastButtonFood, setLastButtonFood] = useState('');
   const [favoriteLocal, setFavoriteLocal] = useState([]);
+  const { doneLocal, setDoneLocal } = useContext(MyContext);
 
   const store = {
     arrFilterFoods,
@@ -38,6 +39,8 @@ function MyProvider({ children }) {
     setLastButtonFood,
     favoriteLocal,
     setFavoriteLocal,
+    doneLocal,
+    setDoneLocal,
   };
 
   return (
