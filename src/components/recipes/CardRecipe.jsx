@@ -15,24 +15,42 @@ function CardRecipe(props) {
     type,
     id } = props;
   const [isCopied, setIsCopied] = useState(false);
+  const [isRemove, setIsRemove] = useState(true);
 
   const getLink = () => {
-    const EIGHT_SECONDS = 8000;
+    const FIVE_SECONDS = 5000;
     copy(`http://localhost:3000/${type}s/${id}`);
     setIsCopied(true);
     setTimeout(() => (
       setIsCopied(false)
-    ), EIGHT_SECONDS);
+    ), FIVE_SECONDS);
+  };
+
+  const removeRecipe = () => {
+    setIsRemove(false);
+    const recipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    console.log(id);
+    if (recipes !== null) {
+      const recipeFilter = recipes.filter((recipe) => (
+        recipe.id !== id
+      ));
+      localStorage.setItem('favoriteRecipes', JSON.stringify(recipeFilter));
+    }
   };
 
   return (
-    <section>
-      <img
-        data-testid={ `${index}-horizontal-image` }
-        src={ src }
-        alt={ name }
-      />
-      { !alcoholic
+    <div>
+      {
+        isRemove
+        && (
+
+          <section>
+            <img
+              data-testid={ `${index}-horizontal-image` }
+              src={ src }
+              alt={ name }
+            />
+            { !alcoholic
       && (
         <span
           data-testid={ `${index}-horizontal-top-text` }
@@ -41,42 +59,45 @@ function CardRecipe(props) {
 
         </span>
       )}
-      <span
-        data-testid={ `${index}-horizontal-top-text` }
-      >
-        {alcoholic}
-      </span>
+            <span
+              data-testid={ `${index}-horizontal-top-text` }
+            >
+              {alcoholic}
+            </span>
 
-      <h3
-        data-testid={ `${index}-horizontal-name` }
-      >
-        {name}
+            <h3
+              data-testid={ `${index}-horizontal-name` }
+            >
+              {name}
 
-      </h3>
-      <button
-        onClick={ getLink }
-        type="button"
-      >
-        <img
-          data-testid={ `${index}-horizontal-share-btn` }
-          src={ shareIcon }
-          alt="share icon"
-        />
-      </button>
-      <button
-        onClick={ () => localStorage.clear() }
-        type="button"
-      >
-        <img
-          data-testid={ `${index}-horizontal-favorite-btn` }
-          src={ favoriteIcon }
-          alt="favorite icon"
-        />
-      </button>
-      {
-        isCopied && <span>Link copied!</span>
+            </h3>
+            <button
+              onClick={ getLink }
+              type="button"
+            >
+              <img
+                data-testid={ `${index}-horizontal-share-btn` }
+                src={ shareIcon }
+                alt="share icon"
+              />
+            </button>
+            <button
+              onClick={ removeRecipe }
+              type="button"
+            >
+              <img
+                data-testid={ `${index}-horizontal-favorite-btn` }
+                src={ favoriteIcon }
+                alt="favorite icon"
+              />
+            </button>
+            {
+              isCopied && <span>Link copied!</span>
+            }
+          </section>
+        )
       }
-    </section>
+    </div>
   );
 }
 
