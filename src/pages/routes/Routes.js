@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import DrinkProgress from '../drinks/DrinkProgress';
-import DrinkRecipe from '../drinks/DrinkRecipe';
+// import DrinkRecipe from '../drinks/DrinkRecipe';
 import Drinks from '../drinks/Drinks';
 import Explore from '../explorer/Explore';
 import ExploreDrinks from '../drinks/ExploreDrinks';
 import ExploreFoods from '../foods/ExploreFoods';
 import FoodProgress from '../foods/FoodProgress';
-import FoodRecipe from '../foods/FoodRecipe';
+// import FoodRecipe from '../recipes/Recipes';
 import Foods from '../foods/Foods';
 import Login from '../user/Login';
 import ExpFoodsIngredient from '../foods/ExpFoodIngredient';
@@ -16,6 +16,7 @@ import Profile from '../user/Profile';
 import DoneRecipes from '../recipes/DoneRecipes';
 import ExpFoodsNationalities from '../foods/ExpFoodsNacionality';
 import FavoriteRecipes from '../recipes/FavoritesRecipes';
+import Recipes from '../recipes/Recipes';
 
 // Tela de login: /;
 // Tela principal de receitas de comidas: /foods;
@@ -52,8 +53,18 @@ function Routes() {
       <Route exact path="/explore" component={ Explore } />
       <Route exact path="/drinks/idDaReceita/in-progress" component={ DrinkProgress } />
       <Route exact path="/foods/idDaReceita/in-progress" component={ FoodProgress } />
-      <Route exact path="/drinks/:idDaReceita" component={ DrinkRecipe } />
-      <Route exact path="/foods/:idDaReceita" component={ FoodRecipe } />
+      <Route
+        exact
+        path="/drinks/:idDaReceita"
+        render={ (prevProps) => (
+          <Recipes { ...prevProps } />) }
+      />
+      <Route
+        exact
+        path="/foods/:idDaReceita"
+        render={ (prevProps) => (
+          <Recipes { ...prevProps } />) }
+      />
       <Route exact path="/drinks" component={ Drinks } />
       <Route exact path="/foods" component={ Foods } />
       <Route path="/" component={ Login } />
