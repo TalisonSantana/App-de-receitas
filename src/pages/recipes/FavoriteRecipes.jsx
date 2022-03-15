@@ -44,7 +44,9 @@ function FavoriteRecipes() {
             key={ recipe.id }
             src={ recipe.image }
             name={ recipe.name }
+            pathname
             date={ false }
+            tags={ false }
             category={ recipe.category }
             nacionality={ recipe.nationality }
             alcoholic={ recipe.alcoholicOrNot }

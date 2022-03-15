@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import shareIcon from '../../images/shareIcon.svg';
 import favoriteIcon from '../../images/blackHeartIcon.svg';
 
 const copy = require('clipboard-copy');
 
 function CardRecipe(props) {
+  const location = useLocation();
   const { alcoholic,
+    tags,
     date,
     src,
     name,
@@ -31,7 +33,6 @@ function CardRecipe(props) {
   const removeRecipe = () => {
     setIsRemove(false);
     const recipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    console.log(id);
     if (recipes !== null) {
       const recipeFilter = recipes.filter((recipe) => (
         recipe.id !== id
@@ -76,9 +77,24 @@ function CardRecipe(props) {
           <span
             data-testid={ `${index}-horizontal-done-date` }
           >
-            {new Date().toISOString()}
+            {date}
 
           </span>
+        )
+            }
+            {
+              tags
+        && (
+          tags.map((tag) => (
+            <span
+              key={ tag }
+              data-testid={ `${index}-${tag}-horizontal-tag` }
+            >
+              {tag}
+
+            </span>
+          ))
+
         )
             }
             <span
@@ -90,22 +106,29 @@ function CardRecipe(props) {
               onClick={ getLink }
               type="button"
             >
+
               <img
                 data-testid={ `${index}-horizontal-share-btn` }
                 src={ shareIcon }
                 alt="share icon"
               />
+
             </button>
-            <button
-              onClick={ removeRecipe }
-              type="button"
-            >
-              <img
-                data-testid={ `${index}-horizontal-favorite-btn` }
-                src={ favoriteIcon }
-                alt="favorite icon"
-              />
-            </button>
+            {
+              location.pathname.includes('favorite-recipes')
+              && (
+                <button
+                  onClick={ removeRecipe }
+                  type="button"
+                >
+                  <img
+                    data-testid={ `${index}-horizontal-favorite-btn` }
+                    src={ favoriteIcon }
+                    alt="favorite icon"
+                  />
+                </button>
+              )
+            }
             {
               isCopied && <span>Link copied!</span>
             }

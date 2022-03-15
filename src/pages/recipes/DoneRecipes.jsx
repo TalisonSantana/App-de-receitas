@@ -26,7 +26,7 @@ function DoneRecipes() {
       type: 'drink',
       nationality: '',
       category: 'Cocktail',
-      alcoholicOrNot:  'Alcoholic',
+      alcoholicOrNot: 'Alcoholic',
       name: 'Aquamarine',
       image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
       doneDate: '23/06/2020',
@@ -47,7 +47,9 @@ function DoneRecipes() {
             key={ recipe.id }
             src={ recipe.image }
             name={ recipe.name }
-            date
+            pathname
+            date={ recipe.doneDate }
+            tags={ recipe.tags.map((tag) => tag) }
             category={ recipe.category }
             nacionality={ recipe.nationality }
             alcoholic={ recipe.alcoholicOrNot }
