@@ -8,7 +8,6 @@ import ButtonCategory from '../../components/buttons/ButtonCategory';
 
 const POSITION_ELEVEN = 12;
 const POSITION_FIVE = 5;
-
 function Drinks() {
   const {
     apiDrink,
@@ -18,29 +17,27 @@ function Drinks() {
     lastButtonDrink,
     setLastButtonDrink,
   } = useContext(MyContext);
-
   const apiDrinkFunc = async () => {
     const { drinks } = await FetchResult('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
     setApiDrink(drinks.slice(0, POSITION_ELEVEN));
   };
 
+  const Api = async () => {
+    const results = await FetchResult('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+    setCategoryDrink(results.drinks.slice(0, POSITION_FIVE));
+    apiDrinkFunc();
+  };
+
   useEffect(() => {
-    async function Api() {
-      const results = await FetchResult('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
-      setCategoryDrink(results.drinks.slice(0, POSITION_FIVE));
-      apiDrinkFunc();
-    }
-    Api();
+    if (apiDrink.length === 0) Api();
   }, []);
 
   const handleClickButtonAll = async () => apiDrinkFunc();
-
   const handleClickButton = async ({ target }) => {
     const { name } = target;
     const { drinks } = await FetchResult(
       `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${name}`,
     );
-
     if (lastButtonDrink !== name) {
       setLastButtonDrink(name);
       if (drinks.length > POSITION_ELEVEN) {
@@ -56,6 +53,7 @@ function Drinks() {
     }
   };
 
+  console.log(apiDrink);
   return (
     <main>
       <Header
@@ -102,5 +100,4 @@ function Drinks() {
     </main>
   );
 }
-
 export default Drinks;
