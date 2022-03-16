@@ -15,6 +15,7 @@ function MyProvider({ children }) {
   const [lastButtonFood, setLastButtonFood] = useState('');
   const [favoriteLocal, setFavoriteLocal] = useState([]);
   const [doneLocal, setDoneLocal] = useState([]);
+  const [arrNationality, setArrNationality] = useState([]);
 
   const store = {
     arrFilterFoods,
@@ -41,6 +42,8 @@ function MyProvider({ children }) {
     setFavoriteLocal,
     doneLocal,
     setDoneLocal,
+    arrNationality,
+    setArrNationality,
   };
 
   return (
@@ -55,27 +58,3 @@ MyProvider.propTypes = {
 }.isRequired;
 
 export default MyProvider;
-
-// function MyProvider({ children }) {
-//   const [arrFilterFoods, setArrFilterFoods] = useState([]);
-//   const [arrFilterDrinks, setArrFilterDrinks] = useState([]);
-
-//   const store = {
-//     arrFilterFoods,
-//     setArrFilterFoods,
-//     arrFilterDrinks,
-//     setArrFilterDrinks,
-//   };
-
-//   return (
-//     <MyContext.Provider value={ store }>
-//       {children}
-//     </MyContext.Provider>
-//   );
-// }
-
-// MyProvider.propTypes = {
-//   children: PropTypes.objectOf(PropTypes.any),
-// }.isRequired;
-
-// export default MyProvider;

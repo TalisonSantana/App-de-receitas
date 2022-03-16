@@ -16,6 +16,7 @@ import Profile from '../user/Profile';
 import DoneRecipes from '../recipes/DoneRecipes';
 import ExpFoodsNationalities from '../foods/ExpFoodsNacionality';
 import FavoriteRecipes from '../recipes/FavoriteRecipes';
+import NotFound from '../404/NotFound';
 
 // Tela de login: /;
 // Tela principal de receitas de comidas: /foods;
@@ -37,6 +38,7 @@ import FavoriteRecipes from '../recipes/FavoriteRecipes';
 function Routes() {
   return (
     <Switch>
+      <Route exact path="/explore/drinks/nationalities" component={ NotFound } />
       <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
       <Route exact path="/done-recipes" component={ DoneRecipes } />
       <Route exact path="/profile" component={ Profile } />
