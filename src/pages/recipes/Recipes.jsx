@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { api, igredientsFilter, measure } from './RecipiesDetails';
 import RecipieRenderization from './RecipieRenderization';
+import FotoRecomendation from './FotoRecomendation';
 
 function Recipes({ match: { path, params: { idDaReceita } } }) {
   const [detailsRecipies, setDetailsRecipies] = useState([]);
   const [igredients, setIgredients] = useState([]);
   const [nameRoute, setNameRoute] = useState('');
   const [igredientMeasure, setIgredientMeasure] = useState('');
-  // console.log('igreee', igredients);
-  console.log('measure', igredientMeasure);
   useEffect(() => {
     async function Details() {
       if (path === '/drinks/:idDaReceita') {
@@ -49,6 +48,7 @@ function Recipes({ match: { path, params: { idDaReceita } } }) {
               </li>)
             ))}
         </div>
+        <FotoRecomendation path={ path } nameRoute={ nameRoute } />
         {/* <div>
           {igredientMeasure
             .map((measures, index) => (

@@ -7,14 +7,18 @@ function RecipieRenderization(props) {
   const { detailsRecipies, nameRoute } = props;
   const srcThumb = `str${nameRoute}Thumb`;
   const title = `str${nameRoute}`;
-  // const category = `str${nameRoute}`;
+
+  const handleSrcYoutube = (strYoutube) => {
+    const srcInitial = strYoutube.split('watch?v=');
+    const srcFinal = `${srcInitial[0]}/embed/${srcInitial[1]}`;
+    return srcFinal;
+  };
 
   const filter = () => (
     detailsRecipies
       .map((result, index) => (
 
         <li key={ index }>
-          {console.log(result.strYoutube)}
           <img
             data-testid="recipe-photo"
             src={ result[srcThumb] }
@@ -35,35 +39,27 @@ function RecipieRenderization(props) {
             <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
           </button>
           {result.strYoutube
-          && <iframe src={ result.strYoutube } title="description" />}
+          && (
+            <iframe
+              data-testid="video"
+              width="360"
+              height="215"
+              src={ handleSrcYoutube(result.strYoutube) }
+              title="YouTube video player"
+            />
+          )}
+          <button type="button" data-testid="start-recipe-btn">
+            Start Recipe
+          </button>
         </li>
       ))
   );
-    // }
 
   return (
     <div>
       {filter()}
     </div>
   );
-  // if (path === '/drinks/:idDaReceita') {
-  //   return (detailsRecipies
-  //     .map((result, index) => (
-  //       <li key={ index }>
-  //         <p>{result.strAlcoholic}</p>
-  //         <img
-  //           src={ result.strDrinkThumb }
-  //           data-testid="recipe-photo"
-  //           height="100px"
-  //           alt={ result.strDrink }
-  //         />
-  //         <p>{ result.strCategory }</p>
-  //         <p data-testid="recipe-title">{ result.strDrink }</p>
-  //         <p>{ result.strAlcoholic}</p>
-  //       </li>
-  //     ))
-  //   );
-  // }
 }
 
 RecipieRenderization.propTypes = {
