@@ -9,8 +9,8 @@ function Recipes({ match: { path, params: { idDaReceita } } }) {
   const [ingredients, setIgredients] = useState([]);
   const [nameRoute, setNameRoute] = useState('');
   const [ingredientMeasure, setIngredientMeasure] = useState([]);
-  console.log('measure', measure);
-  console.log(ingredientMeasure);
+  // console.log('measure', measure);
+  // console.log(ingredientMeasure);
   useEffect(() => {
     async function Details() {
       if (path === '/drinks/:idDaReceita') {
@@ -38,40 +38,6 @@ function Recipes({ match: { path, params: { idDaReceita } } }) {
         ingredients={ ingredients }
         ingredientMeasure={ ingredientMeasure }
       />
-      {/* <div> */}
-      {/* <div>
-          {ingredients
-            .map((igredient, index) => (
-              igredient
-            && (
-              <li
-                data-testid={ `${index}-ingredient-name-and-measure` }
-                key={ index }
-              >
-                {console.log('Ingredient', igredient)}
-                { igredient }
-              </li>)
-            ))}
-        </div> */}
-      {/* <FotoRecomendation
-        idDaReceita={ idDaReceita }
-        path={ path }
-        nameRoute={ nameRoute }
-      /> */}
-      {/* <div>
-          {ingredientMeasure
-            .map((measures, index) => (
-              measures
-          && (
-            <li
-              key={ index }
-            >
-              { measures }
-            </li>)
-            ))}
-        </div> */}
-
-      {/* </div> */}
     </main>
   );
 }

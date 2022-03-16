@@ -10,11 +10,12 @@ function RecipieRenderization(props) {
     nameRoute,
     ingredients,
     ingredientMeasure,
+    // history,
   } = props;
   const srcThumb = `str${nameRoute}Thumb`;
   const title = `str${nameRoute}`;
 
-  console.log('ingredientMeasure', ingredientMeasure);
+  // console.log('ingredientMeasure', ingredientMeasure);
 
   const handleSrcYoutube = (strYoutube) => {
     const srcInitial = strYoutube.split('watch?v=');
@@ -96,7 +97,10 @@ function RecipieRenderization(props) {
               </ul>
             </section>
           </section>
-          <p data-testid="instructions">
+          <p
+            className="p-3"
+            data-testid="instructions"
+          >
             Instructions:
             <br />
             { result.strInstructions }
@@ -120,6 +124,7 @@ function RecipieRenderization(props) {
             type="button"
             data-testid="start-recipe-btn"
             className="button__startRecipe"
+            // onClick={ history.push('/') }
           >
             Start Recipe
           </button>
