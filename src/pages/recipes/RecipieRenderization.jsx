@@ -7,7 +7,11 @@ function RecipieRenderization(props) {
   const { detailsRecipies, nameRoute } = props;
   const srcThumb = `str${nameRoute}Thumb`;
   const title = `str${nameRoute}`;
-  // const category = `str${nameRoute}`;
+  // const strYoutebe = `str${nameRoute}`;
+  const handleSrcYoutube = (strYoutube) => {
+    console.log(strYoutube);
+    console.log(strYoutube.split('watch?v='));
+  };
 
   const filter = () => (
     detailsRecipies
@@ -35,7 +39,15 @@ function RecipieRenderization(props) {
             <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
           </button>
           {result.strYoutube
-          && <iframe src={ result.strYoutube } title="description" />}
+          && (
+            <iframe
+              width="360"
+              height="215"
+              src={ handleSrcYoutube(result.strYoutube) }
+              title="YouTube video player"
+              frameBorder="0"
+            />
+          )}
         </li>
       ))
   );
