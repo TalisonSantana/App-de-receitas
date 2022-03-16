@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import FotoRecomendation from './FotoRecomendation';
-import MyContext from '../../context';
+// import MyContext from '../../context';
 import IngredientsCheckbox from '../../components/IngredientsCheckbox';
+import MyContext from '../../context';
 
 function RecipieRenderization(props) {
   const { routeInprogress, setRouteInprogress } = useContext(MyContext);
@@ -17,9 +18,8 @@ function RecipieRenderization(props) {
     ingredientMeasure,
     history,
     idDaReceita,
+    // routeInprogress,
   } = props;
-
-  console.log('idDaReceita', idDaReceita);
 
   const srcThumb = `str${nameRoute}Thumb`;
   const title = `str${nameRoute}`;
@@ -33,10 +33,20 @@ function RecipieRenderization(props) {
     return srcFinal;
   };
 
-  console.log('routeInprogress', routeInprogress);
+  // console.log('routeInprogress', routeInprogress);
+  console.log('Rendenization', path);
+
+  useEffect(() => {
+    if (path === '/foods/:idDaReceita/in-progress') {
+      setRouteInprogress(true);
+    } else {
+      setRouteInprogress(false);
+    }
+  }, []);
+
   const handleClick = () => {
     setRouteInprogress(true);
-    return history.push(startRecipe);
+    history.push(startRecipe);
   };
 
   const filter = () => (
@@ -73,24 +83,22 @@ function RecipieRenderization(props) {
             </section>
           </section>
           <section className="d-flex  flex-row ">
-            <section>
-              <ul>
-
-                {ingredients.map((ingredient, indexIngredient) => (
-                  ingredient
+            <ul>
+              {ingredients.map((ingredient, indexIngredient) => (
+                ingredient
                   && (
-                    <section key={ indexIngredient }>
+                    <li key={ indexIngredient }>
                       {routeInprogress
                         ? (
-                          <section>
-                            <IngredientsCheckbox
-                              ingredient={ ingredient }
-                              idDaReceita={ idDaReceita }
-                              indexIngredient={ indexIngredient }
-                            />
-                          </section>)
+                          <IngredientsCheckbox
+                            ingredient={ ingredient }
+                            idDaReceita={ idDaReceita }
+                            indexIngredient={ indexIngredient }
+                            path={ path }
+                          />
+                        )
                         : (
-                          <li
+                          <p
                             style={ { listStyle: 'none' } }
                             data-testid={
                               `${indexIngredient}-ingredient-name-and-measure`
@@ -99,13 +107,11 @@ function RecipieRenderization(props) {
                             -
                             {' '}
                             { ingredient }
-                          </li>)}
-                    </section>
+                          </p>)}
+                    </li>
                   )
-                ))}
-              </ul>
-
-            </section>
+              ))}
+            </ul>
             <section>
               <ul>
 
@@ -117,8 +123,8 @@ function RecipieRenderization(props) {
                     data-testid={ `${indexMeasure}-ingredient-name-and-measure` }
                     key={ indexMeasure }
                   >
-                    -
-                    {' '}
+                    {/* -
+                    {' '} */}
                     { measure }
                   </li>
                 )

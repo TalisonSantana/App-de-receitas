@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { api, igredientsFilter, measure } from './RecipiesDetails';
 import RecipieRenderization from './RecipieRenderization';
 // import FotoRecomendation from './FotoRecomendation';
+// import MyContext from '../../context';
 
 function Recipes({ match: { path, params: { idDaReceita } }, history }) {
   const [detailsRecipies, setDetailsRecipies] = useState([]);
   const [ingredients, setIgredients] = useState([]);
   const [nameRoute, setNameRoute] = useState('');
   const [ingredientMeasure, setIngredientMeasure] = useState([]);
+  // const [routeInprogress, setRouteInprogress] = useState(false);
 
   useEffect(() => {
     async function Details() {
@@ -25,14 +27,12 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
         setIngredientMeasure(...measure);
       }
       if (path === '/drinks/:idDaReceita/in-progress') {
-        setRouteInprogress(true);
         setDetailsRecipies(await api(idDaReceita, 'drinks'));
         setNameRoute('Drink');
         setIgredients(...igredientsFilter);
         setIngredientMeasure(...measure);
       }
       if (path === '/foods/:idDaReceita/in-progress') {
-        setRouteInprogress(true);
         setDetailsRecipies(await api(idDaReceita, 'foods'));
         setNameRoute('Meal');
         setIgredients(...igredientsFilter);
@@ -41,6 +41,13 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
     }
     Details();
   }, []);
+
+  // const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  // console.log(getLocal);
+  // const { cocktails } = getLocal;
+  // useEffect(() => {
+
+  // }, []);
 
   return (
     <main>
@@ -52,6 +59,7 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
         ingredientMeasure={ ingredientMeasure }
         history={ history }
         idDaReceita={ idDaReceita }
+        // routeInprogress={ routeInprogress }
       />
     </main>
   );
