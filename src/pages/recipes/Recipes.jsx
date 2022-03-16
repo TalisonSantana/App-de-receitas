@@ -4,13 +4,13 @@ import { api, igredientsFilter, measure } from './RecipiesDetails';
 import RecipieRenderization from './RecipieRenderization';
 // import FotoRecomendation from './FotoRecomendation';
 
-function Recipes({ match: { path, params: { idDaReceita } } }) {
+function Recipes({ match: { path, params: { idDaReceita } }, history }) {
   const [detailsRecipies, setDetailsRecipies] = useState([]);
   const [ingredients, setIgredients] = useState([]);
   const [nameRoute, setNameRoute] = useState('');
   const [ingredientMeasure, setIngredientMeasure] = useState([]);
   // console.log('measure', measure);
-  // console.log(ingredientMeasure);
+  // console.log(history);
   useEffect(() => {
     async function Details() {
       if (path === '/drinks/:idDaReceita') {
@@ -37,6 +37,7 @@ function Recipes({ match: { path, params: { idDaReceita } } }) {
         nameRoute={ nameRoute }
         ingredients={ ingredients }
         ingredientMeasure={ ingredientMeasure }
+        history={ history }
       />
     </main>
   );

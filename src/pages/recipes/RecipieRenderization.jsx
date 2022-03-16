@@ -10,7 +10,7 @@ function RecipieRenderization(props) {
     nameRoute,
     ingredients,
     ingredientMeasure,
-    // history,
+    history,
   } = props;
   const srcThumb = `str${nameRoute}Thumb`;
   const title = `str${nameRoute}`;
@@ -124,7 +124,7 @@ function RecipieRenderization(props) {
             type="button"
             data-testid="start-recipe-btn"
             className="button__startRecipe"
-            // onClick={ history.push('/') }
+            onClick={ history.push(`${path}/in-progress`) }
           >
             Start Recipe
           </button>
