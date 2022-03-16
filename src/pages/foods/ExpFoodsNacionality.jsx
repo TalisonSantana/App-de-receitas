@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import {
+  API_NAME_FOOD,
   API_NATIONALITY_FOOD,
   API_NATIONALITY_RECIPE,
   FetchRadioFilter,
@@ -12,7 +13,7 @@ import {
 function ExpFoodsNationalities() {
   const [arrNationality, setArrNationality] = useState([]);
   const [arrRecipes, setArrRecipes] = useState([]);
-  const [valueOption, setvalueOption] = useState('American');
+  const [valueOption, setvalueOption] = useState('All');
   const POSITION_ELEVEN = 12;
 
   const getNationality = async () => {
@@ -21,9 +22,13 @@ function ExpFoodsNationalities() {
   };
 
   const getRecipes = async () => {
-    const { meals } = await FetchRadioFilter(API_NATIONALITY_RECIPE, valueOption);
-    setArrRecipes(meals);
-    setArrRecipes(meals.slice(0, POSITION_ELEVEN));
+    if (valueOption === 'All') {
+      const { meals } = await FetchResult(API_NAME_FOOD);
+      setArrRecipes(meals.slice(0, POSITION_ELEVEN));
+    } else {
+      const { meals } = await FetchRadioFilter(API_NATIONALITY_RECIPE, valueOption);
+      setArrRecipes(meals.slice(0, POSITION_ELEVEN));
+    }
   };
 
   useEffect(() => {
@@ -35,8 +40,6 @@ function ExpFoodsNationalities() {
     // setArrRecipes(arrRecipes.slice(0, POSITION_ELEVEN));
   }, [valueOption]);
 
-  // useEffect(() => setArrRecipes(arrRecipes.slice(0, POSITION_ELEVEN)), [valueOption]);
-
   return (
 
     <>
@@ -45,14 +48,16 @@ function ExpFoodsNationalities() {
         searchIcon
       />
       <select
-        value={ valueOption }
+        // value={ valueOption }
         onChange={ ({ target }) => setvalueOption(target.value) }
         data-testid="explore-by-nationality-dropdown"
       >
+        <option data-testid="All-option">All</option>
         {
           arrNationality && arrNationality.map((area) => (
 
             <option
+              value={ area.strArea }
               data-testid={ `${area.strArea}-option` }
               key={ area.strArea }
             >
@@ -65,7 +70,7 @@ function ExpFoodsNationalities() {
       </select>
       <hr />
       {
-        arrRecipes && arrRecipes.map((recipe, index) => (
+        arrRecipes.length > 0 && arrRecipes.map((recipe, index) => (
           <Link
             data-testid={ `${index}-recipe-card` }
             to={ `/foods/${recipe.idMeal}` }
