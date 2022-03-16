@@ -9,8 +9,7 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
   const [ingredients, setIgredients] = useState([]);
   const [nameRoute, setNameRoute] = useState('');
   const [ingredientMeasure, setIngredientMeasure] = useState([]);
-  // console.log('measure', measure);
-  // console.log(history);
+
   useEffect(() => {
     async function Details() {
       if (path === '/drinks/:idDaReceita') {
@@ -20,6 +19,20 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
         setIngredientMeasure(...measure);
       }
       if (path === '/foods/:idDaReceita') {
+        setDetailsRecipies(await api(idDaReceita, 'foods'));
+        setNameRoute('Meal');
+        setIgredients(...igredientsFilter);
+        setIngredientMeasure(...measure);
+      }
+      if (path === '/drinks/:idDaReceita/in-progress') {
+        setRouteInprogress(true);
+        setDetailsRecipies(await api(idDaReceita, 'drinks'));
+        setNameRoute('Drink');
+        setIgredients(...igredientsFilter);
+        setIngredientMeasure(...measure);
+      }
+      if (path === '/foods/:idDaReceita/in-progress') {
+        setRouteInprogress(true);
         setDetailsRecipies(await api(idDaReceita, 'foods'));
         setNameRoute('Meal');
         setIgredients(...igredientsFilter);
@@ -38,6 +51,7 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
         ingredients={ ingredients }
         ingredientMeasure={ ingredientMeasure }
         history={ history }
+        idDaReceita={ idDaReceita }
       />
     </main>
   );

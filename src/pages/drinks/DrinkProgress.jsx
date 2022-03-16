@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { FetchResult } from '../../services';
-import DrinksIngredients from '../../components/DrinksIngredients';
+// import DrinksIngredients from '../../components/DrinksIngredients';
 import '../css/FoodProgress.css';
 
 function DrinkProgress() {
-  const [drinksIngredients, setDrinksIngredients] = useState([]);
-  const [dataDrinks, setDataDrinks] = useState([]);
+  // const [drinksIngredients, setDrinksIngredients] = useState([]);
+  // const [dataDrinks, setDataDrinks] = useState([]);
 
   useEffect(() => {
     async function api() {
@@ -20,9 +20,9 @@ function DrinkProgress() {
 
   return (
     <div>
-      {drinksIngredients.map((drinks, index) => (
+      {/* {drinksIngredients.map((drinks, index) => (
         <DrinksIngredients key={ index } drinks={ drinks } dataDrinks={ dataDrinks } />
-      ))}
+      ))} */}
     </div>
 
   );

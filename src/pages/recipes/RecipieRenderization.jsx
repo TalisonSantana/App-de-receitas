@@ -1,26 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import FotoRecomendation from './FotoRecomendation';
+import MyContext from '../../context';
 
 function RecipieRenderization(props) {
+  const { routeInprogress, setRouteInprogress } = useContext(MyContext);
+
   const { detailsRecipies,
     path,
     nameRoute,
     ingredients,
     ingredientMeasure,
     history,
+    idDaReceita,
   } = props;
+
   const srcThumb = `str${nameRoute}Thumb`;
   const title = `str${nameRoute}`;
 
-  // console.log('ingredientMeasure', ingredientMeasure);
+  const pathSplit = path.split(':idDaReceita');
+  const startRecipe = `${pathSplit[0]}${idDaReceita}/in-progress`;
 
   const handleSrcYoutube = (strYoutube) => {
     const srcInitial = strYoutube.split('watch?v=');
     const srcFinal = `${srcInitial[0]}/embed/${srcInitial[1]}`;
     return srcFinal;
+  };
+
+  console.log('routeInprogress', routeInprogress);
+  const handleClick = () => {
+    setRouteInprogress(true);
+    return history.push(startRecipe);
   };
 
   const filter = () => (
@@ -105,8 +117,10 @@ function RecipieRenderization(props) {
             <br />
             { result.strInstructions }
           </p>
-
-          {result.strYoutube
+          {!routeInprogress
+          && (
+            <section>
+              {result.strYoutube
           && (
             <iframe
               data-testid="video"
@@ -116,15 +130,17 @@ function RecipieRenderization(props) {
               title="YouTube video player"
             />
           )}
-          <FotoRecomendation
-            path={ path }
-            nameRoute={ nameRoute }
-          />
+              <FotoRecomendation
+                path={ path }
+                nameRoute={ nameRoute }
+              />
+            </section>
+          )}
           <button
             type="button"
             data-testid="start-recipe-btn"
             className="button__startRecipe"
-            onClick={ history.push(`${path}/in-progress`) }
+            onClick={ handleClick }
           >
             Start Recipe
           </button>
