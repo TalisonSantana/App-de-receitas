@@ -9,6 +9,7 @@ function Recipes({ match: { path, params: { idDaReceita } } }) {
   const [igredients, setIgredients] = useState([]);
   const [nameRoute, setNameRoute] = useState('');
   const [igredientMeasure, setIgredientMeasure] = useState('');
+  console.log(igredientMeasure);
   useEffect(() => {
     async function Details() {
       if (path === '/drinks/:idDaReceita') {
