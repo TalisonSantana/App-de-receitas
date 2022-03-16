@@ -1,0 +1,11 @@
+.recomendation {
+  overflow-x: scroll;
+  padding-bottom: 10px;
+}
+
+.button__startRecipe {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}

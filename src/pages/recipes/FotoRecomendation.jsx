@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { FetchResult } from '../../services';
+import './FotoRecomendation.css';
 
 function FotoRecomendation(props) {
-  const { path } = props;
-  const SIX = 6;
+  const { path,
+    // idDaReceita
+  } = props;
   const [results, setResults] = useState([]);
   const [nameRoute, setNameRoute] = useState([]);
+  const SIX = 6;
   const srcThumb = `str${nameRoute}Thumb`;
-
+  const strTitle = `str${nameRoute}`;
+  // const linkTo = `www.themealdb.com/api/json/v1/1/lookup.php?i=${idDaReceita}`;
+  // console.log('path', path);
   useEffect(() => {
     async function carrosel() {
       if (path === '/drinks/:idDaReceita') {
@@ -25,16 +32,36 @@ function FotoRecomendation(props) {
 
     carrosel();
   }, []);
+
   return (
-    <ul>
+    <section className="d-flex flex-row recomendation">
       {results
         .map((result, index) => (
-          <li key={ index } data-testid={ `${index}-recomendation-card` }>
-            <img src={ result[srcThumb] } height="100px" width="100px" alt="foto" />
-          </li>
+          <section
+            key={ index }
+            className="p-1"
+          >
+            <Link
+              data-testid={ `${index}-recomendation-card` }
+              to="foods/52977"
+            >
+              <img
+                className="recomendation__img"
+                src={ result[srcThumb] }
+                height="175px"
+                width="169px"
+                alt="foto"
+              />
+            </Link>
+            <p data-testid={ `${index}-recomendation-title` }>{result[strTitle]}</p>
+          </section>
         ))}
-    </ul>
+    </section>
   );
 }
+
+FotoRecomendation.propTypes = {
+  path: PropTypes.string,
+}.isRequire;
 
 export default FotoRecomendation;
