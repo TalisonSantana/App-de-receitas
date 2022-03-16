@@ -4,11 +4,13 @@ import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import FotoRecomendation from './FotoRecomendation';
 import MyContext from '../../context';
+import IngredientsCheckbox from '../../components/IngredientsCheckbox';
 
 function RecipieRenderization(props) {
   const { routeInprogress, setRouteInprogress } = useContext(MyContext);
 
-  const { detailsRecipies,
+  const {
+    detailsRecipies,
     path,
     nameRoute,
     ingredients,
@@ -16,6 +18,8 @@ function RecipieRenderization(props) {
     history,
     idDaReceita,
   } = props;
+
+  console.log('idDaReceita', idDaReceita);
 
   const srcThumb = `str${nameRoute}Thumb`;
   const title = `str${nameRoute}`;
@@ -74,17 +78,30 @@ function RecipieRenderization(props) {
 
                 {ingredients.map((ingredient, indexIngredient) => (
                   ingredient
-                && (
-                  <li
-                    style={ { listStyle: 'none' } }
-                    data-testid={ `${indexIngredient}-ingredient-name-and-measure` }
-                    key={ indexIngredient }
-                  >
-                    -
-                    {' '}
-                    { ingredient }
-                  </li>
-                )
+                  && (
+                    <section key={ indexIngredient }>
+                      {routeInprogress
+                        ? (
+                          <section>
+                            <IngredientsCheckbox
+                              ingredient={ ingredient }
+                              idDaReceita={ idDaReceita }
+                              indexIngredient={ indexIngredient }
+                            />
+                          </section>)
+                        : (
+                          <li
+                            style={ { listStyle: 'none' } }
+                            data-testid={
+                              `${indexIngredient}-ingredient-name-and-measure`
+                            }
+                          >
+                            -
+                            {' '}
+                            { ingredient }
+                          </li>)}
+                    </section>
+                  )
                 ))}
               </ul>
 
