@@ -84,18 +84,20 @@ function RecipieRenderization(props) {
           </section>
           <section className="d-flex  flex-row ">
             <ul>
-              {ingredients.map((ingredient, indexIngredient) => (
+              <IngredientsCheckbox
+                // ingredient={ ingredient }
+                idDaReceita={ idDaReceita }
+                // indexIngredient={ indexIngredient }
+                ingredients={ ingredients }
+                path={ path }
+                routeInprogress={ routeInprogress }
+              />
+              {/* {ingredients.map((ingredient, indexIngredient) => (
                 ingredient
                   && (
                     <li key={ indexIngredient }>
                       {routeInprogress
                         ? (
-                          <IngredientsCheckbox
-                            ingredient={ ingredient }
-                            idDaReceita={ idDaReceita }
-                            indexIngredient={ indexIngredient }
-                            path={ path }
-                          />
                         )
                         : (
                           <p
@@ -110,7 +112,7 @@ function RecipieRenderization(props) {
                           </p>)}
                     </li>
                   )
-              ))}
+              ))} */}
             </ul>
             <section>
               <ul>
