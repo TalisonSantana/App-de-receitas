@@ -32,7 +32,7 @@ function IngredientsCheckbox({
         setContineRecipe({ ...Object.keys(meals) });
       }
     }
-  }, [idDaReceita]);
+  }, []);
 
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
