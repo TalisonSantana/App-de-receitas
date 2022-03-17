@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { api, igredientsFilter, measure } from './RecipiesDetails';
 import RecipieRenderization from './RecipieRenderization';
+import MyContext from '../../context';
 // import FotoRecomendation from './FotoRecomendation';
 // import MyContext from '../../context';
 
@@ -10,6 +11,9 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
   const [ingredients, setIgredients] = useState([]);
   const [nameRoute, setNameRoute] = useState('');
   const [ingredientMeasure, setIngredientMeasure] = useState([]);
+
+  const { setContineRecipe, continueRecipe,
+  } = useContext(MyContext);
 
   useEffect(() => {
     async function Details() {
@@ -40,6 +44,25 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
     }
     Details();
   }, []);
+
+  // const routeFoods = '/foods/:idDaReceita/';
+  // const routeDrinks = '/drinks/:idDaReceita/';
+
+  useEffect(() => {
+    const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (getLocal) {
+      const { cocktails } = getLocal;
+      const { meals } = getLocal;
+      // if (path === routeDrinks) {
+      setContineRecipe([...Object.keys(cocktails)]);
+      // }
+      // if (path === routeFoods) {
+      setContineRecipe([...Object.keys(meals)]);
+      // }
+    }
+  }, []);
+
+  console.log(continueRecipe);
 
   return (
     <main>

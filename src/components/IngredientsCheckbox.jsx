@@ -1,10 +1,10 @@
 import React, {
-  useContext,
+  // useContext,
   useEffect,
 
   useState,
 } from 'react';
-import MyContext from '../context';
+// import MyContext from '../context';
 
 function IngredientsCheckbox({
   ingredients,
@@ -13,25 +13,25 @@ function IngredientsCheckbox({
   path,
   ingredientMeasure,
 }) {
-  const { setContineRecipe } = useContext(MyContext);
+  // const { setContineRecipe } = useContext(MyContext);
   const [finishedPlate, setFinishedPlate] = useState([]);
 
   const routeFoods = '/foods/:idDaReceita/in-progress';
   const routeDrinks = '/drinks/:idDaReceita/in-progress';
 
-  useEffect(() => {
-    const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (getLocal) {
-      const { cocktails } = getLocal;
-      const { meals } = getLocal;
-      if (path === routeDrinks) {
-        setContineRecipe({ ...Object.keys(cocktails) });
-      }
-      if (path === routeFoods) {
-        setContineRecipe({ ...Object.keys(meals) });
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  //   if (getLocal) {
+  //     const { cocktails } = getLocal;
+  //     const { meals } = getLocal;
+  //     if (path === routeDrinks) {
+  //       setContineRecipe({ ...Object.keys(cocktails) });
+  //     }
+  //     if (path === routeFoods) {
+  //       setContineRecipe({ ...Object.keys(meals) });
+  //     }
+  //   }
+  // }, []);
 
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));

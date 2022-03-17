@@ -17,10 +17,15 @@ function RecipieRenderization(props) {
     idDaReceita,
     // routeInprogress,
   } = props;
-  const { routeInprogress, setRouteInprogress, continueRecipe } = useContext(MyContext);
-  const [buttonsDetails, setButtonsDetails] = useState('Start Recipe');
-
-  console.log(routeInprogress);
+  const {
+    routeInprogress,
+    setRouteInprogress,
+    continueRecipe,
+    // setContineRecipe,
+  } = useContext(MyContext);
+  const [buttonsDetails,
+    setButtonsDetails,
+  ] = useState('Start Recipe');
 
   const srcThumb = `str${nameRoute}Thumb`;
   const title = `str${nameRoute}`;
@@ -34,11 +39,40 @@ function RecipieRenderization(props) {
     return srcFinal;
   };
 
+  // const routeFoods = '/foods/:idDaReceita/in-progress';
+  // const routeDrinks = '/drinks/:idDaReceita/in-progress';
+
+  // useEffect(() => {
+  //   const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  //   if (getLocal) {
+  //     const { cocktails } = getLocal;
+  //     const { meals } = getLocal;
+  //     if (path === routeDrinks) {
+  //       setContineRecipe({ ...Object.keys(cocktails) });
+  //     }
+  //     if (path === routeFoods) {
+  //       setContineRecipe({ ...Object.keys(meals) });
+  //     }
+  //   }
+  // }, []);
+
+  // console.log(continueRecipe);
+
   useEffect(() => {
-    if (continueRecipe[idDaReceita]) {
-      setButtonsDetails('Continue Recipe');
+    if (continueRecipe) {
+      const mapRecipe = continueRecipe.filter((id) => (id === idDaReceita));
+      console.log(mapRecipe);
+      if (!mapRecipe) {
+        console.log('PASSOU 1');
+        setButtonsDetails('Start Recipe');
+      }
+      if (mapRecipe) {
+        setButtonsDetails('Continue Recipe');
+      }
     }
-  }, []);
+  }, [continueRecipe, idDaReceita]);
+
+  console.log(buttonsDetails);
 
   useEffect(() => {
     if (path === '/foods/:idDaReceita/in-progress') {
