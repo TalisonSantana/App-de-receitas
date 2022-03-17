@@ -11,10 +11,6 @@ function IngredientsCheckbox({
 }) {
   const [finishedPlate, setFinishedPlate] = useState([]);
 
-  // console.log('idDaReceita Inprogress', idDaReceita);
-  // console.log('finishedPlate', finishedPlate);
-  // console.log('inProgress', path);
-
   // useEffect(() => {
   //   const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
   //   if (getLocal) {
@@ -26,8 +22,6 @@ function IngredientsCheckbox({
   //     }
   //   }
   // }, [idDaReceita]);
-
-  // console.log(finishedPlate[ingredient]);
 
   const handleChange = ({ target }) => {
     setFinishedPlate((prevState) => ({ ...prevState, [target.name]: target.checked }));
@@ -45,11 +39,11 @@ function IngredientsCheckbox({
   };
 
   return (
-    <div className="d-flex flex-column">
+    <section className="d-flex flex-column">
       {ingredients.map((ingredient, indexIngredient) => (
         ingredient
         && (
-          <div>
+          <div key={ indexIngredient }>
             {routeInprogress
          && (
            <label
@@ -68,11 +62,9 @@ function IngredientsCheckbox({
          )}
             {ingredient}
           </div>
-
         )
       ))}
-
-    </div>
+    </section>
   );
 }
 

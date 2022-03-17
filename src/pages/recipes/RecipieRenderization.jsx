@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import FotoRecomendation from './FotoRecomendation';
-// import MyContext from '../../context';
 import IngredientsCheckbox from '../../components/IngredientsCheckbox';
 import MyContext from '../../context';
 
@@ -32,9 +31,6 @@ function RecipieRenderization(props) {
     const srcFinal = `${srcInitial[0]}/embed/${srcInitial[1]}`;
     return srcFinal;
   };
-
-  // console.log('routeInprogress', routeInprogress);
-  console.log('Rendenization', path);
 
   useEffect(() => {
     if (path === '/foods/:idDaReceita/in-progress') {
@@ -83,40 +79,15 @@ function RecipieRenderization(props) {
             </section>
           </section>
           <section className="d-flex  flex-row ">
-            <ul>
-              <IngredientsCheckbox
-                // ingredient={ ingredient }
-                idDaReceita={ idDaReceita }
-                // indexIngredient={ indexIngredient }
-                ingredients={ ingredients }
-                path={ path }
-                routeInprogress={ routeInprogress }
-              />
-              {/* {ingredients.map((ingredient, indexIngredient) => (
-                ingredient
-                  && (
-                    <li key={ indexIngredient }>
-                      {routeInprogress
-                        ? (
-                        )
-                        : (
-                          <p
-                            style={ { listStyle: 'none' } }
-                            data-testid={
-                              `${indexIngredient}-ingredient-name-and-measure`
-                            }
-                          >
-                            -
-                            {' '}
-                            { ingredient }
-                          </p>)}
-                    </li>
-                  )
-              ))} */}
-            </ul>
+            <IngredientsCheckbox
+              idDaReceita={ idDaReceita }
+              ingredients={ ingredients }
+              path={ path }
+              routeInprogress={ routeInprogress }
+              ingredientMeasure={ ingredientMeasure }
+            />
             <section>
               <ul>
-
                 {ingredientMeasure.map((measure, indexMeasure) => (
                   measure
                 && (
@@ -125,8 +96,6 @@ function RecipieRenderization(props) {
                     data-testid={ `${indexMeasure}-ingredient-name-and-measure` }
                     key={ indexMeasure }
                   >
-                    {/* -
-                    {' '} */}
                     { measure }
                   </li>
                 )
@@ -161,14 +130,29 @@ function RecipieRenderization(props) {
               />
             </section>
           )}
-          <button
-            type="button"
-            data-testid="start-recipe-btn"
-            className="button__startRecipe"
-            onClick={ handleClick }
-          >
-            Start Recipe
-          </button>
+          <div>
+
+            {!routeInprogress
+              ? (
+                <button
+                  type="button"
+                  data-testid="start-recipe-btn"
+                  className="button__startRecipe"
+                  onClick={ handleClick }
+                >
+                  Start Recipe
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  data-testid="start-recipe-btn"
+                  className="button__startRecipe"
+                  onClick={ handleClick }
+                >
+                  Finish Recipe
+                </button>
+              )}
+          </div>
         </section>
       ))
   );
