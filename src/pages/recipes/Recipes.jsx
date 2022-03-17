@@ -10,7 +10,6 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
   const [ingredients, setIgredients] = useState([]);
   const [nameRoute, setNameRoute] = useState('');
   const [ingredientMeasure, setIngredientMeasure] = useState([]);
-  // const [routeInprogress, setRouteInprogress] = useState(false);
 
   useEffect(() => {
     async function Details() {
@@ -42,13 +41,6 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
     Details();
   }, []);
 
-  // const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  // console.log(getLocal);
-  // const { cocktails } = getLocal;
-  // useEffect(() => {
-
-  // }, []);
-
   return (
     <main>
       <RecipieRenderization
@@ -59,7 +51,6 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
         ingredientMeasure={ ingredientMeasure }
         history={ history }
         idDaReceita={ idDaReceita }
-        // routeInprogress={ routeInprogress }
       />
     </main>
   );
