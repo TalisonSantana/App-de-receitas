@@ -4,7 +4,7 @@ import { api } from '../../helpers/arrayFilter';
 import RecipieRenderization from './RecipieRenderization';
 import MyContext from '../../context';
 
-function Recipes({ match: { path, params: { idDaReceita } }, history }) {
+function Recipes({ match: { path, url, params: { idDaReceita } }, history }) {
   const [detailsRecipies, setDetailsRecipies] = useState([]);
   const [ingredients, setIgredients] = useState([]);
   const [nameRoute, setNameRoute] = useState('');
@@ -94,6 +94,7 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
         ingredientMeasure={ ingredientMeasure }
         history={ history }
         idDaReceita={ idDaReceita }
+        url={ url }
       />
     </main>
   );

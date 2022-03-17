@@ -6,6 +6,8 @@ import FotoRecomendation from './FotoRecomendation';
 import IngredientsCheckbox from '../../components/IngredientsCheckbox';
 import MyContext from '../../context';
 
+const copy = require('clipboard-copy');
+
 function RecipieRenderization(props) {
   const {
     detailsRecipies,
@@ -15,14 +17,16 @@ function RecipieRenderization(props) {
     ingredientMeasure,
     history,
     idDaReceita,
+    url,
   } = props;
+
+  const [buttonFinish, setButtonFinish] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const {
     routeInprogress,
     setRouteInprogress,
     isContinue,
   } = useContext(MyContext);
-
-  const [buttonFinish, setButtonFinish] = useState(false);
 
   const srcThumb = `str${nameRoute}Thumb`;
   const title = `str${nameRoute}`;
@@ -59,6 +63,15 @@ function RecipieRenderization(props) {
     }
   }, []);
 
+  const getLink = () => {
+    const FIVE_SECONDS = 5000;
+    copy(`http://localhost:3000${url}`);
+    setIsCopied(true);
+    setTimeout(() => (
+      setIsCopied(false)
+    ), FIVE_SECONDS);
+  };
+
   const filter = () => (
     detailsRecipies
       .map((result, index) => (
@@ -84,12 +97,19 @@ function RecipieRenderization(props) {
               </section>
             </div>
             <section className="d-flex">
-              <button data-testid="share-btn" type="button">
+              <button
+                data-testid="share-btn"
+                type="button"
+                onClick={ getLink }
+              >
                 <img src={ shareIcon } alt="shareIcon" />
               </button>
               <button data-testid="favorite-btn" type="button">
                 <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
               </button>
+              {
+                isCopied && <span>Link copied!</span>
+              }
             </section>
           </section>
           <IngredientsCheckbox
