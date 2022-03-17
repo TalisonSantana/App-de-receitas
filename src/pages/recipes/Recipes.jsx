@@ -11,7 +11,6 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
   const [ingredientMeasure, setIngredientMeasure] = useState([]);
 
   const { setIsContinue } = useContext(MyContext);
-  // console.log(api());
 
   function apiIgredients(params) {
     const result = params.map((value) => {
@@ -19,7 +18,6 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
       const myRegex = /strIngredient/gi;
       const filterWithRegex = keys.filter((el) => el.match(myRegex));
       const valores = filterWithRegex.map((el) => value[el]);
-      // console.log(valores);
       return valores;
     });
     return result;
@@ -41,11 +39,8 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
       if (path === '/drinks/:idDaReceita') {
         setDetailsRecipies(await api(idDaReceita, 'drinks'));
         setIgredients(...apiIgredients(await api(idDaReceita, 'drinks')));
-        // console.log(...apiIgredients(await api(idDaReceita, 'drinks')));
         setIngredientMeasure(...apiMeasure(await api(idDaReceita, 'drinks')));
         setNameRoute('Drink');
-        // setIgredients(...igredientsFilter);
-        // setIngredientMeasure(...measure);
       }
       if (path === '/foods/:idDaReceita') {
         setDetailsRecipies(await api(idDaReceita, 'foods'));
@@ -53,16 +48,12 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
         setIngredientMeasure(...apiMeasure(await api(idDaReceita, 'foods')));
 
         setNameRoute('Meal');
-        // setIgredients(...igredientsFilter);
-        // setIngredientMeasure(...measure);
       }
       if (path === '/drinks/:idDaReceita/in-progress') {
         setDetailsRecipies(await api(idDaReceita, 'drinks'));
         setIgredients(...apiIgredients(await api(idDaReceita, 'drinks')));
         setIngredientMeasure(...apiMeasure(await api(idDaReceita, 'drinks')));
         setNameRoute('Drink');
-        // setIgredients(...igredientsFilter);
-        // setIngredientMeasure(...measure);
       }
       if (path === '/foods/:idDaReceita/in-progress') {
         setDetailsRecipies(await api(idDaReceita, 'foods'));
@@ -70,8 +61,6 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
         setIngredientMeasure(...apiMeasure(await api(idDaReceita, 'foods')));
 
         setNameRoute('Meal');
-        // setIgredients(...igredientsFilter);
-        // setIngredientMeasure(...measure);
       }
     }
     Details();

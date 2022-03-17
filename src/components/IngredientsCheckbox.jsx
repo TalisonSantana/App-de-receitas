@@ -1,10 +1,5 @@
-import React, {
-  // useContext,
-  useEffect,
-
-  useState,
-} from 'react';
-// import MyContext from '../context';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 function IngredientsCheckbox({
   ingredients,
@@ -13,25 +8,10 @@ function IngredientsCheckbox({
   path,
   ingredientMeasure,
 }) {
-  // const { setContineRecipe } = useContext(MyContext);
   const [finishedPlate, setFinishedPlate] = useState([]);
 
   const routeFoods = '/foods/:idDaReceita/in-progress';
   const routeDrinks = '/drinks/:idDaReceita/in-progress';
-
-  // useEffect(() => {
-  //   const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  //   if (getLocal) {
-  //     const { cocktails } = getLocal;
-  //     const { meals } = getLocal;
-  //     if (path === routeDrinks) {
-  //       setContineRecipe({ ...Object.keys(cocktails) });
-  //     }
-  //     if (path === routeFoods) {
-  //       setContineRecipe({ ...Object.keys(meals) });
-  //     }
-  //   }
-  // }, []);
 
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -133,7 +113,6 @@ function IngredientsCheckbox({
   };
 
   return (
-    // <section className="d-flex flex-column">
     <section className="d-flex flex-row">
       <section className="d-flex flex-column">
         {ingredients.map((ingredient, indexIngredient) => (
@@ -186,57 +165,11 @@ function IngredientsCheckbox({
         ))}
       </section>
     </section>
-    // </section>
   );
 }
 
 IngredientsCheckbox.propTypes = {
-  // handleChange: PropTypes.func,
+  path: PropTypes.string,
 }.isRequire;
 
 export default IngredientsCheckbox;
-
-// const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-// if (getLocal) {
-//   const { meals } = getLocal;
-//   const { cocktails } = getLocal;
-//   if (path === '/foods/:idDaReceita/in-progress') {
-//     localStorage.setItem('inProgressRecipes', JSON.stringify(
-//       {
-//         cocktails: {
-//           ...cocktails,
-//           [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
-//         },
-//         meals: {
-//           ...meals,
-//           [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
-//         },
-//       },
-//     ));
-//   }
-//   if (path === '/drinks/:idDaReceita/in-progress') {
-//     localStorage.setItem('inProgressRecipes', JSON.stringify(
-//       {
-//         cocktails: {
-//           ...cocktails,
-//           [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
-//         },
-//         meals: {
-//           ...meals,
-//           [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
-//         },
-//       },
-//     ));
-//   }
-// }
-
-// localStorage.setItem('inProgressRecipes', JSON.stringify(
-//   {
-//     cocktails: {
-//       [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
-//     },
-//     meals: {
-//       [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
-//     },
-//   },
-// ));

@@ -6,7 +6,6 @@ import FotoRecomendation from './FotoRecomendation';
 import IngredientsCheckbox from '../../components/IngredientsCheckbox';
 import MyContext from '../../context';
 
-// data-testid="finish-recipe-btn"
 function RecipieRenderization(props) {
   const {
     detailsRecipies,
@@ -16,13 +15,11 @@ function RecipieRenderization(props) {
     ingredientMeasure,
     history,
     idDaReceita,
-    // routeInprogress,
   } = props;
   const {
     routeInprogress,
     setRouteInprogress,
     isContinue,
-
   } = useContext(MyContext);
 
   const [buttonFinish, setButtonFinish] = useState(false);

@@ -37,7 +37,6 @@ function ExpFoodsNationalities() {
 
   useEffect(() => {
     getRecipes();
-    // setArrRecipes(arrRecipes.slice(0, POSITION_ELEVEN));
   }, [valueOption]);
 
   return (
@@ -48,7 +47,6 @@ function ExpFoodsNationalities() {
         searchIcon
       />
       <select
-        // value={ valueOption }
         onChange={ ({ target }) => setvalueOption(target.value) }
         data-testid="explore-by-nationality-dropdown"
       >

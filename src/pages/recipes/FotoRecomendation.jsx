@@ -6,14 +6,13 @@ import './FotoRecomendation.css';
 
 function FotoRecomendation(props) {
   const { path,
-    // idDaReceita
+
   } = props;
   const [results, setResults] = useState([]);
   const [nameRoute, setNameRoute] = useState([]);
   const SIX = 6;
   const srcThumb = `str${nameRoute}Thumb`;
   const strTitle = `str${nameRoute}`;
-  // const linkTo = `www.themealdb.com/api/json/v1/1/lookup.php?i=${idDaReceita}`;
 
   useEffect(() => {
     async function carrosel() {

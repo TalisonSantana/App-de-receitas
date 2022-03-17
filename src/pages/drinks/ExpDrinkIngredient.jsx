@@ -34,7 +34,6 @@ function ExpDrinksIngredient() {
     <>
       <Header title="Explore Ingredients" />
       {ingredients.length > 0 && ingredients.map((ingredient, index) => (
-        // <div>
         <button
           type="button"
           key={ index }
@@ -49,12 +48,10 @@ function ExpDrinksIngredient() {
           />
           <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient1}</p>
         </button>
-
-        // </div>
       ))}
       <Footer />
     </>
   );
 }
-//
+
 export default ExpDrinksIngredient;

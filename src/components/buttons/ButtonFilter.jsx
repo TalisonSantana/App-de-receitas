@@ -26,25 +26,6 @@ function ButtonFilter() {
       callback(prevStorage);
     }
   };
-  // const favoriteStorage = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-  // if (target.name === 'food') {
-  //   setFavoriteLocal(favoriteStorage.filter((food) => food.type === 'food'));
-  // } else if (target.name === 'drink') {
-  //   setFavoriteLocal(favoriteStorage.filter((drink) => drink.type === 'drink'));
-  // } else {
-  //   setFavoriteLocal(favoriteStorage);
-  // }
-
-  // const filterDone = ({ target }) => {
-  //   const doneStorage = JSON.parse(localStorage.getItem('doneRecipes')) || [];
-  //   if (target.name === 'food') {
-  //     setDoneLocal(doneStorage.filter((food) => food.type === 'food'));
-  //   } else if (target.name === 'drink') {
-  //     setDoneLocal(doneStorage.filter((drink) => drink.type === 'drink'));
-  //   } else {
-  //     setDoneLocal(doneStorage);
-  //   }
-  // };
 
   return (
     <nav>

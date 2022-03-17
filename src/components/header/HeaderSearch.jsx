@@ -4,25 +4,16 @@ import MyContext from '../../context';
 import funcArrayFilterFood, { funcArrayFilterDrink } from '../../helpers/arrayFilter';
 
 function HeaderSearch() {
+  const [searchInput, setSearchInput] = useState('');
+  const [valueFilter, setValueFilter] = useState('');
+  const {
+    setApiDrink,
+    setApiFood,
+  } = useContext(MyContext);
+
   const POSITION_ELEVEN = 12;
   const location = useLocation();
   const history = useHistory();
-  const [searchInput, setSearchInput] = useState('');
-  const {
-    // apiFood,
-    // apiDrink,
-    setApiDrink,
-    setApiFood } = useContext(MyContext);
-  const [valueFilter, setValueFilter] = useState('');
-
-  // const setFechState = (fetch, setArray) => {
-
-  //   if (fetch === null) {
-  //     global.alert('Sorry, we haven\'t found any recipes for these filters.');
-  //   } else {
-  //     setArray(fetch);
-  //   }
-  // };
 
   const checkFetch = async () => {
     const MIN_LENGTH = 1;
