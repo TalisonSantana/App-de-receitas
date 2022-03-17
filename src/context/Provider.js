@@ -14,6 +14,7 @@ function MyProvider({ children }) {
   const [lastButtonDrink, setLastButtonDrink] = useState('');
   const [lastButtonFood, setLastButtonFood] = useState('');
   const [routeInprogress, setRouteInprogress] = useState(false);
+  const [continueRecipe, setContineRecipe] = useState([]);
 
   const store = {
     arrFilterFoods,
@@ -38,6 +39,8 @@ function MyProvider({ children }) {
     setLastButtonFood,
     routeInprogress,
     setRouteInprogress,
+    continueRecipe,
+    setContineRecipe,
   };
 
   return (

@@ -1,54 +1,153 @@
 import React, {
-  // useEffect,
+  useContext,
+  useEffect,
+
   useState,
 } from 'react';
+import MyContext from '../context';
 
 function IngredientsCheckbox({
   ingredients,
   routeInprogress,
   idDaReceita,
-  // path,
+  path,
+  ingredientMeasure,
 }) {
+  const { setContineRecipe } = useContext(MyContext);
   const [finishedPlate, setFinishedPlate] = useState([]);
 
-  // useEffect(() => {
-  //   const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  //   if (getLocal) {
-  //     const { cocktails } = getLocal;
-  //     if (cocktails[idDaReceita]) {
-  //       setFinishedPlate(...cocktails[idDaReceita]);
-  //       // console.log('cocktails', cocktails[idDaReceita][0]);
-  //       // console.log('Passou');
-  //     }
-  //   }
-  // }, [idDaReceita]);
+  const routeFoods = '/foods/:idDaReceita/in-progress';
+  const routeDrinks = '/drinks/:idDaReceita/in-progress';
+
+  useEffect(() => {
+    const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    console.log('getLocal', getLocal);
+    if (getLocal) {
+      const { cocktails } = getLocal;
+      const { meals } = getLocal;
+      if (path === routeDrinks) {
+        setContineRecipe({ ...Object.keys(cocktails) });
+      }
+      if (path === routeFoods) {
+        setContineRecipe({ ...Object.keys(meals) });
+      }
+    }
+  }, [idDaReceita]);
+
+  useEffect(() => {
+    const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (getLocal) {
+      const { meals } = getLocal;
+      const { cocktails } = getLocal;
+      if (path === routeFoods) {
+        setFinishedPlate(...meals[idDaReceita]);
+        localStorage.setItem('inProgressRecipes', JSON.stringify(
+          {
+            cocktails: {
+              ...cocktails,
+            },
+            meals: {
+              ...meals,
+            },
+          },
+        ));
+      }
+      if (path === routeDrinks) {
+        setFinishedPlate(...cocktails[idDaReceita]);
+        localStorage.setItem('inProgressRecipes', JSON.stringify(
+          {
+            cocktails: {
+              ...cocktails,
+            },
+            meals: {
+              ...meals,
+            },
+          },
+        ));
+      }
+    }
+  }, []);
+
+  const handleLocalStorage = (getLocal, target) => {
+    if (getLocal === null) {
+      if (path === routeFoods) {
+        localStorage.setItem('inProgressRecipes', JSON.stringify(
+          {
+            cocktails: {
+            },
+            meals: {
+              [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
+            },
+          },
+        ));
+      }
+      if (path === routeDrinks) {
+        localStorage.setItem('inProgressRecipes', JSON.stringify(
+          {
+            cocktails: {
+              [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
+            },
+            meals: {
+            },
+          },
+        ));
+      }
+    }
+  };
 
   const handleChange = ({ target }) => {
     setFinishedPlate((prevState) => ({ ...prevState, [target.name]: target.checked }));
 
-    localStorage.setItem('inProgressRecipes', JSON.stringify(
-      {
-        cocktails: {
-          [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
-        },
-        meals: {
-          [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
-        },
-      },
-    ));
+    const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (getLocal) {
+      const { meals } = getLocal;
+      const { cocktails } = getLocal;
+
+      if (path === routeFoods) {
+        localStorage.setItem('inProgressRecipes', JSON.stringify(
+          {
+            cocktails: {
+              ...cocktails,
+            },
+            meals: {
+              ...meals,
+              [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
+            },
+          },
+        ));
+      }
+      if (path === routeDrinks) {
+        localStorage.setItem('inProgressRecipes', JSON.stringify(
+          {
+            cocktails: {
+              ...cocktails,
+              [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
+            },
+            meals: {
+              ...meals,
+            },
+          },
+        ));
+      }
+    }
+    handleLocalStorage(getLocal, target);
   };
 
   return (
-    <section className="d-flex flex-column">
-      {ingredients.map((ingredient, indexIngredient) => (
-        ingredient
-        && (
-          <div key={ indexIngredient }>
-            {routeInprogress
+    // <section className="d-flex flex-column">
+    <section className="d-flex flex-row">
+      <section className="d-flex flex-column">
+        {ingredients.map((ingredient, indexIngredient) => (
+          ingredient
+            && (
+              <section
+                className="d-flex flex-row"
+                key={ indexIngredient }
+              >
+                {routeInprogress
          && (
            <label
              htmlFor={ ingredient }
-             style={ { textDecoration: finishedPlate[ingredient] && 'line-through' } }
              data-testid={ `${indexIngredient}-ingredient-step` }
            >
              <input
@@ -59,12 +158,36 @@ function IngredientsCheckbox({
                onChange={ handleChange }
              />
            </label>
+
          )}
-            {ingredient}
-          </div>
-        )
-      ))}
+                <div
+                  style={
+                    { textDecoration: finishedPlate[ingredient] && 'line-through' }
+                  }
+                  data-testid={ `${indexIngredient}-ingredient-name-and-measure` }
+                >
+                  {ingredient}
+                </div>
+              </section>
+            )
+        ))}
+      </section>
+      <section>
+        {ingredientMeasure.map((measure, indexMeasure) => (
+          measure
+                && (
+                  <div
+                    style={ { listStyle: 'none' } }
+                    data-testid={ `${indexMeasure}-ingredient-name-and-measure` }
+                    key={ indexMeasure }
+                  >
+                    { measure }
+                  </div>
+                )
+        ))}
+      </section>
     </section>
+    // </section>
   );
 }
 
@@ -107,3 +230,14 @@ export default IngredientsCheckbox;
 //     ));
 //   }
 // }
+
+// localStorage.setItem('inProgressRecipes', JSON.stringify(
+//   {
+//     cocktails: {
+//       [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
+//     },
+//     meals: {
+//       [idDaReceita]: [{ ...finishedPlate, [target.name]: target.checked }],
+//     },
+//   },
+// ));
