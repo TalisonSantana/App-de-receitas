@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import FotoRecomendation from './FotoRecomendation';
 import IngredientsCheckbox from '../../components/IngredientsCheckbox';
 import MyContext from '../../context';
@@ -59,6 +60,10 @@ function RecipieRenderization(props) {
     }
   }, []);
 
+  const handleClickIcon = ({ target }) => {
+    console.log(target.style = { backgroundColor: 'blue' });
+  };
+
   const filter = () => (
     detailsRecipies
       .map((result, index) => (
@@ -89,6 +94,7 @@ function RecipieRenderization(props) {
               </button>
               <button data-testid="favorite-btn" type="button">
                 <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
+                <img src={ blackHeartIcon } alt="blackHeartIcon" />
               </button>
             </section>
           </section>
