@@ -48,16 +48,14 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
     if (getLocal) {
       const { cocktails } = getLocal;
       const { meals } = getLocal;
-
-      if (meals[idDaReceita]) {
-        console.log('Passou Dinamico Meals');
-        console.log(meals[idDaReceita]);
-        setIsContinue(true);
+      if (path === '/foods/:idDaReceita') {
+        const idMeals = meals[idDaReceita] && setIsContinue(true);
+        return idMeals;
       }
 
-      if (cocktails[idDaReceita]) {
-        console.log('Passou Dinamico cocktails');
-        setIsContinue(true);
+      if (path === '/drinks/:idDaReceita') {
+        const idCocktails = cocktails[idDaReceita] && setIsContinue(true);
+        return idCocktails;
       }
     }
   }, []);
