@@ -18,6 +18,7 @@ function MyProvider({ children }) {
   const [favoriteLocal, setFavoriteLocal] = useState([]);
   const [doneLocal, setDoneLocal] = useState([]);
   const [arrNationality, setArrNationality] = useState([]);
+  const [isContinue, setIsContinue] = useState(false);
 
   const store = {
     arrFilterFoods,
@@ -50,6 +51,8 @@ function MyProvider({ children }) {
     setDoneLocal,
     arrNationality,
     setArrNationality,
+    isContinue,
+    setIsContinue,
   };
 
   return (
