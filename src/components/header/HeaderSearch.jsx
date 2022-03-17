@@ -16,7 +16,7 @@ function HeaderSearch() {
   const [valueFilter, setValueFilter] = useState('');
 
   // const setFechState = (fetch, setArray) => {
-  //   console.log(fetch);
+
   //   if (fetch === null) {
   //     global.alert('Sorry, we haven\'t found any recipes for these filters.');
   //   } else {

@@ -15,8 +15,10 @@ import ExpDrinksIngredient from '../drinks/ExpDrinkIngredient';
 import Profile from '../user/Profile';
 import DoneRecipes from '../recipes/DoneRecipes';
 import ExpFoodsNationalities from '../foods/ExpFoodsNacionality';
-import FavoriteRecipes from '../recipes/FavoritesRecipes';
+import FavoriteRecipes from '../recipes/FavoriteRecipes';
 import Recipes from '../recipes/Recipes';
+// import FavoriteRecipes from '../recipes/FavoriteRecipes';
+import NotFound from '../404/NotFound';
 
 // Tela de login: /;
 // Tela principal de receitas de comidas: /foods;
@@ -38,6 +40,7 @@ import Recipes from '../recipes/Recipes';
 function Routes() {
   return (
     <Switch>
+      <Route exact path="/explore/drinks/nationalities" component={ NotFound } />
       <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
       <Route exact path="/done-recipes" component={ DoneRecipes } />
       <Route exact path="/profile" component={ Profile } />

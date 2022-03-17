@@ -21,7 +21,6 @@ function IngredientsCheckbox({
 
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    console.log('getLocal', getLocal);
     if (getLocal) {
       const { cocktails } = getLocal;
       const { meals } = getLocal;

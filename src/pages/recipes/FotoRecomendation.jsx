@@ -14,11 +14,10 @@ function FotoRecomendation(props) {
   const srcThumb = `str${nameRoute}Thumb`;
   const strTitle = `str${nameRoute}`;
   // const linkTo = `www.themealdb.com/api/json/v1/1/lookup.php?i=${idDaReceita}`;
-  // console.log('path', path);
+
   useEffect(() => {
     async function carrosel() {
       if (path === '/drinks/:idDaReceita') {
-        console.log('entrou');
         const { meals } = await FetchResult('https://www.themealdb.com/api/json/v1/1/search.php?s=');
         setNameRoute('Meal');
         setResults(meals.slice(0, SIX));

@@ -20,6 +20,8 @@ function RecipieRenderization(props) {
   const { routeInprogress, setRouteInprogress, continueRecipe } = useContext(MyContext);
   const [buttonsDetails, setButtonsDetails] = useState('Start Recipe');
 
+  console.log(routeInprogress);
+
   const srcThumb = `str${nameRoute}Thumb`;
   const title = `str${nameRoute}`;
 
@@ -31,8 +33,6 @@ function RecipieRenderization(props) {
     const srcFinal = `${srcInitial[0]}/embed/${srcInitial[1]}`;
     return srcFinal;
   };
-
-  console.log(continueRecipe);
 
   useEffect(() => {
     if (continueRecipe[idDaReceita]) {

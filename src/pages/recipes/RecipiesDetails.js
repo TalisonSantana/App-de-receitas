@@ -44,7 +44,7 @@ export async function api(id, namePath) {
 //   if (params === 'Drink') {
 //     const { meals } = await FetchResult('https://www.themealdb.com/api/json/v1/1/search.php?s=');
 //     const src = meals.slice(0, SIX);
-//     console.log('src', src);
+
 //     const fotos = src.map((foto) => foto.strMealThumb);
 //     return fotos;
 //   }

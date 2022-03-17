@@ -8,6 +8,8 @@ export const API_RANDOM_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/ran
 export const API_RANDOM_FOOD = 'https://www.themealdb.com/api/json/v1/1/random.php';
 export const API_MEALS_ID = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
 export const API_DRINK_ID = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
+export const API_NATIONALITY_FOOD = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
+export const API_NATIONALITY_RECIPE = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=';
 
 export const FetchResult = async (url) => {
   const API = url;
