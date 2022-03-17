@@ -5,6 +5,8 @@ import {
   API_LETTER_FOOD,
   API_NAME_DRINK,
   API_NAME_FOOD,
+  API_MEALS_ID,
+  API_DRINK_ID,
   FetchRadioFilter,
 } from '../services';
 
@@ -33,5 +35,20 @@ export const funcArrayFilterDrink = (valueFilter, searchInput) => {
     break;
   }
 };
+
+export async function api(id, namePath) {
+  if (namePath === 'drinks') {
+    const { drinks } = await FetchRadioFilter(API_DRINK_ID, id);
+    // igredientsFilter.push(...apiIgredients(drinks));
+    // measure.push(...apiMeasure(drinks));
+    return drinks;
+  }
+  if (namePath === 'foods') {
+    const { meals } = await FetchRadioFilter(API_MEALS_ID, id);
+    // igredientsFilter.push(...apiIgredients(meals));
+    // measure.push(...apiMeasure(meals));
+    return meals;
+  }
+}
 
 export default funcArrayFilterFood;

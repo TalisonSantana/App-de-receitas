@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { api, igredientsFilter, measure } from './RecipiesDetails';
+import { api } from '../../helpers/arrayFilter';
 import RecipieRenderization from './RecipieRenderization';
 import MyContext from '../../context';
 
@@ -11,32 +11,67 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
   const [ingredientMeasure, setIngredientMeasure] = useState([]);
 
   const { setIsContinue } = useContext(MyContext);
+  // console.log(api());
+
+  function apiIgredients(params) {
+    const result = params.map((value) => {
+      const keys = Object.keys(value);
+      const myRegex = /strIngredient/gi;
+      const filterWithRegex = keys.filter((el) => el.match(myRegex));
+      const valores = filterWithRegex.map((el) => value[el]);
+      // console.log(valores);
+      return valores;
+    });
+    return result;
+  }
+
+  function apiMeasure(params) {
+    const result = params.map((value) => {
+      const keys = Object.keys(value);
+      const myRegex = /strMeasure/gi;
+      const filterWithRegex = keys.filter((el) => el.match(myRegex));
+      const valores = filterWithRegex.map((el) => value[el]);
+      return valores;
+    });
+    return result;
+  }
 
   useEffect(() => {
     async function Details() {
       if (path === '/drinks/:idDaReceita') {
         setDetailsRecipies(await api(idDaReceita, 'drinks'));
+        setIgredients(...apiIgredients(await api(idDaReceita, 'drinks')));
+        // console.log(...apiIgredients(await api(idDaReceita, 'drinks')));
+        setIngredientMeasure(...apiMeasure(await api(idDaReceita, 'drinks')));
         setNameRoute('Drink');
-        setIgredients(...igredientsFilter);
-        setIngredientMeasure(...measure);
+        // setIgredients(...igredientsFilter);
+        // setIngredientMeasure(...measure);
       }
       if (path === '/foods/:idDaReceita') {
         setDetailsRecipies(await api(idDaReceita, 'foods'));
+        setIgredients(...apiIgredients(await api(idDaReceita, 'foods')));
+        setIngredientMeasure(...apiMeasure(await api(idDaReceita, 'foods')));
+
         setNameRoute('Meal');
-        setIgredients(...igredientsFilter);
-        setIngredientMeasure(...measure);
+        // setIgredients(...igredientsFilter);
+        // setIngredientMeasure(...measure);
       }
       if (path === '/drinks/:idDaReceita/in-progress') {
         setDetailsRecipies(await api(idDaReceita, 'drinks'));
+        setIgredients(...apiIgredients(await api(idDaReceita, 'drinks')));
+        setIngredientMeasure(...apiMeasure(await api(idDaReceita, 'drinks')));
         setNameRoute('Drink');
-        setIgredients(...igredientsFilter);
-        setIngredientMeasure(...measure);
+        // setIgredients(...igredientsFilter);
+        // setIngredientMeasure(...measure);
       }
       if (path === '/foods/:idDaReceita/in-progress') {
         setDetailsRecipies(await api(idDaReceita, 'foods'));
+        setIgredients(...apiIgredients(await api(idDaReceita, 'foods')));
+        setIngredientMeasure(...apiMeasure(await api(idDaReceita, 'foods')));
+
         setNameRoute('Meal');
-        setIgredients(...igredientsFilter);
-        setIngredientMeasure(...measure);
+        // setIgredients(...igredientsFilter);
+        // setIngredientMeasure(...measure);
       }
     }
     Details();
