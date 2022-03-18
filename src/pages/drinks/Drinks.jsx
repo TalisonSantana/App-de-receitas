@@ -54,29 +54,31 @@ function Drinks() {
   };
 
   return (
-    <main>
+    <main className="bg-zinc-200">
       <Header
         title="Drinks"
         searchIcon
       />
-      <ButtonCategory
-        nameCategory="All"
-        name="All"
-        handleClickButton={ handleClickButtonAll }
-      />
-      <div>
-        {categoryDrink && categoryDrink
-          .map((nameCategory, index) => (
-            <div key={ index }>
-              <ButtonCategory
-                nameCategory={ nameCategory.strCategory }
-                handleClickButton={ handleClickButton }
-              >
-                { nameCategory.strCategory }
-              </ButtonCategory>
-            </div>
-          ))}
-      </div>
+      <section className="flex p-1 my-2">
+        <div className="flex flex-wrap justify-between gap-2">
+          <ButtonCategory
+            nameCategory="All"
+            name="All"
+            handleClickButton={ handleClickButtonAll }
+          />
+          {categoryDrink && categoryDrink
+            .map((nameCategory, index) => (
+              <div key={ index }>
+                <ButtonCategory
+                  nameCategory={ nameCategory.strCategory }
+                  handleClickButton={ handleClickButton }
+                >
+                  { nameCategory.strCategory }
+                </ButtonCategory>
+              </div>
+            ))}
+        </div>
+      </section>
       <ul>
         {apiDrink && apiDrink
           .map((drink, index) => (

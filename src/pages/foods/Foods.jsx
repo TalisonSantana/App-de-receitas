@@ -58,7 +58,7 @@ function Food() {
         title="Foods"
         searchIcon
       />
-      <section className="flex p-1 ">
+      <section className="flex p-1 my-2">
         <div className="flex flex-wrap justify-between gap-2">
           <ButtonCategory
             name="All"
