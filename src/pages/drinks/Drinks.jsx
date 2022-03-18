@@ -53,7 +53,6 @@ function Drinks() {
     }
   };
 
-  console.log(apiDrink);
   return (
     <main>
       <Header

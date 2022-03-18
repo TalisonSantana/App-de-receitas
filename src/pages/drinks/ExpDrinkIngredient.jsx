@@ -15,21 +15,17 @@ function ExpDrinksIngredient() {
   const getIngredients = async () => {
     const data = await FetchResult('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
     const dataAtt = data.drinks.slice(0, MAX_CARDS);
-    // console.log(data);
     setIngredients(dataAtt);
-    console.log(dataAtt);
   };
 
   useEffect(() => {
     getIngredients();
   }, []);
 
-  // console.log(ingredients);
-
   const fetchIngredient = async ({ target }) => {
     const { drinks } = await FetchRadioFilter(API_INGREDIENT_DRINK, target.alt);
     const dataAtt = drinks.slice(0, MAX_CARDS);
-    console.log(drinks);
+
     setApiDrink(dataAtt);
     history.push('/drinks');
   };
@@ -38,7 +34,6 @@ function ExpDrinksIngredient() {
     <>
       <Header title="Explore Ingredients" />
       {ingredients.length > 0 && ingredients.map((ingredient, index) => (
-        // <div>
         <button
           type="button"
           key={ index }
@@ -53,12 +48,10 @@ function ExpDrinksIngredient() {
           />
           <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient1}</p>
         </button>
-
-        // </div>
       ))}
       <Footer />
     </>
   );
 }
-//
+
 export default ExpDrinksIngredient;
