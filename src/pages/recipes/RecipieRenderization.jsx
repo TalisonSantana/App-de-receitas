@@ -6,6 +6,9 @@ import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import FotoRecomendation from './FotoRecomendation';
 import IngredientsCheckbox from '../../components/IngredientsCheckbox';
 import MyContext from '../../context';
+import { setLocalStorageOn, setLocalStorageNull } from './saveLocalFavorite';
+
+const copy = require('clipboard-copy');
 
 function RecipieRenderization(props) {
   const {
@@ -16,17 +19,23 @@ function RecipieRenderization(props) {
     ingredientMeasure,
     history,
     idDaReceita,
+    url,
   } = props;
+
+  const [buttonFinish, setButtonFinish] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const [iconWhite, setIconWhite] = useState(true);
   const {
     routeInprogress,
     setRouteInprogress,
     isContinue,
   } = useContext(MyContext);
 
-  const [buttonFinish, setButtonFinish] = useState(false);
-
   const srcThumb = `str${nameRoute}Thumb`;
+  const id = `id${nameRoute}`;
   const title = `str${nameRoute}`;
+  const routeFoods = '/foods/:idDaReceita/in-progress';
+  const routeDrinks = '/drinks/:idDaReceita/in-progress';
   const pathSplit = path.split(':idDaReceita');
   const startRecipe = `${pathSplit[0]}${idDaReceita}/in-progress`;
 
@@ -37,10 +46,10 @@ function RecipieRenderization(props) {
   };
 
   useEffect(() => {
-    if (path === '/foods/:idDaReceita/in-progress') {
+    if (path === routeFoods) {
       setRouteInprogress(true);
     }
-    if (path === '/drinks/:idDaReceita/in-progress') {
+    if (path === routeDrinks) {
       setRouteInprogress(true);
     }
   }, []);
@@ -52,16 +61,45 @@ function RecipieRenderization(props) {
   };
 
   useEffect(() => {
-    if (path === '/foods/:idDaReceita/in-progress') {
+    if (path === routeFoods) {
       setButtonFinish(true);
     }
-    if (path === '/drinks/:idDaReceita/in-progress') {
+    if (path === routeDrinks) {
       setButtonFinish(true);
     }
   }, []);
+  const details = detailsRecipies[0];
 
-  const handleClickIcon = ({ target }) => {
-    console.log(target.style = { backgroundColor: 'blue' });
+  const routeFoodsFull = '/foods/:idDaReceita'
+  || path === routeFoods;
+  const routeDrinksFull = '/drinks/:idDaReceita'
+  || path === routeDrinks;
+  useEffect(() => {
+    const getLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (getLocal && routeFoodsFull) {
+      if (getLocal.some((item) => item[id])) return setIconWhite(false);
+      return setIconWhite(true);
+    }
+    if (getLocal && routeDrinksFull) {
+      if (getLocal.some((item) => item[id])) return setIconWhite(false);
+      return setIconWhite(true);
+    }
+  }, []);
+
+  const handleClickIcon = () => {
+    const getLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    setLocalStorageOn(getLocal, path, details, nameRoute);
+    setLocalStorageNull(getLocal, path, details, nameRoute);
+    if (iconWhite) return setIconWhite(false);
+    return setIconWhite(true);
+  };
+  const getLink = () => {
+    const FIVE_SECONDS = 5000;
+    copy(`http://localhost:3000${url}`);
+    setIsCopied(true);
+    setTimeout(() => (
+      setIsCopied(false)
+    ), FIVE_SECONDS);
   };
 
   const filter = () => (
@@ -89,13 +127,26 @@ function RecipieRenderization(props) {
               </section>
             </div>
             <section className="d-flex">
-              <button data-testid="share-btn" type="button">
+              <button
+                data-testid="share-btn"
+                type="button"
+                onClick={ getLink }
+              >
                 <img src={ shareIcon } alt="shareIcon" />
               </button>
-              <button data-testid="favorite-btn" type="button">
-                <img src={ whiteHeartIcon } alt="whiteHeartIcon" />
-                <img src={ blackHeartIcon } alt="blackHeartIcon" />
+              <button
+                data-testid="favorite-btn"
+                onClick={ handleClickIcon }
+                type="button"
+              >
+                <img
+                  src={ iconWhite ? whiteHeartIcon : blackHeartIcon }
+                  alt={ iconWhite ? 'whiteHeartIcon' : 'blackHeartIcon' }
+                />
               </button>
+              {
+                isCopied && <span>Link copied!</span>
+              }
             </section>
           </section>
           <IngredientsCheckbox
