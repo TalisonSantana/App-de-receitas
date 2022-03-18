@@ -23,42 +23,47 @@ function Login({ history }) {
   };
 
   return (
-    <div>
-      <form>
-        <label htmlFor="email">
-          email:
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="alguem@alguem.com"
-            data-testid="email-input"
-            onChange={ ({ target }) => setLoginEmail(target.value) }
-            value={ loginEmail }
-          />
-        </label>
-        password:
-        <label htmlFor="password">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="7 ou mais caracteres"
-            data-testid="password-input"
-            onChange={ ({ target }) => setLoginPassword(target.value) }
-            value={ loginPassword }
-          />
-        </label>
-        <button
-          type="button"
-          data-testid="login-submit-btn"
-          disabled={ validadeInputs() }
-          onClick={ () => submitBTM() }
-        >
-          Entrar
-        </button>
-      </form>
-    </div>
+    <section className="flex w-screen h-screen justify-center items-center bg-orange-500">
+      <section className="flex flex-col">
+
+        <h1 className="flex justify-center text-5xl ">Login</h1>
+        <form className="flex flex-col  items-center">
+          <label htmlFor="email">
+            <input
+              className="rounded-md p-2"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              data-testid="email-input"
+              onChange={ ({ target }) => setLoginEmail(target.value) }
+              value={ loginEmail }
+            />
+          </label>
+          <label htmlFor="password">
+            <input
+              className="rounded-md p-2"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              data-testid="password-input"
+              onChange={ ({ target }) => setLoginPassword(target.value) }
+              value={ loginPassword }
+            />
+          </label>
+          <button
+            className="bg-emerald-500 rounded-md p-1 w-32 disabled:opacity-80"
+            type="button"
+            data-testid="login-submit-btn"
+            disabled={ validadeInputs() }
+            onClick={ () => submitBTM() }
+          >
+            Entrar
+          </button>
+        </form>
+      </section>
+    </section>
 
   );
 }
