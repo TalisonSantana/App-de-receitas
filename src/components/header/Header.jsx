@@ -18,7 +18,7 @@ function Header(props) {
   };
 
   return (
-    <header>
+    <header className="bg-orange-500 h-12 flex flex-row justify-between p-1">
       <Link
         to="/profile"
       >
