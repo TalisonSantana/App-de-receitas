@@ -4,12 +4,15 @@ import { api } from '../../helpers/arrayFilter';
 import RecipieRenderization from './RecipieRenderization';
 import MyContext from '../../context';
 
-function Recipes({ match: { path, url, params: { idDaReceita } }, history }) {
+const copy = require('clipboard-copy');
+
+function Recipes({ match: { path, params: { idDaReceita } }, history }) {
   const [detailsRecipies, setDetailsRecipies] = useState([]);
   const [ingredients, setIgredients] = useState([]);
   const [nameRoute, setNameRoute] = useState('');
   const [ingredientMeasure, setIngredientMeasure] = useState([]);
-  console.log(detailsRecipies);
+  const [isCopied, setIsCopied] = useState(false);
+  console.log(path);
 
   const { setIsContinue } = useContext(MyContext);
 
@@ -34,6 +37,24 @@ function Recipes({ match: { path, url, params: { idDaReceita } }, history }) {
     });
     return result;
   }
+
+  const getLink = () => {
+    if (path.includes('foods')) {
+      const FIVE_SECONDS = 5000;
+      copy(`http://localhost:3000/foods/${idDaReceita}`);
+      setIsCopied(true);
+      setTimeout(() => (
+        setIsCopied(false)
+      ), FIVE_SECONDS);
+    } else {
+      const FIVE_SECONDS = 5000;
+      copy(`http://localhost:3000/drinks/${idDaReceita}`);
+      setIsCopied(true);
+      setTimeout(() => (
+        setIsCopied(false)
+      ), FIVE_SECONDS);
+    }
+  };
 
   useEffect(() => {
     async function Details() {
@@ -95,7 +116,8 @@ function Recipes({ match: { path, url, params: { idDaReceita } }, history }) {
         ingredientMeasure={ ingredientMeasure }
         history={ history }
         idDaReceita={ idDaReceita }
-        url={ url }
+        getLink={ getLink }
+        isCopied={ isCopied }
       />
     </main>
   );

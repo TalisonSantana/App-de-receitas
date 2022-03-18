@@ -8,8 +8,6 @@ import IngredientsCheckbox from '../../components/IngredientsCheckbox';
 import MyContext from '../../context';
 import { setLocalStorageOn, setLocalStorageNull } from './saveLocalFavorite';
 
-const copy = require('clipboard-copy');
-
 function RecipieRenderization(props) {
   const {
     detailsRecipies,
@@ -19,11 +17,12 @@ function RecipieRenderization(props) {
     ingredientMeasure,
     history,
     idDaReceita,
-    url,
+    isCopied,
+    getLink,
   } = props;
+  // console.log(detailsRecipies);
 
   const [buttonFinish, setButtonFinish] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
   const [iconWhite, setIconWhite] = useState(true);
   const {
     routeInprogress,
@@ -32,7 +31,7 @@ function RecipieRenderization(props) {
   } = useContext(MyContext);
 
   const srcThumb = `str${nameRoute}Thumb`;
-  const id = `id${nameRoute}`;
+  // const id = `id${nameRoute}`;
   const title = `str${nameRoute}`;
   const routeFoods = '/foods/:idDaReceita/in-progress';
   const routeDrinks = '/drinks/:idDaReceita/in-progress';
@@ -74,32 +73,35 @@ function RecipieRenderization(props) {
   || path === routeFoods;
   const routeDrinksFull = '/drinks/:idDaReceita'
   || path === routeDrinks;
+  // const drinksFoodsRoute = routeFoodsFull || routeDrinksFull;
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (getLocal && routeFoodsFull) {
-      if (getLocal.some((item) => item[id])) return setIconWhite(false);
+      if (getLocal.some((item) => item.id === idDaReceita)) return setIconWhite(false);
       return setIconWhite(true);
     }
     if (getLocal && routeDrinksFull) {
-      if (getLocal.some((item) => item[id])) return setIconWhite(false);
+      if (getLocal.some((item) => item.id === idDaReceita)) return setIconWhite(false);
       return setIconWhite(true);
     }
   }, []);
 
   const handleClickIcon = () => {
     const getLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    setLocalStorageOn(getLocal, path, details, nameRoute);
     setLocalStorageNull(getLocal, path, details, nameRoute);
-    if (iconWhite) return setIconWhite(false);
-    return setIconWhite(true);
-  };
-  const getLink = () => {
-    const FIVE_SECONDS = 5000;
-    copy(`http://localhost:3000${url}`);
-    setIsCopied(true);
-    setTimeout(() => (
-      setIsCopied(false)
-    ), FIVE_SECONDS);
+    if (getLocal !== null) {
+      const recipeFilter = getLocal.filter((recipe) => (
+        recipe.id !== idDaReceita
+      ));
+      if (iconWhite) {
+        setLocalStorageOn(getLocal, path, details, nameRoute, idDaReceita);
+        return setIconWhite((prevState) => !prevState);
+      }
+      if (!iconWhite) {
+        localStorage.setItem('favoriteRecipes', JSON.stringify(recipeFilter));
+        return setIconWhite((prevState) => !prevState);
+      }
+    } return setIconWhite((prevState) => !prevState);
   };
 
   const filter = () => (
@@ -135,11 +137,11 @@ function RecipieRenderization(props) {
                 <img src={ shareIcon } alt="shareIcon" />
               </button>
               <button
-                data-testid="favorite-btn"
                 onClick={ handleClickIcon }
                 type="button"
               >
                 <img
+                  data-testid="favorite-btn"
                   src={ iconWhite ? whiteHeartIcon : blackHeartIcon }
                   alt={ iconWhite ? 'whiteHeartIcon' : 'blackHeartIcon' }
                 />
@@ -190,6 +192,7 @@ function RecipieRenderization(props) {
                   type="button"
                   data-testid="finish-recipe-btn"
                   className="button__startRecipe"
+                  onClick={ () => history.push('/done-recipes') }
                 >
                   Finish Recipe
                 </button>
