@@ -53,31 +53,31 @@ function Food() {
     }
   };
   return (
-    <main>
+    <main className="bg-zinc-200">
       <Header
         title="Foods"
         searchIcon
       />
-      <div>
-        <ButtonCategory
-          name="All"
-          nameCategory="All"
-          handleClickButton={ handleClickButtonAll }
-        />
-      </div>
-      <div>
-        {categoryFood && categoryFood
-          .map((nameCategory, index) => (
-            <div key={ index }>
-              <ButtonCategory
-                nameCategory={ nameCategory.strCategory }
-                handleClickButton={ handleClickButton }
-              >
-                { nameCategory.strCategory }
-              </ButtonCategory>
-            </div>
-          ))}
-      </div>
+      <section className="flex p-1 ">
+        <div className="flex flex-wrap justify-between gap-2">
+          <ButtonCategory
+            name="All"
+            nameCategory="All"
+            handleClickButton={ handleClickButtonAll }
+          />
+          {categoryFood && categoryFood
+            .map((nameCategory, index) => (
+              <div key={ index }>
+                <ButtonCategory
+                  nameCategory={ nameCategory.strCategory }
+                  handleClickButton={ handleClickButton }
+                >
+                  { nameCategory.strCategory }
+                </ButtonCategory>
+              </div>
+            ))}
+        </div>
+      </section>
       <ul>
         {apiFood && apiFood
           .map((food, index) => (
@@ -102,16 +102,3 @@ function Food() {
   );
 }
 export default Food;
-// function Foods() {
-//   return (
-//     <>
-//       <Header
-//         title="Foods"
-//         searchIcon
-//       />
-//       <CardsRecipes />
-//       <Footer />
-//     </>
-//   );
-// }
-// export default Foods;
