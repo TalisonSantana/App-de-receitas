@@ -25,9 +25,8 @@ function Login({ history }) {
   return (
     <section className="flex w-screen h-screen justify-center items-center bg-orange-500">
       <section className="flex flex-col">
-
         <h1 className="flex justify-center text-5xl ">Login</h1>
-        <form className="flex flex-col  items-center">
+        <form className="flex flex-col items-center">
           <label htmlFor="email">
             <input
               className="rounded-md p-2"

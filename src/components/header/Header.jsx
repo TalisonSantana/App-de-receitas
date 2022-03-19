@@ -19,25 +19,30 @@ function Header(props) {
 
   return (
     <header className="bg-orange-500 h-12 flex flex-row justify-between p-1">
-      {
-        !searchInput
+      <section>
+        {
+          !searchInput
         && (
-          <>
-            <Link
-              to="/profile"
-            >
-              <img
-                data-testid="profile-top-btn"
-                src={ profile }
-                alt="profile-btn"
-              />
-            </Link>
-            <h2 data-testid="page-title">{title}</h2>
-          </>
+          <Link
+            to="/profile"
+          >
+            <img
+              data-testid="profile-top-btn"
+              src={ profile }
+              alt="profile-btn"
+            />
+          </Link>
         )
-      }
-      {
-        searchIcon
+        }
+      </section>
+      <section>
+        {!searchInput && (
+          <h2 data-testid="page-title">{title}</h2>
+        )}
+      </section>
+      <section>
+        {
+          searchIcon
       && (
         <button
           onClick={ onClick }
@@ -50,7 +55,8 @@ function Header(props) {
           />
         </button>
       )
-      }
+        }
+      </section>
       {
         searchInput
         && <HeaderSearch />

@@ -42,80 +42,97 @@ function CardRecipe(props) {
   };
 
   return (
-    <div>
+    <div className="flex flex-row shadow__card my-3 rounded-md">
       {
         isRemove
         && (
-
-          <section>
-            <Link to={ type === 'drink' ? `/drinks/${id}` : `/foods/${id}` }>
-              <img
-                style={ { width: '300px' } }
-                data-testid={ `${index}-horizontal-image` }
-                src={ src }
-                alt={ name }
-              />
-              <h3
-                data-testid={ `${index}-horizontal-name` }
+          <section className="flex flex-row">
+            <section>
+              <Link
+                to={ type === 'drink' ? `/drinks/${id}` : `/foods/${id}` }
               >
-                {name}
+                <img
+                  className="rounded-l-md"
+                  height="143px"
+                  width="165px"
+                  data-testid={ `${index}-horizontal-image` }
+                  src={ src }
+                  alt={ name }
+                />
+              </Link>
+            </section>
+            <section className="flex flex-col p-2">
+              <section className="flex justify-between">
+                { !alcoholic
+                  && (
+                    <span
+                      className="text-gray-500"
+                      data-testid={ `${index}-horizontal-top-text` }
+                    >
+                      {`${nacionality} - ${category}`}
 
-              </h3>
-            </Link>
-            { !alcoholic
-      && (
-        <span
-          data-testid={ `${index}-horizontal-top-text` }
-        >
-          {`${nacionality} - ${category}`}
+                    </span>
+                  )}
+                <span
+                  className="text-gray-500"
+                  data-testid={ `${index}-horizontal-top-text` }
+                >
+                  {alcoholic}
+                </span>
+                <button
+                  onClick={ getLink }
+                  type="button"
+                >
 
-        </span>
-      )}
-            {
-              date
-        && (
-          <span
-            data-testid={ `${index}-horizontal-done-date` }
-          >
-            {date}
+                  <img
+                    data-testid={ `${index}-horizontal-share-btn` }
+                    src={ shareIcon }
+                    alt="share icon"
+                  />
 
-          </span>
-        )
-            }
-            {
-              tags
-        && (
-          tags.map((tag) => (
-            <span
-              key={ tag }
-              data-testid={ `${index}-${tag}-horizontal-tag` }
-            >
-              {tag}
+                </button>
+              </section>
+              <section>
+                <p
+                  className="text-md"
+                  data-testid={ `${index}-horizontal-name` }
+                >
+                  <strong>
+                    {name}
+                  </strong>
+                </p>
+              </section>
+              <section>
+                {date
+              && (
+                <span
+                  data-testid={ `${index}-horizontal-done-date` }
+                >
+                  Done in:
+                  {' '}
+                  {date}
 
-            </span>
-          ))
+                </span>
+              )}
+              </section>
+              <section className="flex justify-around">
+                {tags
+              && (
+                tags.map((tag) => (
+                  <span
+                    className="bg-zinc-300 rounded-md px-2"
+                    key={ tag }
+                    data-testid={ `${index}-${tag}-horizontal-tag` }
+                  >
+                    {tag}
 
-        )
-            }
-            <span
-              data-testid={ `${index}-horizontal-top-text` }
-            >
-              {alcoholic}
-            </span>
-            <button
-              onClick={ getLink }
-              type="button"
-            >
+                  </span>
+                ))
 
-              <img
-                data-testid={ `${index}-horizontal-share-btn` }
-                src={ shareIcon }
-                alt="share icon"
-              />
-
-            </button>
-            {
-              location.pathname.includes('favorite-recipes')
+              )}
+              </section>
+              {
+                location.pathname.includes('favorite-recipes')
               && (
                 <button
                   onClick={ removeRecipe }
@@ -128,10 +145,11 @@ function CardRecipe(props) {
                   />
                 </button>
               )
-            }
-            {
-              isCopied && <span>Link copied!</span>
-            }
+              }
+              {
+                isCopied && <span>Link copied!</span>
+              }
+            </section>
           </section>
         )
       }

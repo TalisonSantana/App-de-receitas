@@ -10,15 +10,8 @@ import { setLocalStorageOn, setLocalStorageNull } from './saveLocalFavorite';
 
 function RecipieRenderization(props) {
   const {
-    detailsRecipies,
-    path,
-    nameRoute,
-    ingredients,
-    ingredientMeasure,
-    history,
-    idDaReceita,
-    isCopied,
-    getLink,
+    detailsRecipies, path, nameRoute, ingredients,
+    ingredientMeasure, history, idDaReceita, isCopied, getLink,
   } = props;
 
   const [buttonFinish, setButtonFinish] = useState(false);
@@ -68,11 +61,9 @@ function RecipieRenderization(props) {
   }, []);
   const details = detailsRecipies[0];
 
-  const routeFoodsFull = '/foods/:idDaReceita'
-  || path === routeFoods;
-  const routeDrinksFull = '/drinks/:idDaReceita'
-  || path === routeDrinks;
-  // const drinksFoodsRoute = routeFoodsFull || routeDrinksFull;
+  const routeFoodsFull = '/foods/:idDaReceita' || path === routeFoods;
+  const routeDrinksFull = '/drinks/:idDaReceita' || path === routeDrinks;
+
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (getLocal && routeFoodsFull) {
@@ -102,6 +93,13 @@ function RecipieRenderization(props) {
       }
     } return setIconWhite((prevState) => !prevState);
   };
+
+  // const handleDoneRecipes = () => {
+  //   const currentDate = new Date().toLocaleDateString();
+  //   console.log(currentDate);
+  //   localStorage.setItem('doneRecipes', [{ currentDate }]);
+  //   return history.push('/done-recipes');
+  // };
 
   const filter = () => (
     detailsRecipies
@@ -176,45 +174,58 @@ function RecipieRenderization(props) {
               { result.strInstructions }
             </p>
           </section>
-          {!routeInprogress
+          <section className="mb-10">
+            {!routeInprogress
           && (
             <section>
               {result.strYoutube
           && (
-            <iframe
-              data-testid="video"
-              width="360"
-              height="215"
-              src={ handleSrcYoutube(result.strYoutube) }
-              title="YouTube video player"
-            />
-          )}
-              <FotoRecomendation
-                path={ path }
-                nameRoute={ nameRoute }
+            <section className="p-2">
+              <p className="text-2xl">Video</p>
+              <iframe
+                data-testid="video"
+                width="343"
+                height="215"
+                src={ handleSrcYoutube(result.strYoutube) }
+                title="YouTube video player"
               />
             </section>
           )}
+              <section className="p-2">
+                <p className="text-2xl">Recomended</p>
+                <FotoRecomendation
+                  path={ path }
+                  nameRoute={ nameRoute }
+                />
+              </section>
+            </section>
+          )}
+          </section>
           <div>
             {buttonFinish
               ? (
                 <button
                   type="button"
                   data-testid="finish-recipe-btn"
-                  className="button__startRecipe"
+                  className="shadow__button-inset
+                  button__startRecipe bg-green-500 h-12 text-xl"
                   onClick={ () => history.push('/done-recipes') }
                 >
                   Finish Recipe
                 </button>
               ) : (
-                <button
-                  type="button"
-                  data-testid="start-recipe-btn"
-                  className="button__startRecipe"
-                  onClick={ handleClick }
-                >
-                  { isContinue ? 'Continue Recipe' : ' Start Recipe'}
-                </button>
+                <section>
+                  <hr className="w-screen h-4 shadow__header" />
+                  <button
+                    type="button"
+                    data-testid="start-recipe-btn"
+                    className="shadow__button-inset
+                     button__startRecipe bg-green-500 h-12 text-xl"
+                    onClick={ handleClick }
+                  >
+                    { isContinue ? 'Continue Recipe' : ' Start Recipe'}
+                  </button>
+                </section>
               )}
 
           </div>

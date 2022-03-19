@@ -36,29 +36,31 @@ function DoneRecipes() {
 
   const renderFilter = doneLocal || doneRecipes;
   return (
-    <>
+    <section className="bg-zinc-200 h-screen">
       <Header title="Done Recipes" />
       <ButtonFilter />
-      {
-        renderFilter && renderFilter.map((recipe, index) => (
-          <CardRecipe
-            array={ doneLocal }
-            index={ index }
-            key={ recipe.id }
-            src={ recipe.image }
-            name={ recipe.name }
-            pathname
-            date={ recipe.doneDate }
-            tags={ recipe.tags.map((tag) => tag) }
-            category={ recipe.category }
-            nacionality={ recipe.nationality }
-            alcoholic={ recipe.alcoholicOrNot }
-            id={ recipe.id }
-            type={ recipe.type }
-          />
-        ))
-      }
-    </>
+      <section className="p-2">
+        {
+          renderFilter && renderFilter.map((recipe, index) => (
+            <CardRecipe
+              array={ doneLocal }
+              index={ index }
+              key={ recipe.id }
+              src={ recipe.image }
+              name={ recipe.name }
+              pathname
+              date={ recipe.doneDate }
+              tags={ recipe.tags.map((tag) => tag) }
+              category={ recipe.category }
+              nacionality={ recipe.nationality }
+              alcoholic={ recipe.alcoholicOrNot }
+              id={ recipe.id }
+              type={ recipe.type }
+            />
+          ))
+        }
+      </section>
+    </section>
   );
 }
 

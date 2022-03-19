@@ -28,8 +28,10 @@ function ButtonFilter() {
   };
 
   return (
-    <nav>
+    <nav className="p-1 my-1 flex justify-around">
       <button
+        className="shadow__button
+      bg-green-500 hover:bg-green-700 text-black rounded-md h-7 w-28"
         onClick={ (event) => filterFavorite(event, adressPage) }
         name="all"
         data-testid="filter-by-all-btn"
@@ -39,6 +41,8 @@ function ButtonFilter() {
 
       </button>
       <button
+        className="shadow__button
+         bg-green-500 hover:bg-green-700 text-black rounded-md h-7 w-28"
         name="food"
         onClick={ (event) => filterFavorite(event, adressPage) }
         data-testid="filter-by-food-btn"
@@ -48,6 +52,8 @@ function ButtonFilter() {
 
       </button>
       <button
+        className="shadow__button
+         bg-green-500 hover:bg-green-700 text-black rounded-md h-7 w-28"
         onClick={ (event) => filterFavorite(event, adressPage) }
         name="drink"
         data-testid="filter-by-drink-btn"
