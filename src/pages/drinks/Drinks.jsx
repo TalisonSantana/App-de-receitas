@@ -90,7 +90,7 @@ function Drinks() {
               key={ index }
             >
               <img
-                className="rounded-md h-40"
+                className="rounded-md h-40 rounded-b-none"
                 data-testid={ `${index}-card-img` }
                 src={ drink.strDrinkThumb }
                 alt={ drink.strDrink }
