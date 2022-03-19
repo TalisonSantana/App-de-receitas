@@ -58,6 +58,13 @@ function HeaderSearch() {
         onChange={ ({ target }) => setSearchInput(target.value) }
         placeholder="Search Recipe"
       />
+      <button
+        onClick={ handleClick }
+        data-testid="exec-search-btn"
+        type="button"
+      >
+        Search
+      </button>
       <label htmlFor="ingredient">
         <input
           onChange={ () => setValueFilter('Ingredient') }
@@ -88,16 +95,7 @@ function HeaderSearch() {
         />
         First Letter
       </label>
-      <button
-        onClick={ handleClick }
-        data-testid="exec-search-btn"
-        type="button"
-      >
-        Search
-
-      </button>
     </form>
   );
 }
-
 export default HeaderSearch;

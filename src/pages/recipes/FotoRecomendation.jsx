@@ -32,7 +32,7 @@ function FotoRecomendation(props) {
   }, []);
 
   return (
-    <section className="d-flex flex-row recomendation">
+    <section className="flex flex-row bg-red-500">
       {results
         .map((result, index) => (
           <section
@@ -44,10 +44,8 @@ function FotoRecomendation(props) {
               to="foods/52977"
             >
               <img
-                className="recomendation__img"
+                className="w-"
                 src={ result[srcThumb] }
-                height="175px"
-                width="169px"
                 alt="foto"
               />
             </Link>

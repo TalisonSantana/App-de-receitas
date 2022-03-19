@@ -113,16 +113,17 @@ function IngredientsCheckbox({
   };
 
   return (
-    <section className="d-flex flex-row">
-      <section className="d-flex flex-column">
-        {ingredients.map((ingredient, indexIngredient) => (
-          ingredient
-            && (
-              <section
-                className="d-flex flex-row"
-                key={ indexIngredient }
-              >
-                {routeInprogress
+    <section className="flex flex-col p-2">
+      <p className="text-2xl">Ingredients</p>
+      <section className="flex flex-row bg-zinc-300 rounded-md p-2">
+        <section className="flex flex-col">
+          {ingredients.map((ingredient, indexIngredient) => (
+            ingredient
+          && (
+            <section
+              key={ indexIngredient }
+            >
+              {routeInprogress
          && (
            <label
              htmlFor={ ingredient }
@@ -138,31 +139,38 @@ function IngredientsCheckbox({
            </label>
 
          )}
-                <div
-                  style={
-                    { textDecoration: finishedPlate[ingredient] && 'line-through' }
-                  }
-                  data-testid={ `${indexIngredient}-ingredient-name-and-measure` }
-                >
-                  {ingredient}
-                </div>
-              </section>
-            )
-        ))}
-      </section>
-      <section>
-        {ingredientMeasure.map((measure, indexMeasure) => (
-          measure
-                && (
-                  <div
-                    style={ { listStyle: 'none' } }
-                    data-testid={ `${indexMeasure}-ingredient-name-and-measure` }
-                    key={ indexMeasure }
-                  >
-                    { measure }
-                  </div>
-                )
-        ))}
+              <p
+                className="text-xl"
+                style={
+                  { textDecoration: finishedPlate[ingredient] && 'line-through' }
+                }
+                data-testid={ `${indexIngredient}-ingredient-name-and-measure` }
+              >
+                -
+                {' '}
+                {ingredient}
+              </p>
+            </section>
+          )
+          ))}
+        </section>
+        <section className="flex flex-col ml-10">
+          {ingredientMeasure.map((measure, indexMeasure) => (
+            measure
+          && (
+            <p
+              className="text-xl"
+              style={ { listStyle: 'none' } }
+              data-testid={ `${indexMeasure}-ingredient-name-and-measure` }
+              key={ indexMeasure }
+            >
+              -
+              {' '}
+              { measure }
+            </p>
+          )
+          ))}
+        </section>
       </section>
     </section>
   );

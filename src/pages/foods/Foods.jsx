@@ -58,6 +58,7 @@ function Food() {
         title="Foods"
         searchIcon
       />
+      <hr className="shadow__header" />
       <section className="flex p-1 my-1">
         <div className="flex flex-wrap justify-between gap-2">
           <ButtonCategory

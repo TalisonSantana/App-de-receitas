@@ -12,7 +12,6 @@ function Recipes({ match: { path, params: { idDaReceita } }, history }) {
   const [nameRoute, setNameRoute] = useState('');
   const [ingredientMeasure, setIngredientMeasure] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
-  console.log(path);
 
   const { setIsContinue } = useContext(MyContext);
 

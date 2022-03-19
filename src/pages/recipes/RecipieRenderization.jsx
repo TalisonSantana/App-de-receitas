@@ -20,7 +20,6 @@ function RecipieRenderization(props) {
     isCopied,
     getLink,
   } = props;
-  // console.log(detailsRecipies);
 
   const [buttonFinish, setButtonFinish] = useState(false);
   const [iconWhite, setIconWhite] = useState(true);
@@ -107,34 +106,41 @@ function RecipieRenderization(props) {
   const filter = () => (
     detailsRecipies
       .map((result, index) => (
-        <section key={ index }>
+        <section key={ index } className="bg-zinc-200">
           <img
+            className="w-screen"
             data-testid="recipe-photo"
             src={ result[srcThumb] }
-            height="200px"
-            max-width="360px"
-            width="100%"
             alt={ result[title] }
           />
-          <section className="d-flex justify-content-between">
-            <div className="d-flex flex-column">
-              <p data-testid="recipe-title">{ result[title] }</p>
+          <section className="flex justify-between p-1 h-24 shadow__card">
+            <section
+              className="flex flex-col w-44"
+            >
+              <h2
+                className=""
+                style={ { margin: '0' } }
+                data-testid="recipe-title"
+              >
+                { result[title] }
+
+              </h2>
               <section data-testid="recipe-category">
-                <span>
+                <span className="text-gray-500">
                   { result.strCategory }
                 </span>
-                <p>
+                <p className="text-gray-500">
                   {result.strAlcoholic}
                 </p>
               </section>
-            </div>
-            <section className="d-flex">
+            </section>
+            <section className="flex items-start justify-between w-24">
               <button
                 data-testid="share-btn"
                 type="button"
                 onClick={ getLink }
               >
-                <img src={ shareIcon } alt="shareIcon" />
+                <img width="38px" src={ shareIcon } alt="shareIcon" />
               </button>
               <button
                 onClick={ handleClickIcon }
@@ -142,6 +148,7 @@ function RecipieRenderization(props) {
               >
                 <img
                   data-testid="favorite-btn"
+                  width="38px"
                   src={ iconWhite ? whiteHeartIcon : blackHeartIcon }
                   alt={ iconWhite ? 'whiteHeartIcon' : 'blackHeartIcon' }
                 />
@@ -158,14 +165,17 @@ function RecipieRenderization(props) {
             routeInprogress={ routeInprogress }
             ingredientMeasure={ ingredientMeasure }
           />
-          <p
-            className="p-3"
-            data-testid="instructions"
-          >
-            Instructions:
-            <br />
-            { result.strInstructions }
-          </p>
+          <section className="p-2">
+            <p className="text-2xl">
+              Instructions
+            </p>
+            <p
+              className="text-xl bg-zinc-300 rounded-md p-2"
+              data-testid="instructions"
+            >
+              { result.strInstructions }
+            </p>
+          </section>
           {!routeInprogress
           && (
             <section>
