@@ -58,7 +58,7 @@ function Food() {
         title="Foods"
         searchIcon
       />
-      <section className="flex p-1 my-2">
+      <section className="flex p-1 my-1">
         <div className="flex flex-wrap justify-between gap-2">
           <ButtonCategory
             name="All"
@@ -78,22 +78,30 @@ function Food() {
             ))}
         </div>
       </section>
-      <ul>
+      <ul className="flex mb-9 flex-wrap justify-between p-3">
         {apiFood && apiFood
           .map((food, index) => (
             <Link
+              className="bg-white-100 shadow__card
+               my-1 h-52 w-40 box-border rounded-md"
               data-testid={ `${index}-recipe-card` }
               to={ `/foods/${food.idMeal}` }
               key={ index }
             >
               {' '}
               <img
+                className="rounded-md h-40"
                 data-testid={ `${index}-card-img` }
                 src={ food.strMealThumb }
-                height="100px"
                 alt={ food.strMeal }
               />
-              <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
+              <p
+                className="text-black text-justify text-center text-md break-words mt-1"
+                data-testid={ `${index}-card-name` }
+              >
+                { food.strMeal }
+
+              </p>
             </Link>
           ))}
       </ul>

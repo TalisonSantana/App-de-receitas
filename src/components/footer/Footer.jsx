@@ -8,7 +8,8 @@ import './Footer.css';
 function Footer() {
   return (
     <footer
-      className="footer bg-orange-500 w-screen h-12 flex flex-row justify-between p-1"
+      className="footer
+       bg-orange-500 w-screen h-12 flex flex-row justify-between p-1"
       data-testid="footer"
     >
       <Link to="drinks">
