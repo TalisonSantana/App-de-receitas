@@ -33,29 +33,31 @@ function FavoriteRecipes() {
   const renderFilter = favoriteLocal || favoriteRecipes;
 
   return (
-    <>
+    <section className="bg-zinc-200 h-screen">
       <Header title="Favorite Recipes" />
       <ButtonFilter />
-      {
-        renderFilter && renderFilter.map((recipe, index) => (
-          <CardRecipe
-            array={ favoriteLocal }
-            index={ index }
-            key={ recipe.id }
-            src={ recipe.image }
-            name={ recipe.name }
-            pathname
-            date={ false }
-            tags={ false }
-            category={ recipe.category }
-            nacionality={ recipe.nationality }
-            alcoholic={ recipe.alcoholicOrNot }
-            id={ recipe.id }
-            type={ recipe.type }
-          />
-        ))
-      }
-    </>
+      <section className="p-2">
+        {
+          renderFilter && renderFilter.map((recipe, index) => (
+            <CardRecipe
+              array={ favoriteLocal }
+              index={ index }
+              key={ recipe.id }
+              src={ recipe.image }
+              name={ recipe.name }
+              pathname
+              date={ false }
+              tags={ false }
+              category={ recipe.category }
+              nacionality={ recipe.nationality }
+              alcoholic={ recipe.alcoholicOrNot }
+              id={ recipe.id }
+              type={ recipe.type }
+            />
+          ))
+        }
+      </section>
+    </section>
   );
 }
 

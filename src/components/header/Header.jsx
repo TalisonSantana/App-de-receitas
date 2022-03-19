@@ -18,7 +18,10 @@ function Header(props) {
   };
 
   return (
-    <header className="bg-orange-500 h-12 flex flex-row justify-between p-1">
+    <header
+      className="bg-orange-500 h-12 flex flex-row
+    justify-between p-1"
+    >
       <section>
         {
           !searchInput
@@ -35,7 +38,7 @@ function Header(props) {
         )
         }
       </section>
-      <section>
+      <section className="flex flex-col justify-end">
         {!searchInput && (
           <h2 data-testid="page-title">{title}</h2>
         )}

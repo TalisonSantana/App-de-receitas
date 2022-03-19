@@ -46,7 +46,7 @@ function CardRecipe(props) {
       {
         isRemove
         && (
-          <section className="flex flex-row">
+          <section className="flex justify-around">
             <section>
               <Link
                 to={ type === 'drink' ? `/drinks/${id}` : `/foods/${id}` }
@@ -61,7 +61,7 @@ function CardRecipe(props) {
                 />
               </Link>
             </section>
-            <section className="flex flex-col p-2">
+            <section className="flex flex-col w-auto p-2">
               <section className="flex justify-between">
                 { !alcoholic
                   && (
@@ -79,18 +79,23 @@ function CardRecipe(props) {
                 >
                   {alcoholic}
                 </span>
-                <button
-                  onClick={ getLink }
-                  type="button"
-                >
+                {
+                  location.pathname.includes('done-recipes')
+                  && (
+                    <button
+                      onClick={ getLink }
+                      type="button"
+                    >
 
-                  <img
-                    data-testid={ `${index}-horizontal-share-btn` }
-                    src={ shareIcon }
-                    alt="share icon"
-                  />
+                      <img
+                        data-testid={ `${index}-horizontal-share-btn` }
+                        src={ shareIcon }
+                        alt="share icon"
+                      />
 
-                </button>
+                    </button>
+                  )
+                }
               </section>
               <section>
                 <p
@@ -131,21 +136,39 @@ function CardRecipe(props) {
 
               )}
               </section>
-              {
-                location.pathname.includes('favorite-recipes')
-              && (
-                <button
-                  onClick={ removeRecipe }
-                  type="button"
-                >
-                  <img
-                    data-testid={ `${index}-horizontal-favorite-btn` }
-                    src={ favoriteIcon }
-                    alt="favorite icon"
-                  />
-                </button>
-              )
-              }
+              <section className="w-40">
+                {
+                  location.pathname.includes('favorite-recipes')
+                && (
+                  <section className="flex justify-around">
+                    <button
+                      onClick={ getLink }
+                      type="button"
+                    >
+
+                      <img
+                        width="30px"
+                        data-testid={ `${index}-horizontal-share-btn` }
+                        src={ shareIcon }
+                        alt="share icon"
+                      />
+
+                    </button>
+                    <button
+                      onClick={ removeRecipe }
+                      type="button"
+                    >
+                      <img
+                        width="31px"
+                        data-testid={ `${index}-horizontal-favorite-btn` }
+                        src={ favoriteIcon }
+                        alt="favorite icon"
+                      />
+                    </button>
+                  </section>
+                )
+                }
+              </section>
               {
                 isCopied && <span>Link copied!</span>
               }

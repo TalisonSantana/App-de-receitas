@@ -94,13 +94,6 @@ function RecipieRenderization(props) {
     } return setIconWhite((prevState) => !prevState);
   };
 
-  // const handleDoneRecipes = () => {
-  //   const currentDate = new Date().toLocaleDateString();
-  //   console.log(currentDate);
-  //   localStorage.setItem('doneRecipes', [{ currentDate }]);
-  //   return history.push('/done-recipes');
-  // };
-
   const filter = () => (
     detailsRecipies
       .map((result, index) => (
