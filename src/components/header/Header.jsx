@@ -19,7 +19,7 @@ function Header(props) {
 
   return (
     <header
-      className="bg-orange-500 h-12 flex flex-row
+      className="bg-orange-500 h-12 flex flex-row items-center
     justify-between p-1"
     >
       <section>
@@ -38,9 +38,9 @@ function Header(props) {
         )
         }
       </section>
-      <section className="flex flex-col justify-end">
+      <section>
         {!searchInput && (
-          <h2 data-testid="page-title">{title}</h2>
+          <p className="text-2xl my-2" data-testid="page-title">{title}</p>
         )}
       </section>
       <section>
