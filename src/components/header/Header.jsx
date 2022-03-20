@@ -19,7 +19,7 @@ function Header(props) {
 
   return (
     <header
-      className="bg-orange-500 h-12 flex flex-row items-center
+      className="bg-orange-500 h-13 flex flex-row items-center
     justify-between p-1"
     >
       <section>

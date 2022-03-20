@@ -51,50 +51,79 @@ function HeaderSearch() {
 
   return (
     <form>
-      <input
-        data-testid="search-input"
-        type="text"
-        id="search-input"
-        onChange={ ({ target }) => setSearchInput(target.value) }
-        placeholder="Search Recipe"
-      />
-      <button
-        onClick={ handleClick }
-        data-testid="exec-search-btn"
-        type="button"
+      <section className="flex">
+        <section
+          style={ { padding: '1px' } }
+        >
+          <input
+            className="rounded-sm"
+            data-testid="search-input"
+            type="text"
+            id="search-input"
+            onChange={ ({ target }) => setSearchInput(target.value) }
+            placeholder="Search Recipe"
+          />
+        </section>
+        <section
+          style={ { padding: '1px' } }
+        >
+          <button
+            className="shadow__button
+          bg-zinc-100 text-black rounded-md h-6 w-24"
+            onClick={ handleClick }
+            data-testid="exec-search-btn"
+            type="button"
+          >
+            Search
+          </button>
+        </section>
+      </section>
+      <section
+        className="flex justify-start ml-1"
       >
-        Search
-      </button>
-      <label htmlFor="ingredient">
-        <input
-          onChange={ () => setValueFilter('Ingredient') }
-          name="filter"
-          data-testid="ingredient-search-radio"
-          type="radio"
-          id="ingredient"
-        />
-        Ingredient
-      </label>
-      <label htmlFor="name">
-        <input
-          onChange={ () => setValueFilter('Name') }
-          name="filter"
-          data-testid="name-search-radio"
-          type="radio"
-          id="name"
-        />
-        Name
-      </label>
-      <label htmlFor="first-letter">
-        <input
-          onChange={ () => setValueFilter('First_Letter') }
-          name="filter"
-          data-testid="first-letter-search-radio"
-          type="radio"
-          id="first-letter"
-        />
-        First Letter
-      </label>
+        <label
+          className="pr-2"
+          style={ { fontSize: '18px', margin: '0', padding: '4px' } }
+          htmlFor="ingredient"
+        >
+          <input
+            onChange={ () => setValueFilter('Ingredient') }
+            name="filter"
+            data-testid="ingredient-search-radio"
+            type="radio"
+            id="ingredient"
+          />
+          Ingredient
+        </label>
+        <label
+          className="pr-2"
+          style={ { fontSize: '18px', margin: '0', padding: '4px' } }
+          htmlFor="name"
+        >
+          <input
+            onChange={ () => setValueFilter('Name') }
+            name="filter"
+            data-testid="name-search-radio"
+            type="radio"
+            id="name"
+          />
+          Name
+        </label>
+        <label
+          className="pr-2"
+          style={ { fontSize: '18px', margin: '0', padding: '4px' } }
+          htmlFor="first-letter"
+        >
+          <input
+            onChange={ () => setValueFilter('First_Letter') }
+            name="filter"
+            data-testid="first-letter-search-radio"
+            type="radio"
+            id="first-letter"
+          />
+          First Letter
+        </label>
+      </section>
     </form>
   );
 }
