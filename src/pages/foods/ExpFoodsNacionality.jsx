@@ -40,55 +40,67 @@ function ExpFoodsNationalities() {
   }, [valueOption]);
 
   return (
-
-    <>
+    <section className="bg-zinc-200">
       <Header
         title="Explore Nationalities"
         searchIcon
       />
-      <select
-        onChange={ ({ target }) => setvalueOption(target.value) }
-        data-testid="explore-by-nationality-dropdown"
-      >
-        <option data-testid="All-option">All</option>
-        {
-          arrNationality && arrNationality.map((area) => (
-
-            <option
-              value={ area.strArea }
-              data-testid={ `${area.strArea}-option` }
-              key={ area.strArea }
-            >
-              {area.strArea}
-
-            </option>
-          ))
-
-        }
-      </select>
-      <hr />
-      {
-        arrRecipes.length > 0 && arrRecipes.map((recipe, index) => (
-          <Link
-            data-testid={ `${index}-recipe-card` }
-            to={ `/foods/${recipe.idMeal}` }
-            key={ recipe.idMeal }
+      <section className="text-center flex flex-row justify-center py-2">
+        <select
+          className="text-center text-xl shadow__button bg-green-500
+           text-black rounded-md h-8 w-52"
+          onChange={ ({ target }) => setvalueOption(target.value) }
+          data-testid="explore-by-nationality-dropdown"
+        >
+          <option
+            className="bg-zinc-100"
+            data-testid="All-option"
           >
+            All
+          </option>
+          {
+            arrNationality && arrNationality.map((area) => (
+              <option
+                className="bg-zinc-100 flex flex-row justify-center"
+                value={ area.strArea }
+                data-testid={ `${area.strArea}-option` }
+                key={ area.strArea }
+              >
+                {area.strArea}
 
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ recipe.strMealThumb }
-              height="100px"
-              alt={ recipe.strMeal }
-            />
-            <p data-testid={ `${index}-card-name` }>{ recipe.strMeal }</p>
-          </Link>
+              </option>
+            ))
+          }
+        </select>
+      </section>
+      <hr />
+      <section className="flex mb-9 flex-wrap justify-between p-3">
+        {
+          arrRecipes.length > 0 && arrRecipes.map((recipe, index) => (
+            <section
+              key={ recipe.idMeal }
+              className="flex flex-col justify-center items-center shadow__card
+             my-1 h-18 w-40 box-border rounded-md bg-zinc-100"
+            >
+              <Link
+                data-testid={ `${index}-recipe-card` }
+                to={ `/foods/${recipe.idMeal}` }
+              >
+                <img
+                  data-testid={ `${index}-card-img` }
+                  src={ recipe.strMealThumb }
+                  height="100px"
+                  alt={ recipe.strMeal }
+                />
+              </Link>
+              <p data-testid={ `${index}-card-name` }>{ recipe.strMeal }</p>
+            </section>
 
-        ))
-      }
-
+          ))
+        }
+      </section>
       <Footer />
-    </>
+    </section>
   );
 }
 
