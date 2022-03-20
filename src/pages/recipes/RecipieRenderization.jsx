@@ -98,24 +98,26 @@ function RecipieRenderization(props) {
     detailsRecipies
       .map((result, index) => (
         <section key={ index } className="bg-zinc-200">
-          <img
-            className="w-screen"
-            data-testid="recipe-photo"
-            src={ result[srcThumb] }
-            alt={ result[title] }
-          />
-          <section className="flex justify-between p-1 h-24 shadow__card">
+          <section
+            className="flex justify-center items-center"
+          >
+            <img
+              data-testid="recipe-photo"
+              src={ result[srcThumb] }
+              alt={ result[title] }
+            />
+          </section>
+          <section className="flex justify-between p-1 h-auto shadow__card">
             <section
               className="flex flex-col w-44"
             >
-              <h2
-                className=""
+              <p
+                className="text-2xl"
                 style={ { margin: '0' } }
                 data-testid="recipe-title"
               >
                 { result[title] }
-
-              </h2>
+              </p>
               <section data-testid="recipe-category">
                 <span className="text-gray-500">
                   { result.strCategory }
