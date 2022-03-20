@@ -107,7 +107,7 @@ function RecipieRenderization(props) {
               alt={ result[title] }
             />
           </section>
-          <section className="flex justify-between p-1 h-auto shadow__card">
+          <section className="flex bg-zinc-100 justify-between p-1 h-auto shadow__card">
             <section
               className="flex flex-col w-44"
             >

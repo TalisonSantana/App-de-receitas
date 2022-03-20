@@ -37,8 +37,8 @@ function ExpDrinksIngredient() {
         {ingredients.length > 0 && ingredients.map((ingredient, index) => (
           <section
             key={ index }
-            className="flex flex-col justify-center items-center bg-white-100 shadow__card
-             my-1 h-18 w-40 box-border rounded-md"
+            className="flex flex-col justify-center items-center shadow__card
+             my-1 h-18 w-40 box-border rounded-md bg-zinc-100"
           >
             <button
               type="button"

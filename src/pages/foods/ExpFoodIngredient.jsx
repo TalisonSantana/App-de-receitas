@@ -36,7 +36,7 @@ function ExpFoodsIngredient() {
           <section
             key={ index }
             className="flex flex-col justify-center items-center bg-white-100 shadow__card
-            my-1 h-18 w-40 box-border rounded-md"
+            my-1 h-18 w-40 box-border rounded-md bg-zinc-100"
           >
             <button
               data-testid={ `${index}-ingredient-card` }

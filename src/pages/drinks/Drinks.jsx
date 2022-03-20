@@ -79,7 +79,7 @@ function Drinks() {
             ))}
         </div>
       </section>
-      <ul className="flex mb-9 flex-wrap justify-between p-3">
+      <ul className="flex mb-9 bg-zinc-100 flex-wrap justify-between p-3">
         {apiDrink && apiDrink
           .map((drink, index) => (
             <Link

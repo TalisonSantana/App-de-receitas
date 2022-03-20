@@ -42,7 +42,7 @@ function CardRecipe(props) {
   };
 
   return (
-    <div className="flex flex-row shadow__card my-3 rounded-md">
+    <div className="flex flex-row bg-zinc-100 shadow__card my-3 rounded-md">
       {
         isRemove
         && (

@@ -53,7 +53,7 @@ function Food() {
     }
   };
   return (
-    <main className="bg-zinc-200">
+    <main className="bg-zinc-200 h-screen">
       <Header
         title="Foods"
         searchIcon
@@ -79,7 +79,7 @@ function Food() {
             ))}
         </div>
       </section>
-      <ul className="flex mb-9 flex-wrap justify-between p-3">
+      <ul className="flex mb-9 bg-zinc-100 flex-wrap justify-between p-3">
         {apiFood && apiFood
           .map((food, index) => (
             <Link
