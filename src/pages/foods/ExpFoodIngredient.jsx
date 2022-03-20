@@ -29,26 +29,32 @@ function ExpFoodsIngredient() {
   };
 
   return (
-    <>
+    <section className="bg-zinc-200 h-sreen">
       <Header title="Explore Ingredients" />
-      {ingredients.map((ingredient, index) => (
-        <button
-          key={ index }
-          data-testid={ `${index}-ingredient-card` }
-          type="button"
-          onClick={ (event) => { fetchIngredient(event); } }
-        >
-          <img
-            src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
-            alt={ ingredient.strIngredient }
-            data-testid={ `${index}-card-img` }
-          />
-          <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient}</p>
-        </button>
-
-      ))}
+      <section className="flex mb-9 flex-wrap justify-between p-3">
+        {ingredients.map((ingredient, index) => (
+          <section
+            key={ index }
+            className="flex flex-col justify-center items-center bg-white-100 shadow__card
+            my-1 h-18 w-40 box-border rounded-md"
+          >
+            <button
+              data-testid={ `${index}-ingredient-card` }
+              type="button"
+              onClick={ (event) => { fetchIngredient(event); } }
+            >
+              <img
+                src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
+                alt={ ingredient.strIngredient }
+                data-testid={ `${index}-card-img` }
+              />
+            </button>
+            <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient}</p>
+          </section>
+        ))}
+      </section>
       <Footer />
-    </>
+    </section>
   );
 }
 export default ExpFoodsIngredient;
