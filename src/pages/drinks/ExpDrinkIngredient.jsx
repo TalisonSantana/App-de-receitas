@@ -31,26 +31,33 @@ function ExpDrinksIngredient() {
   };
 
   return (
-    <>
+    <section className="bg-zinc-200 h-sreen">
       <Header title="Explore Ingredients" />
-      {ingredients.length > 0 && ingredients.map((ingredient, index) => (
-        <button
-          type="button"
-          key={ index }
-          data-testid={ `${index}-ingredient-card` }
-          to="/drinks"
-          onClick={ (event) => { fetchIngredient(event); } }
-        >
-          <img
-            src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
-            alt={ ingredient.strIngredient1 }
-            data-testid={ `${index}-card-img` }
-          />
-          <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient1}</p>
-        </button>
-      ))}
+      <section className="flex mb-9 flex-wrap justify-between p-3">
+        {ingredients.length > 0 && ingredients.map((ingredient, index) => (
+          <section
+            key={ index }
+            className="flex flex-col justify-center items-center bg-white-100 shadow__card
+             my-1 h-18 w-40 box-border rounded-md"
+          >
+            <button
+              type="button"
+              data-testid={ `${index}-ingredient-card` }
+              to="/drinks"
+              onClick={ (event) => { fetchIngredient(event); } }
+            >
+              <img
+                src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
+                alt={ ingredient.strIngredient1 }
+                data-testid={ `${index}-card-img` }
+              />
+            </button>
+            <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient1}</p>
+          </section>
+        ))}
+      </section>
       <Footer />
-    </>
+    </section>
   );
 }
 
