@@ -116,7 +116,7 @@ function IngredientsCheckbox({
     <section className="flex flex-col p-2">
       <p className="text-2xl">Ingredients</p>
       <section className="flex flex-row bg-zinc-300 rounded-md p-2">
-        <section className="flex flex-col  bg-orange-500 w-52 ">
+        <section className="flex flex-col w-52 ">
           {ingredients.map((ingredient, indexIngredient) => (
             ingredient
           && (
@@ -155,7 +155,7 @@ function IngredientsCheckbox({
           )
           ))}
         </section>
-        <section className="flex flex-col items-center w-44 bg-sky-500 ">
+        <section className="flex flex-col items-center w-44">
           {ingredientMeasure.map((measure, indexMeasure) => (
             spaceAndNull(measure)
           && (
