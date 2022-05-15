@@ -53,47 +53,56 @@ function Food() {
     }
   };
   return (
-    <main>
+    <main className="bg-zinc-200 h-screen">
       <Header
         title="Foods"
         searchIcon
       />
-      <div>
-        <ButtonCategory
-          name="All"
-          nameCategory="All"
-          handleClickButton={ handleClickButtonAll }
-        />
-      </div>
-      <div>
-        {categoryFood && categoryFood
-          .map((nameCategory, index) => (
-            <div key={ index }>
-              <ButtonCategory
-                nameCategory={ nameCategory.strCategory }
-                handleClickButton={ handleClickButton }
-              >
-                { nameCategory.strCategory }
-              </ButtonCategory>
-            </div>
-          ))}
-      </div>
-      <ul>
+      <hr className="shadow__header" />
+      <section className="flex p-1 my-1">
+        <div className="flex flex-wrap justify-between gap-2">
+          <ButtonCategory
+            name="All"
+            nameCategory="All"
+            handleClickButton={ handleClickButtonAll }
+          />
+          {categoryFood && categoryFood
+            .map((nameCategory, index) => (
+              <div key={ index }>
+                <ButtonCategory
+                  nameCategory={ nameCategory.strCategory }
+                  handleClickButton={ handleClickButton }
+                >
+                  { nameCategory.strCategory }
+                </ButtonCategory>
+              </div>
+            ))}
+        </div>
+      </section>
+      <ul className="flex mb-9 bg-zinc-100 flex-wrap justify-between p-3">
         {apiFood && apiFood
           .map((food, index) => (
             <Link
+              className="bg-white-100 shadow__card
+               my-1 h-52 w-40 box-border rounded-md"
               data-testid={ `${index}-recipe-card` }
               to={ `/foods/${food.idMeal}` }
               key={ index }
             >
               {' '}
               <img
+                className="rounded-md h-40 rounded-b-none"
                 data-testid={ `${index}-card-img` }
                 src={ food.strMealThumb }
-                height="100px"
                 alt={ food.strMeal }
               />
-              <p data-testid={ `${index}-card-name` }>{ food.strMeal }</p>
+              <p
+                className="text-black text-justify text-center text-md break-words mt-1"
+                data-testid={ `${index}-card-name` }
+              >
+                { food.strMeal }
+
+              </p>
             </Link>
           ))}
       </ul>
@@ -102,16 +111,3 @@ function Food() {
   );
 }
 export default Food;
-// function Foods() {
-//   return (
-//     <>
-//       <Header
-//         title="Foods"
-//         searchIcon
-//       />
-//       <CardsRecipes />
-//       <Footer />
-//     </>
-//   );
-// }
-// export default Foods;

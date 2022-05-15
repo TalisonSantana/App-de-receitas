@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FetchResult } from '../../services';
-import './FotoRecomendation.css';
 
 function FotoRecomendation(props) {
   const { path,
@@ -32,22 +31,19 @@ function FotoRecomendation(props) {
   }, []);
 
   return (
-    <section className="d-flex flex-row recomendation">
+    <section className="flex flex-row">
       {results
         .map((result, index) => (
           <section
             key={ index }
-            className="p-1"
+            className="recomendation"
           >
             <Link
               data-testid={ `${index}-recomendation-card` }
               to="foods/52977"
             >
               <img
-                className="recomendation__img"
                 src={ result[srcThumb] }
-                height="175px"
-                width="169px"
                 alt="foto"
               />
             </Link>

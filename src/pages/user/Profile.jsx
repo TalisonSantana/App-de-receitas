@@ -17,34 +17,51 @@ function Profile({ history }) {
     history.push(`/${path}`);
   };
   return (
-    <>
+    <section
+      className="bg-zinc-200 h-screen"
+    >
       <Header title="Profile" />
-      <section>
-        <h3 data-testid="profile-email">{user.email}</h3>
-        <button
-          type="button"
-          data-testid="profile-done-btn"
-          onClick={ () => handleClick('done-recipes') }
-        >
-          Done Recipes
-        </button>
-        <button
-          type="button"
-          data-testid="profile-favorite-btn"
-          onClick={ () => handleClick('favorite-recipes') }
-        >
-          Favorite Recipes
-        </button>
-        <button
-          type="button"
-          data-testid="profile-logout-btn"
-          onClick={ () => handleClick('') }
-        >
-          Logout
-        </button>
+      <section
+        className="flex flex-col
+    items-center justify-center p-10"
+      >
+        <h3 className="p-2" data-testid="profile-email">{user.email}</h3>
+        <section className="p-2">
+          <button
+            className="shadow__button bg-green-500 hover:bg-green-700
+          text-black rounded-md h-12 w-80 text-2xl"
+            type="button"
+            data-testid="profile-done-btn"
+            onClick={ () => handleClick('done-recipes') }
+          >
+            Done Recipes
+          </button>
+        </section>
+        <section className="p-2">
+          <button
+            className="shadow__button
+          bg-green-500 hover:bg-green-700 text-black rounded-md h-12 w-80 text-2xl"
+            type="button"
+            data-testid="profile-favorite-btn"
+            onClick={ () => handleClick('favorite-recipes') }
+          >
+            Favorite Recipes
+          </button>
+        </section>
+        <section className="p-2">
+          <button
+            className="shadow__button
+          bg-green-500 hover:bg-green-700 text-black rounded-md h-12 w-80 text-2xl"
+            type="button"
+            data-testid="profile-logout-btn"
+            onClick={ () => handleClick('') }
+          >
+            Logout
+          </button>
+        </section>
       </section>
       <Footer />
-    </>
+    </section>
   );
 }
 

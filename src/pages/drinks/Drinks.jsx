@@ -54,44 +54,54 @@ function Drinks() {
   };
 
   return (
-    <main>
+    <main className="bg-zinc-200">
       <Header
         title="Drinks"
         searchIcon
       />
-      <ButtonCategory
-        nameCategory="All"
-        name="All"
-        handleClickButton={ handleClickButtonAll }
-      />
-      <div>
-        {categoryDrink && categoryDrink
-          .map((nameCategory, index) => (
-            <div key={ index }>
-              <ButtonCategory
-                nameCategory={ nameCategory.strCategory }
-                handleClickButton={ handleClickButton }
-              >
-                { nameCategory.strCategory }
-              </ButtonCategory>
-            </div>
-          ))}
-      </div>
-      <ul>
+      <section className="flex p-1 my-1">
+        <div className="flex flex-wrap justify-between gap-2">
+          <ButtonCategory
+            nameCategory="All"
+            name="All"
+            handleClickButton={ handleClickButtonAll }
+          />
+          {categoryDrink && categoryDrink
+            .map((nameCategory, index) => (
+              <div key={ index }>
+                <ButtonCategory
+                  nameCategory={ nameCategory.strCategory }
+                  handleClickButton={ handleClickButton }
+                >
+                  { nameCategory.strCategory }
+                </ButtonCategory>
+              </div>
+            ))}
+        </div>
+      </section>
+      <ul className="flex mb-9 bg-zinc-100 flex-wrap justify-between p-3">
         {apiDrink && apiDrink
           .map((drink, index) => (
             <Link
+              className="bg-white-100 shadow__card
+            my-1 h-52 w-40 box-border rounded-md"
               data-testid={ `${index}-recipe-card` }
               to={ `/drinks/${drink.idDrink}` }
               key={ index }
             >
               <img
+                className="rounded-md h-40 rounded-b-none"
                 data-testid={ `${index}-card-img` }
                 src={ drink.strDrinkThumb }
-                height="50px"
                 alt={ drink.strDrink }
               />
-              <p data-testid={ `${index}-card-name` }>{ drink.strDrink }</p>
+              <p
+                className="text-black text-justify text-center text-md break-words mt-1"
+                data-testid={ `${index}-card-name` }
+              >
+                { drink.strDrink }
+
+              </p>
             </Link>
           ))}
       </ul>

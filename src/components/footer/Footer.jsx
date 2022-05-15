@@ -7,7 +7,11 @@ import './Footer.css';
 
 function Footer() {
   return (
-    <footer className="footer" data-testid="footer">
+    <footer
+      className="footer
+       bg-orange-500 w-screen h-13 flex flex-row justify-between p-1"
+      data-testid="footer"
+    >
       <Link to="drinks">
         <img src={ drinkIcon } alt="drinkIcon" data-testid="drinks-bottom-btn" />
       </Link>

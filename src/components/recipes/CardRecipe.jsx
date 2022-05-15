@@ -42,96 +42,137 @@ function CardRecipe(props) {
   };
 
   return (
-    <div>
+    <div className="flex flex-row bg-zinc-100 shadow__card my-3 rounded-md">
       {
         isRemove
         && (
-
-          <section>
-            <Link to={ type === 'drink' ? `/drinks/${id}` : `/foods/${id}` }>
-              <img
-                style={ { width: '300px' } }
-                data-testid={ `${index}-horizontal-image` }
-                src={ src }
-                alt={ name }
-              />
-              <h3
-                data-testid={ `${index}-horizontal-name` }
+          <section className="flex justify-around">
+            <section>
+              <Link
+                to={ type === 'drink' ? `/drinks/${id}` : `/foods/${id}` }
               >
-                {name}
+                <img
+                  className="rounded-l-md"
+                  height="143px"
+                  width="165px"
+                  data-testid={ `${index}-horizontal-image` }
+                  src={ src }
+                  alt={ name }
+                />
+              </Link>
+            </section>
+            <section className="flex flex-col w-auto p-2">
+              <section className="flex justify-between">
+                { !alcoholic
+                  && (
+                    <span
+                      className="text-gray-500"
+                      data-testid={ `${index}-horizontal-top-text` }
+                    >
+                      {`${nacionality} - ${category}`}
 
-              </h3>
-            </Link>
-            { !alcoholic
-      && (
-        <span
-          data-testid={ `${index}-horizontal-top-text` }
-        >
-          {`${nacionality} - ${category}`}
-
-        </span>
-      )}
-            {
-              date
-        && (
-          <span
-            data-testid={ `${index}-horizontal-done-date` }
-          >
-            {date}
-
-          </span>
-        )
-            }
-            {
-              tags
-        && (
-          tags.map((tag) => (
-            <span
-              key={ tag }
-              data-testid={ `${index}-${tag}-horizontal-tag` }
-            >
-              {tag}
-
-            </span>
-          ))
-
-        )
-            }
-            <span
-              data-testid={ `${index}-horizontal-top-text` }
-            >
-              {alcoholic}
-            </span>
-            <button
-              onClick={ getLink }
-              type="button"
-            >
-
-              <img
-                data-testid={ `${index}-horizontal-share-btn` }
-                src={ shareIcon }
-                alt="share icon"
-              />
-
-            </button>
-            {
-              location.pathname.includes('favorite-recipes')
-              && (
-                <button
-                  onClick={ removeRecipe }
-                  type="button"
+                    </span>
+                  )}
+                <span
+                  className="text-gray-500"
+                  data-testid={ `${index}-horizontal-top-text` }
                 >
-                  <img
-                    data-testid={ `${index}-horizontal-favorite-btn` }
-                    src={ favoriteIcon }
-                    alt="favorite icon"
-                  />
-                </button>
-              )
-            }
-            {
-              isCopied && <span>Link copied!</span>
-            }
+                  {alcoholic}
+                </span>
+                {
+                  location.pathname.includes('done-recipes')
+                  && (
+                    <button
+                      onClick={ getLink }
+                      type="button"
+                    >
+
+                      <img
+                        data-testid={ `${index}-horizontal-share-btn` }
+                        src={ shareIcon }
+                        alt="share icon"
+                      />
+
+                    </button>
+                  )
+                }
+              </section>
+              <section>
+                <p
+                  className="text-md"
+                  data-testid={ `${index}-horizontal-name` }
+                >
+                  <strong>
+                    {name}
+                  </strong>
+                </p>
+              </section>
+              <section>
+                {date
+              && (
+                <span
+                  data-testid={ `${index}-horizontal-done-date` }
+                >
+                  Done in:
+                  {' '}
+                  {date}
+
+                </span>
+              )}
+              </section>
+              <section className="flex justify-around">
+                {tags
+              && (
+                tags.map((tag) => (
+                  <span
+                    className="bg-zinc-300 rounded-md px-2"
+                    key={ tag }
+                    data-testid={ `${index}-${tag}-horizontal-tag` }
+                  >
+                    {tag}
+
+                  </span>
+                ))
+
+              )}
+              </section>
+              <section className="w-40">
+                {
+                  location.pathname.includes('favorite-recipes')
+                && (
+                  <section className="flex justify-around">
+                    <button
+                      onClick={ getLink }
+                      type="button"
+                    >
+
+                      <img
+                        width="30px"
+                        data-testid={ `${index}-horizontal-share-btn` }
+                        src={ shareIcon }
+                        alt="share icon"
+                      />
+
+                    </button>
+                    <button
+                      onClick={ removeRecipe }
+                      type="button"
+                    >
+                      <img
+                        width="31px"
+                        data-testid={ `${index}-horizontal-favorite-btn` }
+                        src={ favoriteIcon }
+                        alt="favorite icon"
+                      />
+                    </button>
+                  </section>
+                )
+                }
+              </section>
+              {
+                isCopied && <span>Link copied!</span>
+              }
+            </section>
           </section>
         )
       }

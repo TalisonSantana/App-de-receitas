@@ -10,17 +10,9 @@ import { setLocalStorageOn, setLocalStorageNull } from './saveLocalFavorite';
 
 function RecipieRenderization(props) {
   const {
-    detailsRecipies,
-    path,
-    nameRoute,
-    ingredients,
-    ingredientMeasure,
-    history,
-    idDaReceita,
-    isCopied,
-    getLink,
+    detailsRecipies, path, nameRoute, ingredients,
+    ingredientMeasure, history, idDaReceita, isCopied, getLink,
   } = props;
-  // console.log(detailsRecipies);
 
   const [buttonFinish, setButtonFinish] = useState(false);
   const [iconWhite, setIconWhite] = useState(true);
@@ -69,11 +61,9 @@ function RecipieRenderization(props) {
   }, []);
   const details = detailsRecipies[0];
 
-  const routeFoodsFull = '/foods/:idDaReceita'
-  || path === routeFoods;
-  const routeDrinksFull = '/drinks/:idDaReceita'
-  || path === routeDrinks;
-  // const drinksFoodsRoute = routeFoodsFull || routeDrinksFull;
+  const routeFoodsFull = '/foods/:idDaReceita' || path === routeFoods;
+  const routeDrinksFull = '/drinks/:idDaReceita' || path === routeDrinks;
+
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (getLocal && routeFoodsFull) {
@@ -107,34 +97,43 @@ function RecipieRenderization(props) {
   const filter = () => (
     detailsRecipies
       .map((result, index) => (
-        <section key={ index }>
-          <img
-            data-testid="recipe-photo"
-            src={ result[srcThumb] }
-            height="200px"
-            max-width="360px"
-            width="100%"
-            alt={ result[title] }
-          />
-          <section className="d-flex justify-content-between">
-            <div className="d-flex flex-column">
-              <p data-testid="recipe-title">{ result[title] }</p>
+        <section key={ index } className="bg-zinc-200">
+          <section
+            className="flex justify-center items-center"
+          >
+            <img
+              data-testid="recipe-photo"
+              src={ result[srcThumb] }
+              alt={ result[title] }
+            />
+          </section>
+          <section className="flex bg-zinc-100 justify-between p-1 h-auto shadow__card">
+            <section
+              className="flex flex-col w-44"
+            >
+              <p
+                className="text-2xl"
+                style={ { margin: '0' } }
+                data-testid="recipe-title"
+              >
+                { result[title] }
+              </p>
               <section data-testid="recipe-category">
-                <span>
+                <span className="text-gray-500">
                   { result.strCategory }
                 </span>
-                <p>
+                <p className="text-gray-500">
                   {result.strAlcoholic}
                 </p>
               </section>
-            </div>
-            <section className="d-flex">
+            </section>
+            <section className="flex items-start justify-between w-24">
               <button
                 data-testid="share-btn"
                 type="button"
                 onClick={ getLink }
               >
-                <img src={ shareIcon } alt="shareIcon" />
+                <img width="38px" src={ shareIcon } alt="shareIcon" />
               </button>
               <button
                 onClick={ handleClickIcon }
@@ -142,6 +141,7 @@ function RecipieRenderization(props) {
               >
                 <img
                   data-testid="favorite-btn"
+                  width="38px"
                   src={ iconWhite ? whiteHeartIcon : blackHeartIcon }
                   alt={ iconWhite ? 'whiteHeartIcon' : 'blackHeartIcon' }
                 />
@@ -158,53 +158,69 @@ function RecipieRenderization(props) {
             routeInprogress={ routeInprogress }
             ingredientMeasure={ ingredientMeasure }
           />
-          <p
-            className="p-3"
-            data-testid="instructions"
-          >
-            Instructions:
-            <br />
-            { result.strInstructions }
-          </p>
-          {!routeInprogress
+          <section className="p-2">
+            <p className="text-2xl">
+              Instructions
+            </p>
+            <p
+              className="text-xl bg-zinc-300 rounded-md p-2"
+              data-testid="instructions"
+            >
+              { result.strInstructions }
+            </p>
+          </section>
+          <section className="mb-10">
+            {!routeInprogress
           && (
             <section>
               {result.strYoutube
           && (
-            <iframe
-              data-testid="video"
-              width="360"
-              height="215"
-              src={ handleSrcYoutube(result.strYoutube) }
-              title="YouTube video player"
-            />
-          )}
-              <FotoRecomendation
-                path={ path }
-                nameRoute={ nameRoute }
+            <section className="p-2">
+              <p className="text-2xl">Video</p>
+              <iframe
+                data-testid="video"
+                width="343"
+                height="215"
+                src={ handleSrcYoutube(result.strYoutube) }
+                title="YouTube video player"
               />
             </section>
           )}
+              <section className="p-2">
+                <p className="text-2xl">Recomended</p>
+                <FotoRecomendation
+                  path={ path }
+                  nameRoute={ nameRoute }
+                />
+              </section>
+            </section>
+          )}
+          </section>
           <div>
             {buttonFinish
               ? (
                 <button
                   type="button"
                   data-testid="finish-recipe-btn"
-                  className="button__startRecipe"
+                  className="shadow__button-inset
+                  button__startRecipe bg-green-500 h-12 text-xl"
                   onClick={ () => history.push('/done-recipes') }
                 >
                   Finish Recipe
                 </button>
               ) : (
-                <button
-                  type="button"
-                  data-testid="start-recipe-btn"
-                  className="button__startRecipe"
-                  onClick={ handleClick }
-                >
-                  { isContinue ? 'Continue Recipe' : ' Start Recipe'}
-                </button>
+                <section>
+                  <hr className="w-screen h-4 shadow__header" />
+                  <button
+                    type="button"
+                    data-testid="start-recipe-btn"
+                    className="shadow__button-inset
+                     button__startRecipe bg-green-500 h-12 text-xl"
+                    onClick={ handleClick }
+                  >
+                    { isContinue ? 'Continue Recipe' : ' Start Recipe'}
+                  </button>
+                </section>
               )}
 
           </div>

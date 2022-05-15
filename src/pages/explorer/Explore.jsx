@@ -7,26 +7,34 @@ function Explore() {
   const history = useHistory();
 
   return (
-    <>
+    <section className="bg-zinc-200 h-screen">
       <Header title="Explore" />
-      <button
-        onClick={ () => history.push('/explore/foods') }
-        data-testid="explore-foods"
-        type="button"
-      >
-        Explore Foods
-
-      </button>
-      <button
-        data-testid="explore-drinks"
-        onClick={ () => history.push('/explore/drinks') }
-        type="button"
-      >
-        Explore Drinks
-
-      </button>
+      <section className="flex flex-col items-center p-10">
+        <section className="p-2">
+          <button
+            className="shadow__button bg-green-500 hover:bg-green-700
+              text-black rounded-md h-12 w-80 text-2xl"
+            onClick={ () => history.push('/explore/foods') }
+            data-testid="explore-foods"
+            type="button"
+          >
+            Explore Foods
+          </button>
+        </section>
+        <section className="p-2">
+          <button
+            className="shadow__button bg-green-500 hover:bg-green-700
+              text-black rounded-md h-12 w-80 text-2xl"
+            data-testid="explore-drinks"
+            onClick={ () => history.push('/explore/drinks') }
+            type="button"
+          >
+            Explore Drinks
+          </button>
+        </section>
+      </section>
       <Footer />
-    </>
+    </section>
   );
 }
 

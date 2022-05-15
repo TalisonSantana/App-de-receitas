@@ -8,6 +8,8 @@ function ButtonCategory(props) {
 
   return (
     <button
+      className="shadow__button
+      bg-green-500 hover:bg-green-700 text-black rounded-md h-7 w-28"
       onClick={ (event) => handleClickButton(event) }
       type="button"
       name={ nameCategory }
